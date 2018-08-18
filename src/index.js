@@ -36,6 +36,7 @@ ReactDOM.render(reactApp, document.getElementById('root'));
 var app = {
     // Application Constructor
     initialize: function () {
+        console.log("Hello");
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
@@ -44,7 +45,7 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        
+        console.log("Device Ready");
     },
 
     // Update DOM on a Received Event

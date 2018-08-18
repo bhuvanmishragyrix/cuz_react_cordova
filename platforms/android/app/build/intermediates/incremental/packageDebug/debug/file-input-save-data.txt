@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Aug 18 14:23:10 IST 2018
+#Sat Aug 18 16:02:10 IST 2018
 25.file=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-port-hdpi-v4/screen.png
 25.base=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 22.set=ANDROID_RESOURCE

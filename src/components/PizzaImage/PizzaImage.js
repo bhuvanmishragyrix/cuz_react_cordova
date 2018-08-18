@@ -23,6 +23,8 @@ class PizzaImageClass extends Component {
     componentDidMount() {
         try {
 
+            
+
             // var bytes = base64.decode(image.toString().split('data:image/svg+xml;base64,')[1]);
             // var text = utf8.decode(bytes);
             // console.log(text);

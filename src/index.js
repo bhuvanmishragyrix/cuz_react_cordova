@@ -7,14 +7,6 @@ import $ from 'jquery';
 import './index.css';
 import App from './App';
 
-const reactApp = (
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-);
-
-ReactDOM.render(reactApp, document.getElementById('root'));
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -46,6 +38,19 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         console.log("Device Ready");
+        const reactApp = (
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        );
+        
+        ReactDOM.render(reactApp, document.getElementById('root'));
+
+        screen.orientation.lock('portrait').then(function success() {
+            console.log("Successfully locked the orientation");
+        }, function error(errMsg) {
+            console.log("Error locking the orientation :: " + errMsg);
+        });
     },
 
     // Update DOM on a Received Event

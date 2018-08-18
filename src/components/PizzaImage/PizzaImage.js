@@ -23,7 +23,7 @@ class PizzaImageClass extends Component {
     componentDidMount() {
         try {
 
-            
+
 
             // var bytes = base64.decode(image.toString().split('data:image/svg+xml;base64,')[1]);
             // var text = utf8.decode(bytes);
@@ -48,6 +48,12 @@ class PizzaImageClass extends Component {
 
 
                 document.getElementById("test1").appendChild(doc.getElementsByTagName("svg")[0]);
+                console.log($('path')[1].setAttribute('style', 'fill:#000000;'));
+
+                document.addEventListener("backbutton", onBackKeyDown, false);
+
+                function onBackKeyDown() {
+                    navigator.app.exitApp();                }
             });
 
 

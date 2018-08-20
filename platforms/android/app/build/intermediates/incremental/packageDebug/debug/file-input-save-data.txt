@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Aug 18 18:32:29 IST 2018
+#Mon Aug 20 15:02:22 IST 2018
 25.file=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/xml/config.xml
 25.base=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 22.set=ASSET

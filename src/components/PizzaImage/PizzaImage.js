@@ -5,6 +5,8 @@ import PizzaImage from '../../assets/pizza.jpg';
 import image from '../../assets/2.svg';
 import base64 from 'base-64';
 var utf8 = require('utf8');
+import axios from 'axios';
+import $ from 'jquery';
 
 class PizzaImageClass extends Component {
 
@@ -13,12 +15,15 @@ class PizzaImageClass extends Component {
 
     }
 
-    componentDidMount() {
-        try {
-
+    getBase64(url) {
+        return axios
+          .get(url, {
+            responseType: 'arraybuffer'
+          })
+          .then(response => {
             $(document).ready(function () {
                 var parser = new DOMParser();
-                var bytes = base64.decode(image.toString().split('data:image/svg+xml;base64,')[1]);
+                var bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
                 var text = utf8.decode(bytes);
                 console.log(text);
                 var doc = parser.parseFromString(text, "image/svg+xml");
@@ -33,6 +38,13 @@ class PizzaImageClass extends Component {
                     navigator.app.exitApp();
                 }
             });
+        })
+      }
+
+    componentDidMount() {
+        try {
+
+            this.getBase64(`https://s3-ap-southeast-2.amazonaws.com/cuz-gyrix/2.svg`);
 
 
         }

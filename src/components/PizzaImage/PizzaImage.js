@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import classes from './PizzaImage.css';
+import './PizzaImage.css';
 import PizzaImage from '../../assets/pizza.jpg';
 import image from '../../assets/2.svg';
 import $ from 'jquery';
@@ -53,7 +53,8 @@ class PizzaImageClass extends Component {
                 document.addEventListener("backbutton", onBackKeyDown, false);
 
                 function onBackKeyDown() {
-                    navigator.app.exitApp();                }
+                    navigator.app.exitApp();
+                }
             });
 
 
@@ -81,12 +82,35 @@ class PizzaImageClass extends Component {
 
     render() {
         return (
-            <div id="test1" className={classes.PizzaImage}>
-                {/* <img src={PizzaImage} className={classes.PizzaImg} /> */}
+            <div>
+                <div id="test1" className="PizzaImage">
+                    {/* <img src={PizzaImage} className={classes.PizzaImg} /> */}
 
-            </div>
-        );
-    }
-}
-
+                </div>
+                <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                            <img className="d-block w-100" src={PizzaImage} alt="First slide"/>
+    </div>
+                            <div className="carousel-item">
+                                <img className="d-block w-100" src={PizzaImage} alt="Second slide"/>
+    </div>
+                                <div className="carousel-item">
+                                    <img className="d-block w-100" src={PizzaImage} alt="Third slide"/>
+    </div>
+                                </div>
+                                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Previous</span>
+                                </a>
+                                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        );
+                    }
+                }
+                
 export default PizzaImageClass;

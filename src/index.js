@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-// var DOMParser = require('xmldom').DOMParser;
-import $ from 'jquery';
 
 import './index.css';
 import App from './App';

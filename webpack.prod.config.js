@@ -46,6 +46,12 @@ module.exports = {
             {
                 test: /\.(png|svg|jpe?g|gif)$/,
                 loader: 'url-loader?limit=800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&name=images/[name].[ext]'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
             }
         ]
     },
@@ -58,8 +64,8 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-              'NODE_ENV': JSON.stringify('production')
+                'NODE_ENV': JSON.stringify('production')
             }
-          })
+        })
     ]
 };

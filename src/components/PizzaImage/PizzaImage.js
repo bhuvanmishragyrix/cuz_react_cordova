@@ -7,6 +7,7 @@ import base64 from 'base-64';
 var utf8 = require('utf8');
 import axios from 'axios';
 import $ from 'jquery';
+import { connect} from 'react-redux';
 
 class PizzaImageClass extends Component {
 
@@ -57,6 +58,7 @@ class PizzaImageClass extends Component {
     render() {
         return (
             <div>
+                {this.props.test}
                 <div id="test1" className="PizzaImage">
                     {/* <img src={PizzaImage} className={classes.PizzaImg} /> */}
 
@@ -87,4 +89,10 @@ class PizzaImageClass extends Component {
     }
 }
 
-export default PizzaImageClass;
+const mapStateToProps = (state) => {
+return {
+    test: state.test
+}
+};
+
+export default connect(mapStateToProps)(PizzaImageClass);

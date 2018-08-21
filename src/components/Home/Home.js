@@ -7,19 +7,18 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
 class Home extends Component {
 
+    heightOfDivToSet;
+
     constructor(props) {
         super(props);
 
-        const heightOfDivToSet = window.screen.height - AppConst.HeightToSubtractFromWindowScreenHeight;
-        this.state = {
-            heightOfDivToSet: heightOfDivToSet
-        };
+        this.heightOfDivToSet = window.screen.height - AppConst.HeightToSubtractFromWindowScreenHeight;
     }
 
     render() {
         return (
             <div>
-                <div style={{ height: this.state.heightOfDivToSet }} className="d-flex justify-content-center align-items-center">
+                <div style={{ height: this.heightOfDivToSet}} className="d-flex justify-content-center align-items-center">
                     <div className="text-center">
                         <img src={logo} />
                     </div>

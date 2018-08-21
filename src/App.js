@@ -7,7 +7,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap';
 
-import HomePage from './containers/HomePage';
+import StartPage from './containers/StartPage';
 
 
 
@@ -15,7 +15,7 @@ class App extends Component {
     render() {
         return (
             <div id="app">
-                <HomePage />
+                <StartPage />
                 {/* <div>
                     <Link to="/">Users</Link> | <Link to="/pizza">Pizza</Link>
                 </div>

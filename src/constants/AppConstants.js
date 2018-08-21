@@ -1,0 +1,1 @@
+export const HeightToSubtractFromWindowScreenHeight = 20;

@@ -1,0 +1,58 @@
+{
+    "namesForReference": {
+        "categories": [
+            "Dirtbike",
+            "Bicycle"
+        ],
+        "brands": [
+            "Honda",
+            "Suzuki",
+            "Firefox",
+            "Montra"
+        ],
+        "years": [
+            "2016",
+            "2017"
+        ],
+        "models": [
+            "Honda 1",
+            "Honda 2",
+            "Suzuki 1",
+            "Suzuki 2",
+            "Firefox 1",
+            "Firefox 2",
+            "Montra 1",
+            "Montra 2"
+        ],
+        "graphics": [
+            "Graphic 1",
+            "Graphic 2"
+        ],
+        "isBikeSVG": [
+            true,
+            false
+        ],
+        "parts": [
+            "Tank",
+            "Radiator Shrouds",
+            null
+        ],
+        "leftOrRight": [
+            "Left",
+            "Right",
+            null
+        ],
+        "price": [
+            "Any integer or double should do.",
+            null
+        ],
+        "fileName": "Any unique filename of file present on server should do.",
+        "isNewProduct": [
+            true,
+            false
+        ]
+    },
+    "images": [
+        {}
+    ]
+}

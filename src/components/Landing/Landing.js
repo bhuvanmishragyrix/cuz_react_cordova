@@ -25,7 +25,7 @@ class Home extends Component {
             <div>
                 <div style={{ height: this.heightOfDivToSet }} className="d-flex justify-content-center align-items-center">
                     <div className="text-center">
-                        <img src={logo} />
+                        <img className={LandingCss.imageSize} src={logo} />
                     </div>
                 </div>
                 <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.startIcon} text-center`}>

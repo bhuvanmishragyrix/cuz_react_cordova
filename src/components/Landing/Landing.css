@@ -2,7 +2,7 @@ img {
     width: 90%;
 }
 
-.start-icon {
+.startIcon {
     position: fixed;
     bottom: 0;
     margin: 5% auto;
@@ -11,6 +11,6 @@ img {
     right: 0;
 }
 
-i {
+.iconSize {
     font-size: 120px !important;
 }

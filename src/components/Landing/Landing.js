@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import LandingCss from './Landing.css';
 import * as AppConst from '../../constants/AppConstants';
-import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import '../../../node_modules/font-awesome/css/font-awesome.min.css?raw';
 
 class Home extends Component {
 
@@ -28,8 +28,8 @@ class Home extends Component {
                         <img src={logo} />
                     </div>
                 </div>
-                <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.start-icon} text-center`}>
-                    <i className="fa fa-play-circle" aria-hidden="true"></i>
+                <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.startIcon} text-center`}>
+                    <i className={`${LandingCss.iconSize} fa fa-play-circle`} aria-hidden="true"></i>
                 </div>
             </div>
         );

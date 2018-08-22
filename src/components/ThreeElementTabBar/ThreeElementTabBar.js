@@ -21,6 +21,9 @@ class threeElementTabBar extends Component {
         this.setState({
             logo: <img src={logo} style={{ height: `${this.logoHeight}px` }} />
         });
+
+        //Code to convert html to string
+        console.log($(`.threeElementTabBarRoot`)[0].outerHTML);
     }
 
     render() {

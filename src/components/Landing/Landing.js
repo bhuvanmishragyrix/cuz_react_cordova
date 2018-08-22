@@ -17,7 +17,7 @@ class Home extends Component {
     }
 
     redirectToParentForThreeElementTabBarScreens = () => {
-        this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelect');
+        this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
     };
 
     render() {

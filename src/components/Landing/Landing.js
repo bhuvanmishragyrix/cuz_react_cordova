@@ -28,8 +28,9 @@ class Home extends Component {
                         <img className={LandingCss.imageSize} src={logo} />
                     </div>
                 </div>
-                <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.startIcon} text-center`}>
-                    <i className={`${LandingCss.iconSize} fa fa-play-circle`} aria-hidden="true"></i>
+                <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.startIconAndText} text-center`}>
+                    <i className={`${LandingCss.iconSizeAndColor} fa fa-play-circle`} aria-hidden="true"></i>
+                    <p className={LandingCss.startTextAndColor}>START</p>
                 </div>
             </div>
         );

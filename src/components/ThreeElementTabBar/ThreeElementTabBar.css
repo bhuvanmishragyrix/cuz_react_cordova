@@ -1,3 +1,14 @@
-.tabBarIconSize {
+.tabBarIconSizeAndColor {
     font-size: 50px !important;
+    color: gray;
+}
+
+.hamburgerMenu {
+    position: fixed;
+    left: 20px;
+}
+
+.shareMenu {
+    position: fixed;
+    right: 20px;
 }

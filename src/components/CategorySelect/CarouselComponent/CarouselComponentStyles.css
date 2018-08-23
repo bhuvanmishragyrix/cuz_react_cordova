@@ -1,0 +1,12 @@
+.setWidthAndHeight {
+    height: 250px;
+}
+
+.setImageBackgroundSize {
+    background-size: contain !important;
+}
+
+.captionText {
+    font-family: 'Anton', sans-serif;
+    color: gray;
+}

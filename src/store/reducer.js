@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                fetchedProductsAndImagesJSONData: action.payload
+                images: action.payload.images
             }
     }
     return state;

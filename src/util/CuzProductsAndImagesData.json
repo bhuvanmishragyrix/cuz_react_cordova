@@ -275,7 +275,7 @@
             "isBikeSVG": false,
             "part": null,
             "leftOrRight": null,
-            "price": null,
+            "price": 199,
             "filename": "Graphic_1.jpg",
             "isNewProduct": false
         },
@@ -288,7 +288,7 @@
             "isBikeSVG": false,
             "part": null,
             "leftOrRight": null,
-            "price": null,
+            "price": 99,
             "filename": "Graphic_2.jpg",
             "isNewProduct": false
         },

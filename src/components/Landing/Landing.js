@@ -6,7 +6,7 @@ import LandingCss from './Landing.css';
 import * as AppConst from '../../constants/AppConstants';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css?raw';
 
-class Home extends Component {
+class Landing extends Component {
 
     heightOfDivToSet;
 
@@ -37,4 +37,4 @@ class Home extends Component {
     }
 };
 
-export default withRouter(Home);
+export default withRouter(Landing);

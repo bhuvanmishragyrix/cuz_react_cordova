@@ -1,20 +1,23 @@
 {
     "namesForReference": {
-        "categories": [
+        "category": [
             "Dirtbike",
-            "Bicycle"
+            "Bicycle",
+            null
         ],
-        "brands": [
+        "brand": [
             "Honda",
             "Suzuki",
             "Firefox",
-            "Montra"
+            "Montra",
+            null
         ],
-        "years": [
+        "year": [
             "2016",
-            "2017"
+            "2017",
+            null
         ],
-        "models": [
+        "model": [
             "Honda 1",
             "Honda 2",
             "Suzuki 1",
@@ -22,17 +25,19 @@
             "Firefox 1",
             "Firefox 2",
             "Montra 1",
-            "Montra 2"
+            "Montra 2",
+            null
         ],
-        "graphics": [
+        "graphic": [
             "Graphic 1",
-            "Graphic 2"
+            "Graphic 2",
+            null
         ],
         "isBikeSVG": [
             true,
             false
         ],
-        "parts": [
+        "part": [
             "Tank",
             "Radiator Shrouds",
             null
@@ -46,13 +51,259 @@
             "Any integer or double should do.",
             null
         ],
-        "fileName": "Any unique filename of file present on server should do.",
+        "filename": "Any unique filename of file present on server should do.",
         "isNewProduct": [
             true,
             false
         ]
     },
     "images": [
-        {}
+        {
+            "category": "Dirtbike",
+            "brand": null,
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Dirtbike_category.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": null,
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Cycle_category.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Honda_logo.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Suzuki",
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Suzuki_logo.png",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Firefox",
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Firefox_logo.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Montra",
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Montra_logo.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": null,
+            "brand": null,
+            "year": "2016",
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "2016_image.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": null,
+            "brand": null,
+            "year": "2017",
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "2017_image.png",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "Honda 1",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Honda_1.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "Honda 2",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Honda_2.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Suzuki",
+            "year": "2017",
+            "model": "Suzuki 1",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Suzuki_1.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Suzuki",
+            "year": "2017",
+            "model": "Suzuki 2",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Suzuki_2.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Firefox",
+            "year": "2016",
+            "model": "Firefox 1",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Firefox_1.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Firefox",
+            "year": "2016",
+            "model": "Firefox 2",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Firefox_2.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Montra",
+            "year": "2017",
+            "model": "Montra 1",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Montra_1.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Bicycle",
+            "brand": "Montra",
+            "year": "2017",
+            "model": "Montra 2",
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Montra_2.png",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "Honda 1",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Graphic_1.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "Honda 1",
+            "graphic": "Graphic 2",
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "Graphic_2.jpg",
+            "isNewProduct": false
+        },
+        {
+            "category": null,
+            "brand": null,
+            "year": null,
+            "model": null,
+            "graphic": null,
+            "isBikeSVG": false,
+            "part": null,
+            "leftOrRight": null,
+            "price": null,
+            "filename": "New_product1.jpg",
+            "isNewProduct": true
+        }
     ]
 }

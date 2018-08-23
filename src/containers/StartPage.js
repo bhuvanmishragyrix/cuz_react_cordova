@@ -18,9 +18,6 @@ class StartPage extends Component {
     componentDidMount() {
         getFromAPI(LINK_TO_FETCH_JSON_DATA_FROM)
             .then((data) => {
-                this.setState({
-                    jSONData: data.data
-                });
                 this.props.storeProductsAndImagesJSONData(data.data);
             })
             .catch((err) => { console.log("Error", err) });

@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    test: "Hello World!"
+    images: null
 };
 
 const reducer = (state = initialState, action) => {

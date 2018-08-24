@@ -2,8 +2,11 @@ import React from 'react';
 
 import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
 import CarouselStyles from './CarouselComponentStyles.css';
+import { circularProgress } from '../../../util/Util';
 
 const carouselComponent = (props) => {
+
+    console.log("carousel Props", props)
 
     let content, carouselImageAndCaptionContent;
 
@@ -47,12 +50,10 @@ const carouselComponent = (props) => {
     else {
         content = (
             <div className={`${CarouselStyles.setWidthAndHeight} ${CarouselStyles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
-                <i className={`fa fa-refresh ${CarouselStyles.refreshIconSize}`} aria-hidden="true"></i>
+                {circularProgress()}
             </div>
         );
     }
-
-    console.log("content", content);
 
     return (
         content

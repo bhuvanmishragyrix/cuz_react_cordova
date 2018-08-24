@@ -9,24 +9,44 @@ class CategorySelect extends Component {
     constructor(props) {
         super(props);
 
-        if (this.props[`productsAndImagesData`]) {
-            this.carouselData = this.props.productsAndImagesData.filter((el) => {
+        this.populatePropsForCarousel(this.props);
+
+        this.state = {
+            carouselData: this.carouselData
+        };
+    }
+
+    populatePropsForCarousel = (props) => {
+
+        if (props[`productsAndImagesData`]) {
+            this.carouselData = props.productsAndImagesData.filter((el) => {
                 if (el.category && !el.brand) {
                     return el;
                 }
             });
         }
+    };
 
-        console.log(this.carouselData);
+    componentWillReceiveProps(newProps) {
+
+        
+
+        this.populatePropsForCarousel(newProps);
+
+        console.log("Hello", this.carouselData);
+
+        this.setState({
+            carouselData: this.carouselData
+        });
     }
 
     render() {
-
+        console.log("Render", this.props);
         return (
             <div>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>
                 <div className={CategorySelectStyles.borderAroundCarousel}>
-                    <CarouselComponent carouselData={this.carouselData} />
+                    <CarouselComponent carouselData={this.state.carouselData} />
                 </div>
                 <div className="text-center">
                     <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} mt-2`} aria-hidden="true"></i>

@@ -13,6 +13,14 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.screenorientation"
     ]
+  },
+  {
+    "id": "cordova-plugin-cache-clear.CacheClear",
+    "file": "plugins/cordova-plugin-cache-clear/www/CacheClear.js",
+    "pluginId": "cordova-plugin-cache-clear",
+    "clobbers": [
+      "CacheClear"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -20,7 +28,8 @@ module.exports.metadata =
 {
   "cordova-plugin-whitelist": "1.3.3",
   "es6-promise-plugin": "4.2.2",
-  "cordova-plugin-screen-orientation": "3.0.1"
+  "cordova-plugin-screen-orientation": "3.0.1",
+  "cordova-plugin-cache-clear": "1.3.7"
 };
 // BOTTOM OF METADATA
 });

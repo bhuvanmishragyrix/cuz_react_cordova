@@ -23,6 +23,11 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         console.log("Device Ready");
+        window.CacheClear(() => {
+            console.log("Cache Cleared Successful");
+        }, () => {
+            console.log("Cache Cleared Unsuccessful");
+        });
         const reactApp = (
             <Provider store={store}>
                 <BrowserRouter>

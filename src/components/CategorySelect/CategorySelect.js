@@ -25,7 +25,12 @@ class CategorySelect extends Component {
         return (
             <div>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>
-                <CarouselComponent carouselData={this.carouselData} />
+                <div className={CategorySelectStyles.borderAroundCarousel}>
+                    <CarouselComponent carouselData={this.carouselData} />
+                </div>
+                <div className="text-center">
+                    <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} mt-2`} aria-hidden="true"></i>
+                </div>
             </div>
         );
     }

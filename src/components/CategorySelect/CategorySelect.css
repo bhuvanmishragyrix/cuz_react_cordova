@@ -1,4 +1,14 @@
 .text {
     font-family: 'Anton', sans-serif;
     font-size: 20px;
+    display: inline;
+}
+
+.completeIcon {
+    font-size: 50px !important;
+    color: green;
+}
+
+.borderAroundCarousel {
+    border: 1px solid gray;
 }

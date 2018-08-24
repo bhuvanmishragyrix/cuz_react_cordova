@@ -1,5 +1,4 @@
 import React from 'react';
-import  CircularProgress  from '@material-ui/core/CircularProgress';
 
 import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
 import CarouselStyles from './CarouselComponentStyles.css';
@@ -47,8 +46,8 @@ const carouselComponent = (props) => {
     }
     else {
         content = (
-            <div className={`${CarouselStyles.setWidthAndHeight} d-flex justify-content-center align-items-center bg-danger`}>
-                <CircularProgress />
+            <div className={`${CarouselStyles.setWidthAndHeight} ${CarouselStyles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
+                <i className={`fa fa-refresh ${CarouselStyles.refreshIconSize}`} aria-hidden="true"></i>
             </div>
         );
     }

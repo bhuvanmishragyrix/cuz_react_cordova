@@ -5,9 +5,30 @@
 .hamburgerMenu {
     position: fixed;
     left: 20px;
+    top: 10px;
+    z-index: 9999999999999;
 }
 
 .shareMenu {
     position: fixed;
     right: 20px;
+    top: 10px;
+    z-index: 9999999999999;
+}
+
+.logo {
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: 10px;
+    z-index: 9999999999999;
+}
+
+.navBar {
+    top: 0;
+    background-color: white;
+    position: fixed;
+    z-index: 9999999999999;
 }

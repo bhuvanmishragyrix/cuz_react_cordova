@@ -12,3 +12,7 @@
 .borderAroundCarousel {
     border: 1px solid gray;
 }
+
+.setMargin {
+    margin-top: 80px;
+}

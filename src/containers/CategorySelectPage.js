@@ -25,7 +25,7 @@ class CategorySelectPage extends Component {
     render() {
 
         return (
-            <div className="pt-3 px-3">
+            <div className="px-3">
                 <CategorySelect productsAndImagesData={this.state.productsAndImagesData} />
             </div>
         );

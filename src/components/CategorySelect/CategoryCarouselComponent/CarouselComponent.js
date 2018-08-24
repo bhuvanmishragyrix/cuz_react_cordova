@@ -10,10 +10,10 @@ const carouselComponent = (props) => {
 
     let content, carouselImageAndCaptionContent;
 
-    if (props.carouselData && props.carouselData.hasOwnProperty('length') && props.carouselData.length > 0) {
+    if (props.categoryCarouselData && props.categoryCarouselData.hasOwnProperty('length') && props.categoryCarouselData.length > 0) {
 
 
-        carouselImageAndCaptionContent = props.carouselData.map((el, index) => {
+        carouselImageAndCaptionContent = props.categoryCarouselData.map((el, index) => {
             let activeClass = "";
             if (index === 0) {
                 activeClass = "active";

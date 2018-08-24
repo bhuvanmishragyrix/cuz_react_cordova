@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import CategorySelectStyles from './CategorySelect.css';
-import CarouselComponent from './CarouselComponent/CarouselComponent';
+import CategoryCarouselComponent from './CategoryCarouselComponent/CarouselComponent';
+import NewProductCarouselComponent from './NewProductCarouselComponent/NewProductCarouselComponent';
 
 class CategorySelect extends Component {
 
-    carouselData;
+    categoryCarouselData;
+    newProductCarouselData;
 
     constructor(props) {
         super(props);
 
-        this.populatePropsForCarousel(this.props);
+        this.populatePropsForCategoryAndNewProductCarousel(this.props);
 
         this.state = {
-            carouselData: this.carouselData
+            categoryCarouselData: this.categoryCarouselData,
+            newProductCarouselData: this.newProductCarouselData
         };
     }
 
-    populatePropsForCarousel = (props) => {
+    populatePropsForCategoryAndNewProductCarousel = (props) => {
 
         if (props[`productsAndImagesData`]) {
-            this.carouselData = props.productsAndImagesData.filter((el) => {
+            this.categoryCarouselData = props.productsAndImagesData.filter((el) => {
                 if (el.category && !el.brand) {
+                    return el;
+                }
+            });
+            this.newProductCarouselData = props.productsAndImagesData.filter((el) => {
+                if (el.isNewProduct) {
                     return el;
                 }
             });
@@ -29,28 +37,32 @@ class CategorySelect extends Component {
 
     componentWillReceiveProps(newProps) {
 
-        
 
-        this.populatePropsForCarousel(newProps);
 
-        console.log("Hello", this.carouselData);
+        this.populatePropsForCategoryAndNewProductCarousel(newProps);
 
         this.setState({
-            carouselData: this.carouselData
+            categoryCarouselData: this.categoryCarouselData,
+            newProductCarouselData: this.newProductCarouselData
         });
     }
 
     render() {
         console.log("Render", this.props);
         return (
-            <div>
+            <div className={CategorySelectStyles.setMargin}>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>
                 <div className={CategorySelectStyles.borderAroundCarousel}>
-                    <CarouselComponent carouselData={this.state.carouselData} />
+                    <CategoryCarouselComponent categoryCarouselData={this.state.categoryCarouselData} />
                 </div>
                 <div className="text-center">
-                    <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} mt-2`} aria-hidden="true"></i>
+                    <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} my-2`} aria-hidden="true"></i>
                 </div>
+                <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
+                <div className={`${CategorySelectStyles.borderAroundCarousel} mb-2`}>
+                    <NewProductCarouselComponent newProductCarouselData={this.state.newProductCarouselData}/>
+                </div>
+
             </div>
         );
     }

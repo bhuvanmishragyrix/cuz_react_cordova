@@ -1,0 +1,21 @@
+.setWidthAndHeight {
+    height: 250px;
+}
+
+.setPlaceHolderBackground {
+    background-color: #C8C8C8
+}
+
+.setImageBackgroundSize {
+    background-size: contain !important;
+}
+
+.captionText {
+    font-family: 'Anton', sans-serif;
+    color: gray;
+}
+
+.refreshIconSize {
+    font-size: 50px !important;
+    color: black;
+}

@@ -4,16 +4,18 @@ import CarouselComponent from './CarouselComponent/CarouselComponent';
 
 class CategorySelect extends Component {
 
-carouselData;
+    carouselData;
 
     constructor(props) {
         super(props);
 
-        this.carouselData = this.props.productsAndImagesData.filter((el) => {
-            if (el.category && !el.brand) {
-                return el.category;
-            }
-        });
+        if (this.props[`productsAndImagesData`]) {
+            this.carouselData = this.props.productsAndImagesData.filter((el) => {
+                if (el.category && !el.brand) {
+                    return el;
+                }
+            });
+        }
 
         console.log(this.carouselData);
     }

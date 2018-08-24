@@ -1,4 +1,5 @@
 import React from 'react';
+import  CircularProgress  from '@material-ui/core/CircularProgress';
 
 import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
 import CarouselStyles from './CarouselComponentStyles.css';
@@ -7,7 +8,7 @@ const carouselComponent = (props) => {
 
     let content, carouselImageAndCaptionContent;
 
-    if (props.carouselData.length > 0) {
+    if (props.carouselData && props.carouselData.hasOwnProperty('length') && props.carouselData.length > 0) {
 
 
         carouselImageAndCaptionContent = props.carouselData.map((el, index) => {
@@ -45,7 +46,11 @@ const carouselComponent = (props) => {
         );
     }
     else {
-        content = (<div>"Loading"</div>);
+        content = (
+            <div className={`${CarouselStyles.setWidthAndHeight} d-flex justify-content-center align-items-center bg-danger`}>
+                <CircularProgress />
+            </div>
+        );
     }
 
     console.log("content", content);

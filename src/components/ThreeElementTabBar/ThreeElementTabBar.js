@@ -1,41 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import ThreeElementTabBarStyles from './ThreeElementTabBar.css';
 import logo from '../../assets/logo.png';
 import $ from 'jquery';
+import * as appConstants from '../../constants/AppConstants';
 
-class threeElementTabBar extends Component {
+const threeElementTabBar = () => {
 
-    logoHeight;
+    let logoHeight;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            logo: ""
-        };
-    }
+    logoHeight = appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR;
 
-    componentDidMount() {
-        this.logoHeight = $(`.${ThreeElementTabBarStyles.tabBarIconSizeAndColor}`).height();
-        this.setState({
-            logo: <img src={logo} style={{ height: `${this.logoHeight}px` }} />
-        });
-
-        //Code to convert html to string
-        console.log($(`.threeElementTabBarRoot`)[0].outerHTML);
-    }
-
-    render() {
-        return (
-            <div className="threeElementTabBarRoot p-3 d-flex align-items-center justify-content-center">
-                <i className={`${ThreeElementTabBarStyles.tabBarIconSizeAndColor} ${ThreeElementTabBarStyles.hamburgerMenu} fa fa-bars`} aria-hidden="true"></i>
-                {this.state.logo}
-                <i className={`${ThreeElementTabBarStyles.tabBarIconSizeAndColor} ${ThreeElementTabBarStyles.shareMenu} fa fa-share-alt`} aria-hidden="true"></i>
-            </div>
-        );
-    }
-
+    // console.log($(`.threeElementTabBarRoot`)[0].outerHTML);
+    
+    return (
+        <div className="threeElementTabBarRoot p-3 d-flex align-items-center justify-content-center">
+            <i style={{ fontSize: `${logoHeight}px` }} className={`${ThreeElementTabBarStyles.tabBarIconColor} ${ThreeElementTabBarStyles.hamburgerMenu} fa fa-bars`} aria-hidden="true"></i>
+            <img src={logo} style={{ height: `${logoHeight}px` }} />
+            <i style={{ fontSize: `${logoHeight}px` }} className={`${ThreeElementTabBarStyles.tabBarIconColor} ${ThreeElementTabBarStyles.shareMenu} fa fa-share-alt`} aria-hidden="true"></i>
+        </div>
+    );
 
 };
 

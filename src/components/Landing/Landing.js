@@ -13,7 +13,7 @@ class Landing extends Component {
     constructor(props) {
         super(props);
 
-        this.heightOfDivToSet = window.screen.height - AppConst.HeightToSubtractFromWindowScreenHeight;
+        this.heightOfDivToSet = window.screen.height - AppConst.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
     }
 
     redirectToParentForThreeElementTabBarScreens = () => {

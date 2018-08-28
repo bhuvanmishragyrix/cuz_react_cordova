@@ -17,10 +17,10 @@ const carousel = (props) => {
             }
 
             return (
-                <div className={`carousel-item ${activeClass} ${CarouselStyles.setWidthAndHeight} text-center`}>
-                    <img className={`${CarouselStyles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                <div className={`carousel-item ${activeClass} ${styles.setWidthAndHeight} text-center`}>
+                    <img className={`${styles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
                     <div className="carousel-caption">
-                        <h5 className={CarouselStyles.captionText}>{el.category}</h5>
+                        <h5 className={styles.captionText}>{el.category}</h5>
                     </div>
                 </div>
             )
@@ -32,11 +32,11 @@ const carousel = (props) => {
                     {carouselImage}
                 </div>
                 <a className={`carousel-control-prev`} href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span className={`carousel-control-prev-icon ${CarouselStyles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
+                    <span className={`carousel-control-prev-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
                 </a>
                 <a className={`carousel-control-next`} href="#carouselExampleControls" role="button" data-slide="next">
-                    <span className={`carousel-control-next-icon ${CarouselStyles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
+                    <span className={`carousel-control-next-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
             </div>
@@ -44,7 +44,7 @@ const carousel = (props) => {
     }
     else {
         content = (
-            <div className={`${CarouselStyles.setWidthAndHeight} ${CarouselStyles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
+            <div className={`${styles.setWidthAndHeight} ${styles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
                 {circularProgress()}
             </div>
         );
@@ -54,3 +54,5 @@ const carousel = (props) => {
         content
     );
 };
+
+export default carousel;

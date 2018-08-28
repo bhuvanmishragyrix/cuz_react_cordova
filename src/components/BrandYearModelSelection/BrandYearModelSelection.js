@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import * as appConstants from '../../constants/AppConstants';
 import ContinueButton from './ContinueButton/ContinueButton';
@@ -86,4 +87,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default BrandYearModelSelection;
+export default connect(mapStateToProps)(BrandYearModelSelection);

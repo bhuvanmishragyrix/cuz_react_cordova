@@ -68,6 +68,7 @@ class CategorySelect extends Component {
     };
 
     storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage = () => {
+        console.log(this.state.selectedCategory);
         this.props.storeCategoryInStore(this.state.selectedCategory);
         this.props.history.push('/parentForThreeElementTabBarScreens/brandYearModalSelectPage');
     };

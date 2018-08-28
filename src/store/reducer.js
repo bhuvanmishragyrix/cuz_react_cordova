@@ -13,9 +13,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 images: action.payload.images
             }
-            
-        case actionTypes.STORE_CATEGORY:
 
+        case actionTypes.STORE_CATEGORY:
+            console.log("Category In Store", action.payload);
             return {
                 ...state,
                 selectedCategory: action.payload

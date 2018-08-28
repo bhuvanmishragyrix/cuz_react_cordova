@@ -51,7 +51,7 @@ class CategorySelect extends Component {
     setMarginOnNewProduct = (height) => {
         this.setState({
             setMarginBottom: {
-                marginBottom: height+10
+                marginBottom: height+20
             }
         });
     };

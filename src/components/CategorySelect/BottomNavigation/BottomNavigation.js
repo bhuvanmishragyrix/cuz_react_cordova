@@ -18,8 +18,8 @@ class BottomNavigation extends Component {
 
     componentDidMount() {
         let iconFontSizeToSet, textFontSizeToSet;
-        iconFontSizeToSet = $('.bottomMenuColumn').width();
-        textFontSizeToSet = 0.4 * $(`.bottomMenuColumn`).width();
+        iconFontSizeToSet = 0.4 *$('.bottomMenuColumn').width();
+        textFontSizeToSet = 0.1 * $(`.bottomMenuColumn`).width();
         this.setState({
             fontSizeOfIconsInsideBottomNavigation: {
                 fontSize: `${iconFontSizeToSet}px`
@@ -34,8 +34,8 @@ class BottomNavigation extends Component {
 
     render() {
         return (
-            <div className={`container ${BottomNavigationStyles.navBarSettings} pt-2`}>
-                <div className="row">
+            <div className={`container ${BottomNavigationStyles.navBarSettings} py-2`}>
+                <div className="row no-gutters">
                     <div className="bottomMenuColumn col-2 text-center">
                         <i style={this.state.fontSizeOfIconsInsideBottomNavigation} className={`fa fa-search ${BottomNavigationStyles.iconColor}`} aria-hidden="true"></i>
                         <p className={BottomNavigationStyles.text} style={this.state.fontSizeOfTextInsideBottomNavigation}>Search</p>

@@ -17,8 +17,9 @@ class BrandYearModelSelection extends Component {
     render() {
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
-                <div className={`w-100`}>
-                <i className={`fa fa-arrow-right ${Styles.nextIcon} float-right`} aria-hidden="true"></i>
+                <div className={`w-100 d-flex justify-content-center align-items-center`}>
+                    <p className={`${Styles.text} mr-2`}>Continue</p>
+                    <i className={`fa fa-arrow-right ${Styles.nextIcon}`} aria-hidden="true"></i>
                 </div>
             </div>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategorySelectStyles from './CategorySelect.css';
 import CategoryCarouselComponent from './CategoryCarouselComponent/CarouselComponent';
 import NewProductCarouselComponent from './NewProductCarouselComponent/NewProductCarouselComponent';
+import BottomNavigation from './BottomNavigation/BottomNavigation';
 
 class CategorySelect extends Component {
 
@@ -60,9 +61,9 @@ class CategorySelect extends Component {
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
                 <div className={`${CategorySelectStyles.borderAroundCarousel} mb-2`}>
-                    <NewProductCarouselComponent newProductCarouselData={this.state.newProductCarouselData}/>
+                    <NewProductCarouselComponent newProductCarouselData={this.state.newProductCarouselData} />
                 </div>
-
+                <BottomNavigation />
             </div>
         );
     }

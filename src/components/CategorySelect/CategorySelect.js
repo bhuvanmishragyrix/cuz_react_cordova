@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import CategorySelectStyles from './CategorySelect.css';
 import CategoryCarouselComponent from './CategoryCarouselComponent/CarouselComponent';
 import NewProductCarouselComponent from './NewProductCarouselComponent/NewProductCarouselComponent';
 import BottomNavigation from './BottomNavigation/BottomNavigation';
+import * as appConstants from '../../constants/AppConstants';
 
 class CategorySelect extends Component {
 
@@ -16,7 +19,10 @@ class CategorySelect extends Component {
 
         this.state = {
             categoryCarouselData: this.categoryCarouselData,
-            newProductCarouselData: this.newProductCarouselData
+            newProductCarouselData: this.newProductCarouselData,
+            topMarginCategorySelect: {
+                marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + 30}px`
+            }
         };
     }
 
@@ -37,9 +43,6 @@ class CategorySelect extends Component {
     };
 
     componentWillReceiveProps(newProps) {
-
-
-
         this.populatePropsForCategoryAndNewProductCarousel(newProps);
 
         this.setState({
@@ -51,20 +54,24 @@ class CategorySelect extends Component {
     setMarginOnNewProduct = (height) => {
         this.setState({
             setMarginBottom: {
-                marginBottom: height+20
+                marginBottom: height + 20
             }
         });
     };
 
+    navigateToBrandYearModelSelectionPage = () => {
+        this.props.history.push('/parentForThreeElementTabBarScreens/brandYearModalSelectPage');
+    };
+
     render() {
         return (
-            <div className={CategorySelectStyles.setMargin}>
+            <div style={this.state.topMarginCategorySelect}>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>
                 <div className={CategorySelectStyles.borderAroundCarousel}>
                     <CategoryCarouselComponent categoryCarouselData={this.state.categoryCarouselData} />
                 </div>
                 <div className="text-center">
-                    <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} my-2`} aria-hidden="true"></i>
+                    <i onClick={this.navigateToBrandYearModelSelectionPage} className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} my-2`} aria-hidden="true"></i>
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
                 <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>
@@ -76,4 +83,4 @@ class CategorySelect extends Component {
     }
 }
 
-export default CategorySelect;
+export default withRouter(CategorySelect);

@@ -15,8 +15,6 @@ class CategorySelectPage extends Component {
 
     componentWillReceiveProps(newProps) {
 
-        console.log("newProps", newProps.productsAndImagesData);
-
         this.setState({
             productsAndImagesData: newProps.productsAndImagesData
         });

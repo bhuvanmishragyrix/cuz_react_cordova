@@ -1,7 +1,8 @@
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    images: null
+    images: null,
+    selectedCategory: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 images: action.payload.images
+            }
+            
+        case actionTypes.STORE_CATEGORY:
+
+            return {
+                ...state,
+                selectedCategory: action.payload
             }
     }
     return state;

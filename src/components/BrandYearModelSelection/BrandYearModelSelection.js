@@ -42,7 +42,7 @@ class BrandYearModelSelection extends Component {
 
         if (props[`productsAndImagesData`]) {
             this.brandCarouselData = props.productsAndImagesData.filter((el) => {
-                if (el.category && el.brand && !el.year && !el.model) {
+                if (el.category && el.category === this.props.selectedCategory && el.brand && !el.year && !el.model) {
                     return el;
                 }
             });
@@ -79,5 +79,11 @@ class BrandYearModelSelection extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        selectedCategory: state.selectedCategory
+    }
+};
 
 export default BrandYearModelSelection;

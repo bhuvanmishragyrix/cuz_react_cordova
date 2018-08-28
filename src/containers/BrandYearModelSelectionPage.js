@@ -3,7 +3,9 @@ import BrandYearModelSelection from '../components/BrandYearModelSelection/Brand
 
 const BrandYearModelSelectionPage = (props) => {
     return (
-        <BrandYearModelSelection />
+        <div className={`mx-3`}>
+            <BrandYearModelSelection />
+        </div>
     );
 };
 

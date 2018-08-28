@@ -63,13 +63,16 @@ class BrandYearModelSelection extends Component {
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
                 <ContinueButton />
+                <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
                     <Carousel carouselData={this.state.brandCarouselData} />
                 </div>
+                <p className={`${styles.text} my-2`}>SELECT YEAR</p>
                 <div className={styles.borderAroundCarousel}>
                     <Carousel carouselData={this.state.yearCarouselData} />
                 </div>
-                <div className={styles.borderAroundCarousel}>
+                <p className={`${styles.text} my-2`}>SELECT BRAND</p>
+                <div className={`${styles.borderAroundCarousel} mb-2`}>
                     <Carousel carouselData={this.state.modelCarouselData} />
                 </div>
             </div>

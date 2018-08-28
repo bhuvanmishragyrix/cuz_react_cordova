@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import * as appConstants from '../../constants/AppConstants';
-import Styles from './BrandYearModelSelection.css';
+import ContinueButton from './ContinueButton/ContinueButton';
 
 class BrandYearModelSelection extends Component {
 
@@ -17,10 +17,7 @@ class BrandYearModelSelection extends Component {
     render() {
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
-                <div className={`w-100 d-flex justify-content-center align-items-center`}>
-                    <p className={`${Styles.text} mr-2`}>Continue</p>
-                    <i className={`fa fa-arrow-right ${Styles.nextIcon}`} aria-hidden="true"></i>
-                </div>
+                <ContinueButton />
             </div>
         );
     }

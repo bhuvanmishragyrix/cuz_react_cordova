@@ -1,0 +1,15 @@
+.setWidthAndHeight {
+    height: 120px;
+}
+
+.setPlaceHolderBackground {
+    background-color: #C8C8C8
+}
+
+.setImageBackgroundSize {
+    background-size: contain !important;
+}
+
+.setCarouselIndicatorColor {
+    background-color: gray;
+}

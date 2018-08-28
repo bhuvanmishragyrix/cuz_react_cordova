@@ -29,7 +29,7 @@ const carouselComponent = (props) => {
         })
 
         content = (
-            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+            <div id="carouselExampleControls" className="carousel slide" data-ride="false">
                 <div className="carousel-inner">
                     {carouselImageAndCaptionContent}
                 </div>

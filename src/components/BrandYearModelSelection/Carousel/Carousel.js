@@ -17,8 +17,10 @@ const carousel = (props) => {
             }
 
             return (
-                <div className={`carousel-item ${activeClass} ${styles.setWidthAndHeight} text-center`}>
-                    <img className={`${styles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                <div className={`carousel-item ${activeClass} ${styles.setWidthAndHeight}`}>
+                    <div className={`d-flex justify-content-center align-items-center ${styles.fullHeight}`}>
+                        <img className={`${styles.setImageBackgroundSize} w-25`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                    </div>
                 </div>
             )
         })

@@ -10,3 +10,7 @@
     padding: 0;
     margin: 0;
 }
+
+.borderAroundCarousel {
+    border: 1px solid gray;
+}

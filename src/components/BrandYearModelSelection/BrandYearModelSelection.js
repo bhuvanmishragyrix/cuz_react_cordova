@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import * as appConstants from '../../constants/AppConstants';
 import ContinueButton from './ContinueButton/ContinueButton';
 import Carousel from './Carousel/Carousel';
+import styles from './BrandYearModelSelection.css';
 
 class BrandYearModelSelection extends Component {
 
@@ -32,6 +33,8 @@ class BrandYearModelSelection extends Component {
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
             modelCarouselData: this.modelCarouselData
+        }, () => {
+            console.log(this.state.brandCarouselData, this.state.yearCarouselData, this.state.modelCarouselData);
         });
     }
 
@@ -44,12 +47,12 @@ class BrandYearModelSelection extends Component {
                 }
             });
             this.yearCarouselData = props.productsAndImagesData.filter((el) => {
-                if (el.category && !el.brand && el.year && !el.model) {
+                if (!el.category && !el.brand && el.year && !el.model) {
                     return el;
                 }
             });
             this.modelCarouselData = props.productsAndImagesData.filter((el) => {
-                if (el.category && !el.brand && !el.year && el.model) {
+                if (el.category && el.brand && el.year && el.model && !el.graphic) {
                     return el;
                 }
             });
@@ -60,9 +63,15 @@ class BrandYearModelSelection extends Component {
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
                 <ContinueButton />
-                <Carousel carouselData={this.state.brandCarouselData} />
-                <Carousel carouselData={this.state.yearCarouselData} />
-                <Carousel carouselData={this.state.modelCarouselData} />
+                <div className={styles.borderAroundCarousel}>
+                    <Carousel carouselData={this.state.brandCarouselData} />
+                </div>
+                <div className={styles.borderAroundCarousel}>
+                    <Carousel carouselData={this.state.yearCarouselData} />
+                </div>
+                <div className={styles.borderAroundCarousel}>
+                    <Carousel carouselData={this.state.modelCarouselData} />
+                </div>
             </div>
         );
     }

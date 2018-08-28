@@ -13,3 +13,7 @@
 .setCarouselIndicatorColor {
     background-color: gray;
 }
+
+.fullHeight {
+    height: 100%;
+}

@@ -27,6 +27,8 @@ class BottomNavigation extends Component {
             fontSizeOfTextInsideBottomNavigation: {
                 fontSize: `${textFontSizeToSet}px`
             }
+        }, () => {
+            this.props.setHeightOfBottomNavigation($(`.${BottomNavigationStyles.navBarSettings}`).height())
         });
     }
 

@@ -48,6 +48,15 @@ class CategorySelect extends Component {
         });
     }
 
+    setMarginOnNewProduct = (height) => {
+        console.log("Height,", height);
+        this.setState({
+            setMarginBottom: {
+                marginBottom: height+10
+            }
+        });
+    };
+
     render() {
         console.log("Render", this.props);
         return (
@@ -60,10 +69,10 @@ class CategorySelect extends Component {
                     <i className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} my-2`} aria-hidden="true"></i>
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
-                <div className={`${CategorySelectStyles.borderAroundCarousel} mb-2`}>
+                <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>
                     <NewProductCarouselComponent newProductCarouselData={this.state.newProductCarouselData} />
                 </div>
-                <BottomNavigation />
+                <BottomNavigation setHeightOfBottomNavigation={this.setMarginOnNewProduct} />
             </div>
         );
     }

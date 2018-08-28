@@ -29,16 +29,18 @@ class CategorySelect extends Component {
         };
     }
 
+    componentDidMount() {
+        if (this.props[`productsAndImagesData`]) {
+            console.log("Reached Here");
+            this.categorySelected(0);
+        }
+    }
+
     populatePropsForCategoryAndNewProductCarousel = (props) => {
 
         if (props[`productsAndImagesData`]) {
             this.categoryCarouselData = props.productsAndImagesData.filter((el, index) => {
                 if (el.category && !el.brand) {
-
-                    if (!this.props[`productsAndImagesData`] && index === 0) {
-                        this.categorySelected(el.category);
-                    }
-
                     return el;
                 }
             });
@@ -52,6 +54,10 @@ class CategorySelect extends Component {
 
     componentWillReceiveProps(newProps) {
         this.populatePropsForCategoryAndNewProductCarousel(newProps);
+
+        if (newProps[`productsAndImagesData`] && !this.props[`productsAndImagesData`]) {
+            this.categorySelected(0);
+        }
 
         this.setState({
             categoryCarouselData: this.categoryCarouselData,
@@ -73,9 +79,12 @@ class CategorySelect extends Component {
         this.props.history.push('/parentForThreeElementTabBarScreens/brandYearModalSelectPage');
     };
 
-    categorySelected = (category) => {
+    categorySelected = (categoryIndex) => {
+
+        console.log("categoryChanged", categoryIndex);
+
         this.setState({
-            selectedCategory: category
+            selectedCategory: this.categoryCarouselData[categoryIndex].category
         });
     }
 

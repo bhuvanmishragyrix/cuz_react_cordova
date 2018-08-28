@@ -6,7 +6,6 @@ import { circularProgress } from '../../../util/Util';
 
 const carouselComponent = (props) => {
 
-    console.log("carousel Props", props)
 
     let content, carouselImageAndCaptionContent;
 
@@ -28,8 +27,6 @@ const carouselComponent = (props) => {
                 </div>
             )
         })
-
-        console.log("Reached Here", carouselImageAndCaptionContent);
 
         content = (
             <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">

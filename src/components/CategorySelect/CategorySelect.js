@@ -49,7 +49,6 @@ class CategorySelect extends Component {
     }
 
     setMarginOnNewProduct = (height) => {
-        console.log("Height,", height);
         this.setState({
             setMarginBottom: {
                 marginBottom: height+10
@@ -58,7 +57,6 @@ class CategorySelect extends Component {
     };
 
     render() {
-        console.log("Render", this.props);
         return (
             <div className={CategorySelectStyles.setMargin}>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>

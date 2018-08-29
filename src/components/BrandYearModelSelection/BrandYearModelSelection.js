@@ -136,14 +136,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        storeSelectedBrandYearModelInStore: (brand, year, model) => {
+        storeSelectedBrandYearModelInStore: () => {
             dispatch({
                 type: actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL, payload: {
-
+                    brand: this.modelCarouselData[this.modelSelectedIndex].model,
+                    year: this.yearCarouselData[this.yearSelectedIndex].year,
+                    model: this.modelCarouselData[this.modelSelectedIndex].model
                 }
             });
         }
     };
 }
 
-export default connect(mapStateToProps)(BrandYearModelSelection);
+export default connect(mapStateToProps, mapDispatchToProps)(BrandYearModelSelection);

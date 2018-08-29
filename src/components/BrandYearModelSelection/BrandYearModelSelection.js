@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as appConstants from '../../constants/AppConstants';
-import ContinueButton from './ContinueButton/ContinueButton';
+import ContinueButton from '../UIComponents/ContinueButton/ContinueButton';
 import Carousel from './Carousel/Carousel';
 import styles from './BrandYearModelSelection.css';
 

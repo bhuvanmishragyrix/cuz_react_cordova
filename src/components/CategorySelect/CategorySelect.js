@@ -8,6 +8,7 @@ import NewProductCarouselComponent from './NewProductCarouselComponent/NewProduc
 import BottomNavigation from './BottomNavigation/BottomNavigation';
 import * as appConstants from '../../constants/AppConstants';
 import * as actionTypes from '../../store/actionTypes';
+import ContinueButton from '../UIComponents/ContinueButton/ContinueButton';
 
 class CategorySelect extends Component {
 
@@ -95,8 +96,8 @@ class CategorySelect extends Component {
                 <div className={CategorySelectStyles.borderAroundCarousel}>
                     <CategoryCarouselComponent categorySelected={this.categorySelected} categoryCarouselData={this.state.categoryCarouselData} />
                 </div>
-                <div className="text-center">
-                    <i onClick={this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage} className={`fa fa-check-circle ${CategorySelectStyles.completeIcon} my-2`} aria-hidden="true"></i>
+                <div className={`my-4`} onClick={this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage}>
+                    <ContinueButton />
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
                 <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>

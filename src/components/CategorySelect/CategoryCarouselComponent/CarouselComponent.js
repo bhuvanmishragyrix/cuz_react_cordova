@@ -11,10 +11,24 @@ class CarouselComponent extends Component {
         super(props);
     }
 
-    componentDidMount() {
+    registerCarouselSlideCallback = () => {
         $('#carouselExampleControls').on('slide.bs.carousel', (event) => {
             this.props.categorySelected(event.to)
         })
+    };
+
+    componentDidMount() {
+        if (this.props.categoryCarouselData) {
+            this.registerCarouselSlideCallback();
+        }
+    }
+
+
+
+    componentDidUpdate(prevProps) {
+        if (this.props.categoryCarouselData && !prevProps.categoryCarouselData) {
+            this.registerCarouselSlideCallback();
+        }
     }
 
     render() {

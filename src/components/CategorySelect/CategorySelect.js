@@ -24,7 +24,7 @@ class CategorySelect extends Component {
             categoryCarouselData: this.categoryCarouselData,
             newProductCarouselData: this.newProductCarouselData,
             topMarginCategorySelect: {
-                marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + 30}px`
+                marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
             },
             selectedCategory: null,
             isContinueButtonDisabled: !this.props[`productsAndImagesData`],

@@ -17,6 +17,7 @@ class BrandYearModelSelection extends Component {
     brandSelectedIndex = 0;
     yearSelectedIndex = 0;
     modelSelectedIndex = 0;
+    heightOfCarousel;
 
     constructor(props) {
         super(props);
@@ -31,6 +32,8 @@ class BrandYearModelSelection extends Component {
             yearCarouselData: this.yearCarouselData,
             modelCarouselData: this.modelCarouselData
         };
+
+        this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR)/4.8;
     }
 
     componentWillReceiveProps(newProps) {
@@ -109,15 +112,15 @@ class BrandYearModelSelection extends Component {
                 <ContinueButton />
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel categorySelected={this.brandSelected} carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
+                    <Carousel heightOfCarousel={this.heightOfCarousel} categorySelected={this.brandSelected} carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT YEAR</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel categorySelected={this.yearSelected} carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
+                    <Carousel heightOfCarousel={this.heightOfCarousel} categorySelected={this.yearSelected} carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT MODEL</p>
                 <div className={`${styles.borderAroundCarousel} mb-2`}>
-                    <Carousel categorySelected={this.modelSelected} carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
+                    <Carousel heightOfCarousel={this.heightOfCarousel} categorySelected={this.modelSelected} carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
                 </div>
             </div>
         );

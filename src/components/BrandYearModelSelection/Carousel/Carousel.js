@@ -7,11 +7,20 @@ import { circularProgress } from '../../../util/Util';
 
 class Carousel extends Component {
 
+    setWidthAndHeight;
+
     constructor(props) {
         super(props);
         this.state = {
             carouselData: this.props.carouselData
         };
+
+        console.log("height", this.props.heightOfCarousel);
+
+        this.setWidthAndHeight = {
+            height: `${this.props.heightOfCarousel}px`
+        }
+
     }
 
     componentDidMount() {
@@ -43,7 +52,7 @@ class Carousel extends Component {
                 }
 
                 return (
-                    <div className={`carousel-item ${activeClass} ${styles.setWidthAndHeight}`}>
+                    <div style={this.setWidthAndHeight} className={`carousel-item ${activeClass}`}>
                         <div className={`d-flex justify-content-center align-items-center ${styles.fullHeight}`}>
                             <img className={`${styles.setImageBackgroundSize} w-25`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
                         </div>
@@ -69,7 +78,7 @@ class Carousel extends Component {
         }
         else {
             content = (
-                <div className={`${styles.setWidthAndHeight} ${styles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
+                <div style={this.setWidthAndHeight} className={`${styles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
                     <p className={`${styles.text}`}>No Products Found For Selected Year!</p>
                 </div>
             );

@@ -63,21 +63,33 @@ class BrandYearModelSelection extends Component {
         }
     };
 
+    brandSelected = (brandIndex) => {
+
+    }
+
+    yearSelected = (yearIndex) => {
+
+    }
+
+    modelSelected = (modelIndex) => {
+
+    }
+
     render() {
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
                 <ContinueButton />
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
+                    <Carousel categorySelected={this.brandSelected} carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT YEAR</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
+                    <Carousel categorySelected={this.yearSelected} carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={`${styles.borderAroundCarousel} mb-2`}>
-                    <Carousel carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
+                    <Carousel categorySelected={this.modelSelected} carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
                 </div>
             </div>
         );

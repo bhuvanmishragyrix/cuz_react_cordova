@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import * as appConstants from '../../constants/AppConstants';
 import ContinueButton from '../UIComponents/ContinueButton/ContinueButton';
@@ -32,11 +33,28 @@ class BrandYearModelSelection extends Component {
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
             modelCarouselData: this.modelCarouselData,
-            isContinueButtonDisabled: true
+            isContinueButtonDisabled: this.checkIfToDisableContinueButton(),
+            onContinueButtonClick: this.checkIfToDisableContinueButton() ? () => { } : this.storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage
         };
 
         this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR) / 4.8;
     }
+
+    checkIfToDisableContinueButton = () => {
+        if (this.modelCarouselData && this.modelCarouselData.hasOwnProperty(this.modelSelectedIndex) && this.modelCarouselData[this.modelSelectedIndex].hasOwnProperty(`model`) && this.modelCarouselData[this.modelSelectedIndex].model) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+
+    storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage = () => {
+        this.props.storeSelectedBrandYearModelInStore(this.brandCarouselData[this.brandSelectedIndex].model,
+            this.yearCarouselData[this.yearSelectedIndex].year,
+            this.modelCarouselData[this.modelSelectedIndex].model);
+        this.props.history.push('/parentForThreeElementTabBarScreens/graphicStyleSelectPage');
+    };
 
     componentWillReceiveProps(newProps) {
         this.populatePropsForBrandYearModelCarousels(newProps);
@@ -45,8 +63,6 @@ class BrandYearModelSelection extends Component {
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
             modelCarouselData: this.modelCarouselData
-        }, () => {
-            console.log(this.state.brandCarouselData, this.state.yearCarouselData, this.state.modelCarouselData);
         });
     }
 
@@ -83,7 +99,9 @@ class BrandYearModelSelection extends Component {
         this.setState({
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
-            modelCarouselData: this.modelCarouselData
+            modelCarouselData: this.modelCarouselData,
+            isContinueButtonDisabled: this.checkIfToDisableContinueButton(),
+            onContinueButtonClick: this.checkIfToDisableContinueButton() ? () => { } : this.storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage
         });
     }
 
@@ -93,7 +111,9 @@ class BrandYearModelSelection extends Component {
         this.setState({
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
-            modelCarouselData: this.modelCarouselData
+            modelCarouselData: this.modelCarouselData,
+            isContinueButtonDisabled: this.checkIfToDisableContinueButton(),
+            onContinueButtonClick: this.checkIfToDisableContinueButton() ? () => { } : this.storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage
         });
     }
 
@@ -103,7 +123,9 @@ class BrandYearModelSelection extends Component {
         this.setState({
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
-            modelCarouselData: this.modelCarouselData
+            modelCarouselData: this.modelCarouselData,
+            isContinueButtonDisabled: this.checkIfToDisableContinueButton(),
+            onContinueButtonClick: this.checkIfToDisableContinueButton() ? () => { } : this.storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage
         });
     }
 
@@ -111,7 +133,9 @@ class BrandYearModelSelection extends Component {
 
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
-                <ContinueButton   />
+                <div onClick={this.state.onContinueButtonClick}>
+                    <ContinueButton isDisabled={this.state.isContinueButtonDisabled} />
+                </div>
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
                     <Carousel heightOfCarousel={this.heightOfCarousel} categorySelected={this.brandSelected} carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
@@ -137,16 +161,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        storeSelectedBrandYearModelInStore: () => {
+        storeSelectedBrandYearModelInStore: (brand, year, model) => {
             dispatch({
                 type: actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL, payload: {
-                    brand: this.modelCarouselData[this.modelSelectedIndex].model,
-                    year: this.yearCarouselData[this.yearSelectedIndex].year,
-                    model: this.modelCarouselData[this.modelSelectedIndex].model
+                    brand: brand,
+                    year: year,
+                    model: model
                 }
             });
         }
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrandYearModelSelection);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrandYearModelSelection));

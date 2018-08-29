@@ -12,6 +12,7 @@ const parentForThreeElementTabBarScreens = () => {
             <Switch>
                 <Route path="/parentForThreeElementTabBarScreens/categorySelectPage" component={CategorySelectPage} />
                 <Route path="/parentForThreeElementTabBarScreens/brandYearModalSelectPage" component={BrandYearModelSelectionPage}/>
+                <Route path="/parentForThreeElementTabBarScreens/graphicStyleSelectPage" component={CategorySelectPage}/>
             </Switch>
         </div>
     );

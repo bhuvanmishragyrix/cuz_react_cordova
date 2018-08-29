@@ -70,7 +70,7 @@ class Carousel extends Component {
         else {
             content = (
                 <div className={`${styles.setWidthAndHeight} ${styles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
-                    <p className={`${styles.text}`}>No Products Found!</p>
+                    <p className={`${styles.text}`}>No Products Found For Selected Year!</p>
                 </div>
             );
         }

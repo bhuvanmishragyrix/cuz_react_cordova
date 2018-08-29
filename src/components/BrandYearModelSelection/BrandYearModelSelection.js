@@ -5,6 +5,7 @@ import * as appConstants from '../../constants/AppConstants';
 import ContinueButton from '../UIComponents/ContinueButton/ContinueButton';
 import Carousel from './Carousel/Carousel';
 import styles from './BrandYearModelSelection.css';
+import * as actionTypes from '../../store/actionTypes';
 
 class BrandYearModelSelection extends Component {
 
@@ -33,7 +34,7 @@ class BrandYearModelSelection extends Component {
             modelCarouselData: this.modelCarouselData
         };
 
-        this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR)/4.8;
+        this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR) / 4.8;
     }
 
     componentWillReceiveProps(newProps) {
@@ -130,7 +131,19 @@ class BrandYearModelSelection extends Component {
 const mapStateToProps = (state) => {
     return {
         selectedCategory: state.selectedCategory
-    }
+    };
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeSelectedBrandYearModelInStore: (brand, year, model) => {
+            dispatch({
+                type: actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL, payload: {
+
+                }
+            });
+        }
+    };
+}
 
 export default connect(mapStateToProps)(BrandYearModelSelection);

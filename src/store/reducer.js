@@ -2,7 +2,10 @@ import * as actionTypes from './actionTypes';
 
 const initialState = {
     images: null,
-    selectedCategory: null
+    selectedCategory: null,
+    selectedBrand: null,
+    selectedYear: null,
+    selectedModel: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,14 +15,23 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 images: action.payload.images
-            }
+            };
 
         case actionTypes.STORE_CATEGORY:
-            console.log("Category In Store", action.payload);
+
             return {
                 ...state,
                 selectedCategory: action.payload
-            }
+            };
+
+        case actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL:
+
+            return {
+                ...state,
+                selectedBrand: action.payload.brand,
+                selectedYear: action.payload.year,
+                selectedModel: action.payload.model
+            };
     }
     return state;
 };

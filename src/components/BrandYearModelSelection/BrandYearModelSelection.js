@@ -11,6 +11,9 @@ class BrandYearModelSelection extends Component {
     brandCarouselData;
     yearCarouselData;
     modelCarouselData;
+    brandCarouselId = `brandCarousel`;
+    yearCarouselId = `yearCarousel`;
+    modelCarouselId = `modelCarousel`;
 
     constructor(props) {
         super(props);
@@ -66,15 +69,15 @@ class BrandYearModelSelection extends Component {
                 <ContinueButton />
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel carouselData={this.state.brandCarouselData} />
+                    <Carousel carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT YEAR</p>
                 <div className={styles.borderAroundCarousel}>
-                    <Carousel carouselData={this.state.yearCarouselData} />
+                    <Carousel carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
                 </div>
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={`${styles.borderAroundCarousel} mb-2`}>
-                    <Carousel carouselData={this.state.modelCarouselData} />
+                    <Carousel carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
                 </div>
             </div>
         );

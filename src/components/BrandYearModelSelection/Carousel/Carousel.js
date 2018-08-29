@@ -26,15 +26,15 @@ const carousel = (props) => {
         })
 
         content = (
-            <div id="carouselExampleControls" className="carousel slide" data-interval="false" data-ride="carousel">
+            <div id={props.carouselId} className="carousel slide" data-interval="false" data-ride="carousel">
                 <div className="carousel-inner">
                     {carouselImage}
                 </div>
-                <a className={`carousel-control-prev`} href="#carouselExampleControls" role="button" data-slide="prev">
+                <a className={`carousel-control-prev`} href={`#${props.carouselId}`} role="button" data-slide="prev">
                     <span className={`carousel-control-prev-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
                 </a>
-                <a className={`carousel-control-next`} href="#carouselExampleControls" role="button" data-slide="next">
+                <a className={`carousel-control-next`} href={`#${props.carouselId}`} role="button" data-slide="next">
                     <span className={`carousel-control-next-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>

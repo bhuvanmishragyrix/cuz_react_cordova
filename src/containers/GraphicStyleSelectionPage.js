@@ -4,7 +4,9 @@ import GraphicStyleSelect from '../components/GraphicStyleSelect/GraphicStyleSel
 
 const graphicStyleSelectionPage = () => {
     return (
-        <GraphicStyleSelect />
+        <div className="mx-3">
+            <GraphicStyleSelect />
+        </div>
     );
 };
 

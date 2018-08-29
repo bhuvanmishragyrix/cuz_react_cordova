@@ -10,3 +10,12 @@
     padding: 0;
     margin: 0;
 }
+
+.textDisable{
+    color: gray;
+}
+
+.nextIconDisabled {
+    font-size: 30px;
+    color: gray;
+}

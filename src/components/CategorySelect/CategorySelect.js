@@ -26,7 +26,9 @@ class CategorySelect extends Component {
             topMarginCategorySelect: {
                 marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + 30}px`
             },
-            selectedCategory: null
+            selectedCategory: null,
+            isContinueButtonDisabled: true,
+            onContinueClick: ()=> {}
         };
     }
 
@@ -62,7 +64,9 @@ class CategorySelect extends Component {
 
         this.setState({
             categoryCarouselData: this.categoryCarouselData,
-            newProductCarouselData: this.newProductCarouselData
+            newProductCarouselData: this.newProductCarouselData,
+            isContinueButtonDisabled: false,
+            onContinueClick: this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage
         });
     }
 
@@ -96,8 +100,8 @@ class CategorySelect extends Component {
                 <div className={CategorySelectStyles.borderAroundCarousel}>
                     <CategoryCarouselComponent categorySelected={this.categorySelected} categoryCarouselData={this.state.categoryCarouselData} />
                 </div>
-                <div className={`my-4`} onClick={this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage}>
-                    <ContinueButton />
+                <div className={`my-4`} onClick={this.state.onContinueClick}>
+                    <ContinueButton isDisabled={this.state.isContinueButtonDisabled}/>
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
                 <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>

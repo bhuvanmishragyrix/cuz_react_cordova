@@ -7,19 +7,36 @@ import { circularProgress } from '../../../util/Util';
 
 class Carousel extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            carouselData: this.props.carouselData
+        };
+    }
+
     componentDidMount() {
         $(`#${this.props.carouselId}`).on('slide.bs.carousel', (event) => {
             this.props.categorySelected(event.to)
         })
     }
 
+    componentWillReceiveProps(newProps) {
+        console.log("Reached Line 1");
+        if (newProps.carouselData !== this.props.carouselData) {
+            console.log("Reached Line 2");
+            this.setState({
+                carouselData: newProps.carouselData
+            })
+        }
+    }
+
     render() {
         let content, carouselImage;
 
-        if (this.props.carouselData && this.props.carouselData.hasOwnProperty('length') && this.props.carouselData.length > 0) {
+        if (this.state.carouselData && this.state.carouselData.hasOwnProperty('length') && this.state.carouselData.length > 0) {
 
 
-            carouselImage = this.props.carouselData.map((el, index) => {
+            carouselImage = this.state.carouselData.map((el, index) => {
                 let activeClass = "";
                 if (index === 0) {
                     activeClass = "active";
@@ -53,7 +70,7 @@ class Carousel extends Component {
         else {
             content = (
                 <div className={`${styles.setWidthAndHeight} ${styles.setPlaceHolderBackground} d-flex justify-content-center align-items-center`}>
-                    {circularProgress()}
+                    <p className={`${styles.text}`}>No Products Found!</p>
                 </div>
             );
         }

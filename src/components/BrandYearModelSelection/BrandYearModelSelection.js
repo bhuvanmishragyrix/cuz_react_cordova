@@ -14,6 +14,9 @@ class BrandYearModelSelection extends Component {
     brandCarouselId = `brandCarousel`;
     yearCarouselId = `yearCarousel`;
     modelCarouselId = `modelCarousel`;
+    brandSelectedIndex = 0;
+    yearSelectedIndex = 0;
+    modelSelectedIndex = 0;
 
     constructor(props) {
         super(props);
@@ -43,20 +46,26 @@ class BrandYearModelSelection extends Component {
     }
 
     populatePropsForBrandYearModelCarousels = (props) => {
-
+        let brandSelected, yearSelected;
         if (props[`productsAndImagesData`]) {
             this.brandCarouselData = props.productsAndImagesData.filter((el) => {
                 if (el.category && el.category === this.props.selectedCategory && el.brand && !el.year && !el.model) {
                     return el;
                 }
             });
+
+            brandSelected = this.brandCarouselData[this.brandSelectedIndex].brand;
+
             this.yearCarouselData = props.productsAndImagesData.filter((el) => {
                 if (!el.category && !el.brand && el.year && !el.model) {
                     return el;
                 }
             });
+
+            yearSelected = this.yearCarouselData[this.yearSelectedIndex].year;
+
             this.modelCarouselData = props.productsAndImagesData.filter((el) => {
-                if (el.category && el.brand && el.year && el.model && !el.graphic) {
+                if (el.category && el.brand && el.brand === brandSelected && el.year && el.year === yearSelected && el.model && !el.graphic) {
                     return el;
                 }
             });
@@ -64,18 +73,37 @@ class BrandYearModelSelection extends Component {
     };
 
     brandSelected = (brandIndex) => {
-
+        this.brandSelectedIndex = brandIndex;
+        this.populatePropsForBrandYearModelCarousels(this.props);
+        this.setState({
+            brandCarouselData: this.brandCarouselData,
+            yearCarouselData: this.yearCarouselData,
+            modelCarouselData: this.modelCarouselData
+        });
     }
 
     yearSelected = (yearIndex) => {
-
+        this.yearSelectedIndex = yearIndex;
+        this.populatePropsForBrandYearModelCarousels(this.props);
+        this.setState({
+            brandCarouselData: this.brandCarouselData,
+            yearCarouselData: this.yearCarouselData,
+            modelCarouselData: this.modelCarouselData
+        });
     }
 
     modelSelected = (modelIndex) => {
-
+        this.modelSelectedIndex = modelIndex;
+        this.populatePropsForBrandYearModelCarousels(this.props);
+        this.setState({
+            brandCarouselData: this.brandCarouselData,
+            yearCarouselData: this.yearCarouselData,
+            modelCarouselData: this.modelCarouselData
+        });
     }
 
     render() {
+
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
                 <ContinueButton />

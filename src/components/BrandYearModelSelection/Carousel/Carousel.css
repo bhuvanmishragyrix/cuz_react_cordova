@@ -17,3 +17,8 @@
 .fullHeight {
     height: 100%;
 }
+
+.text {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+}

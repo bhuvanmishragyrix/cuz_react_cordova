@@ -27,7 +27,7 @@ class CategorySelect extends Component {
                 marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + 30}px`
             },
             selectedCategory: null,
-            isContinueButtonDisabled: true,
+            isContinueButtonDisabled: !this.props[`productsAndImagesData`],
             onContinueClick: ()=> {}
         };
     }

@@ -115,7 +115,7 @@ class BrandYearModelSelection extends Component {
                 <div className={styles.borderAroundCarousel}>
                     <Carousel categorySelected={this.yearSelected} carouselId={this.yearCarouselId} carouselData={this.state.yearCarouselData} />
                 </div>
-                <p className={`${styles.text} my-2`}>SELECT BRAND</p>
+                <p className={`${styles.text} my-2`}>SELECT MODEL</p>
                 <div className={`${styles.borderAroundCarousel} mb-2`}>
                     <Carousel categorySelected={this.modelSelected} carouselId={this.modelCarouselId} carouselData={this.state.modelCarouselData} />
                 </div>

@@ -28,7 +28,7 @@ class CategorySelect extends Component {
             },
             selectedCategory: null,
             isContinueButtonDisabled: !this.props[`productsAndImagesData`],
-            onContinueClick: ()=> {}
+            onContinueClick: this.props[`productsAndImagesData`] ? this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage : ()=> {}
         };
     }
 

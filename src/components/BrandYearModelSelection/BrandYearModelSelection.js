@@ -31,7 +31,8 @@ class BrandYearModelSelection extends Component {
             },
             brandCarouselData: this.brandCarouselData,
             yearCarouselData: this.yearCarouselData,
-            modelCarouselData: this.modelCarouselData
+            modelCarouselData: this.modelCarouselData,
+            isContinueButtonDisabled: true
         };
 
         this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR) / 4.8;
@@ -110,7 +111,7 @@ class BrandYearModelSelection extends Component {
 
         return (
             <div style={this.state.topMarginBrandYearModelSelection}>
-                <ContinueButton />
+                <ContinueButton   />
                 <p className={`${styles.text} my-2`}>SELECT BRAND</p>
                 <div className={styles.borderAroundCarousel}>
                     <Carousel heightOfCarousel={this.heightOfCarousel} categorySelected={this.brandSelected} carouselId={this.brandCarouselId} carouselData={this.state.brandCarouselData} />

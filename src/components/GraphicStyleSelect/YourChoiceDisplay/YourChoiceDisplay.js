@@ -18,17 +18,17 @@ class YourChoiceDisplay extends Component {
         };
     }
 
-    componentDidMount() {
+    onImageLoaded =() => {
         this.setState({
             heightOfDiv: {
                 height: $(`.${styles.forGettingHeightOfImage}`).height(),
                 display: "flex",
                 flexDirection: "column",
-                alignItems:"center",
+                alignItems: "center",
                 justifyContent: "center"
             }
         });
-    }
+    };
 
     render() {
         return (
@@ -37,13 +37,13 @@ class YourChoiceDisplay extends Component {
                 <div className={`container`}>
                     <div className={`row`}>
                         <div className={`col-6`}>
-                            <img className={`w-100 ${styles.forGettingHeightOfImage}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.props.selectedCategoryImageFileName}`} />
+                            <img onLoad={this.onImageLoaded} className={`w-100 ${styles.forGettingHeightOfImage}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.props.selectedCategoryImageFileName}`} />
                         </div>
                         <div className={`col-6`}>
                             <div style={this.state.heightOfDiv}>
-                                    <p className={`${styles.selectionText} text-primary`}>{this.props.selectedBrand}</p>
-                                    <p className={`${styles.selectionText} ${styles.modelTextStyle}`}>{this.props.selectedModel}</p>
-                                    <p className={`${styles.selectionText} text-danger`}>{this.props.selectedYear}</p>
+                                <p className={`${styles.selectionText} text-primary`}>{this.props.selectedBrand}</p>
+                                <p className={`${styles.selectionText} ${styles.modelTextStyle}`}>{this.props.selectedModel}</p>
+                                <p className={`${styles.selectionText} text-danger`}>{this.props.selectedYear}</p>
                             </div>
                         </div>
                     </div>

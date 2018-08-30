@@ -1,3 +1,8 @@
 .borderAroundYourChoiceDisplay {
     border: 1px solid gray;
 }
+
+.text{
+    font-family: 'Anton';
+    font-size: 20px;
+}

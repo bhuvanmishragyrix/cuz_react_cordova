@@ -36,7 +36,7 @@ class Instructions extends Component {
 
     render() {
         return (
-            <div className={`mx-3 pt-2`}>
+            <div className={`mx-3 mt-3`}>
                 <span className={styles.text}>{this.state.textToShow}</span>
                 {this.state.isShowMoreShown? <span className={`${styles.showMoreText} text-primary`} onClick={this.hideShowMoreAndAdjustTextInParagraph}>...Show More</span>: ""}
                 {this.state.isShowLessShown? <p className={`${styles.showMoreText} text-primary`} onClick={this.hideShowLessAndAdjustTextInParagraph}>Show Less</p>: ""}

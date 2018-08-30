@@ -19,6 +19,9 @@ const graphicStyleSelect = () => {
             </div>
             <CustomizeIt />
             <Instructions />
+            <div className={`w-100 text-center my-3`}>
+                <p className={`${styles.text}`}>SELECT A STYLE</p>
+            </div>
         </div >
     );
 };

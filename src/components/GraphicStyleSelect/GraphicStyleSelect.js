@@ -4,6 +4,7 @@ import * as appConstants from '../../constants/AppConstants';
 import styles from './GraphicStyleSelect.css';
 import YourChoiceDisplay from './YourChoiceDisplay/YourChoiceDisplay';
 import CustomizeIt from './CustomizeIt/CustomizeIt';
+import Instructions from './InstructionsText/Instructions';
 
 const graphicStyleSelect = () => {
 
@@ -17,6 +18,7 @@ const graphicStyleSelect = () => {
                 <YourChoiceDisplay />
             </div>
             <CustomizeIt />
+            <Instructions />
         </div >
     );
 };

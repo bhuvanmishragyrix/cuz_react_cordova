@@ -5,7 +5,8 @@ const initialState = {
     selectedCategory: null,
     selectedBrand: null,
     selectedYear: null,
-    selectedModel: null
+    selectedModel: null,
+    selectedCategoryImageFileName: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,11 +18,12 @@ const reducer = (state = initialState, action) => {
                 images: action.payload.images
             };
 
-        case actionTypes.STORE_CATEGORY:
+        case actionTypes.STORE_CATEGORY_AND_CATEGORY_IMAGE_NAME:
 
             return {
                 ...state,
-                selectedCategory: action.payload
+                selectedCategory: action.payload.category,
+                selectedCategoryImageFileName: action.payload.selectedCategoryImageFileName
             };
 
         case actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL:

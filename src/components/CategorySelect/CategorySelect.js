@@ -27,8 +27,9 @@ class CategorySelect extends Component {
                 marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
             },
             selectedCategory: null,
+            selectedCategoryImageFileName: null,
             isContinueButtonDisabled: !this.props[`productsAndImagesData`],
-            onContinueClick: this.props[`productsAndImagesData`] ? this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage : ()=> {}
+            onContinueClick: this.props[`productsAndImagesData`] ? this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage : () => { }
         };
     }
 
@@ -42,7 +43,7 @@ class CategorySelect extends Component {
     populatePropsForCategoryAndNewProductCarousel = (props) => {
 
         if (props[`productsAndImagesData`]) {
-            this.categoryCarouselData = props.productsAndImagesData.filter((el, index) => {
+            this.categoryCarouselData = props.productsAndImagesData.filter((el) => {
                 if (el.category && !el.brand) {
                     return el;
                 }
@@ -79,17 +80,15 @@ class CategorySelect extends Component {
     };
 
     storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage = () => {
-        console.log(this.state.selectedCategory);
-        this.props.storeCategoryInStore(this.state.selectedCategory);
+        this.props.storeCategoryAndCategoryImageNameInStore(this.state.selectedCategory, this.state.selectedCategoryImageFileName);
         this.props.history.push('/parentForThreeElementTabBarScreens/brandYearModalSelectPage');
     };
 
     categorySelected = (categoryIndex) => {
 
-        console.log("categoryChanged", categoryIndex);
-
         this.setState({
-            selectedCategory: this.categoryCarouselData[categoryIndex].category
+            selectedCategory: this.categoryCarouselData[categoryIndex].category,
+            selectedCategoryImageFileName: this.categoryCarouselData[categoryIndex].filename
         });
     }
 
@@ -101,7 +100,7 @@ class CategorySelect extends Component {
                     <CategoryCarouselComponent categorySelected={this.categorySelected} categoryCarouselData={this.state.categoryCarouselData} />
                 </div>
                 <div className={`my-4`} onClick={this.state.onContinueClick}>
-                    <ContinueButton isDisabled={this.state.isContinueButtonDisabled}/>
+                    <ContinueButton isDisabled={this.state.isContinueButtonDisabled} />
                 </div>
                 <p className={CategorySelectStyles.text}>NEW PRODUCTS</p>
                 <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>
@@ -115,8 +114,14 @@ class CategorySelect extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        storeCategoryInStore: (category) => {
-            dispatch({ type: actionTypes.STORE_CATEGORY, payload: category });
+        storeCategoryAndCategoryImageNameInStore: (category, imageName) => {
+
+            dispatch({
+                type: actionTypes.STORE_CATEGORY_AND_CATEGORY_IMAGE_NAME, payload: {
+                    category: category,
+                    selectedCategoryImageFileName: imageName
+                }
+            });
         }
     };
 };

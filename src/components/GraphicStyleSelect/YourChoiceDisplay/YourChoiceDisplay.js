@@ -5,7 +5,7 @@ import styles from './YourChoiceDisplay.css';
 
 const yourChoiceDisplay = (props) => {
 
-    console.log(props.selectedCategory, props.selectedBrand, props.selectedYear, props.selectedModel);
+    console.log(props.selectedCategory, props.selectedBrand, props.selectedYear, props.selectedModel, props.selectedCategoryImageFileName);
 
     return (
         <div>
@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
         selectedCategory: state.selectedCategory,
         selectedBrand:state.selectedBrand,
         selectedYear: state.selectedYear,
-        selectedModel: state.selectedModel
+        selectedModel: state.selectedModel,
+        selectedCategoryImageFileName: state.selectedCategoryImageFileName
     };
 };
 

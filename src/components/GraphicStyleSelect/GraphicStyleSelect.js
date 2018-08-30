@@ -3,6 +3,7 @@ import React from 'react';
 import * as appConstants from '../../constants/AppConstants';
 import styles from './GraphicStyleSelect.css';
 import YourChoiceDisplay from './YourChoiceDisplay/YourChoiceDisplay';
+import CustomizeIt from './CustomizeIt/CustomizeIt';
 
 const graphicStyleSelect = () => {
 
@@ -15,6 +16,7 @@ const graphicStyleSelect = () => {
             <div className={`${styles.borderAroundYourChoiceDisplay} px-3 pb-3 pt-2`}>
                 <YourChoiceDisplay />
             </div>
+            <CustomizeIt />
         </div >
     );
 };

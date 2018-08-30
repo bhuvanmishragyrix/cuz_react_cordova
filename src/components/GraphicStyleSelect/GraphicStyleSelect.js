@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as appConstants from '../../constants/AppConstants';
 import styles from './GraphicStyleSelect.css';
+import YourChoiceDisplay from './YourChoiceDisplay/YourChoiceDisplay';
 
 const graphicStyleSelect = () => {
 
@@ -11,7 +12,7 @@ const graphicStyleSelect = () => {
 
     return (
         <div style={topMarginGraphicStyleSelect}>
-            <p className={`${styles.text}`}>YOUR CHOICE IS</p>
+            <YourChoiceDisplay />
         </div>
     );
 };

@@ -50,7 +50,7 @@ class BrandYearModelSelection extends Component {
     };
 
     storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage = () => {
-        this.props.storeSelectedBrandYearModelInStore(this.brandCarouselData[this.brandSelectedIndex].model,
+        this.props.storeSelectedBrandYearModelInStore(this.brandCarouselData[this.brandSelectedIndex].brand,
             this.yearCarouselData[this.yearSelectedIndex].year,
             this.modelCarouselData[this.modelSelectedIndex].model);
         this.props.history.push('/parentForThreeElementTabBarScreens/graphicStyleSelectPage');

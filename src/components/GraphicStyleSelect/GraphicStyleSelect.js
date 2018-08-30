@@ -12,8 +12,10 @@ const graphicStyleSelect = () => {
 
     return (
         <div style={topMarginGraphicStyleSelect}>
-            <YourChoiceDisplay />
-        </div>
+            <div className={`${styles.borderAroundYourChoiceDisplay} px-3 pb-3 pt-2`}>
+                <YourChoiceDisplay />
+            </div>
+        </div >
     );
 };
 

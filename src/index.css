@@ -5,6 +5,11 @@
     src: url('./assets/fonts/Anton/Anton-Regular.ttf');
 }
 
+@font-face {
+    font-family: Monoton;
+    src: url('./assets/fonts/Monoton/Monoton-Regular.ttf');
+}
+
 body {
     margin: 0;
     padding: 0;

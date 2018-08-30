@@ -42,7 +42,7 @@ class YourChoiceDisplay extends Component {
                         <div className={`col-6`}>
                             <div style={this.state.heightOfDiv}>
                                     <p className={`${styles.selectionText} text-primary`}>{this.props.selectedBrand}</p>
-                                    <p className={`${styles.selectionText}`}>{this.props.selectedModel}</p>
+                                    <p className={`${styles.selectionText} ${styles.modelTextStyle}`}>{this.props.selectedModel}</p>
                                     <p className={`${styles.selectionText} text-danger`}>{this.props.selectedYear}</p>
                             </div>
                         </div>

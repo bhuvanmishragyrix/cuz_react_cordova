@@ -8,6 +8,8 @@ import Instructions from './InstructionsText/Instructions';
 import ListOfGraphics from './ListOfGraphics/ListOfGraphics';
 import { connect } from 'react-redux';
 import SelectAStyle from './SelectAStyle/SelectAStyle';
+import * as actionTypes from '../../store/actionTypes';
+import { withRouter } from 'react-router-dom';
 
 const graphicStyleSelect = (props) => {
 
@@ -24,6 +26,10 @@ const graphicStyleSelect = (props) => {
         marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
     }
 
+    const onGraphicSelect = (index) => {
+        props.storeSelectedGraphicAndPriceInStore(imageNameData[index].graphic, imageNameData[index].price);
+        props.history.push('/visualComposerColorCustomiser');
+    };
 
 
     return (
@@ -36,7 +42,7 @@ const graphicStyleSelect = (props) => {
             </div>
             <Instructions />
             <SelectAStyle />
-            <ListOfGraphics imageNameData={imageNameData} />
+            <ListOfGraphics imageNameData={imageNameData} onGraphicSelect={onGraphicSelect} />
         </div >
     );
 };
@@ -52,4 +58,17 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(graphicStyleSelect);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeSelectedGraphicAndPriceInStore: (graphic, graphicPrice) => {
+            dispatch({
+                type: actionTypes.STORE_GRAPHIC_NAME_AND_PRICE, payload: {
+                    selectedGraphic: graphic,
+                    selectedGraphicPrice: graphicPrice
+                }
+            })
+        }
+    }
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(graphicStyleSelect));

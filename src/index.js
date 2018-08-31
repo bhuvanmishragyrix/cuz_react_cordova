@@ -36,10 +36,11 @@ var app = {
             </Provider>
         );
 
-        ReactDOM.render(reactApp, document.getElementById('root'));
-
         screen.orientation.lock('portrait').then(function success() {
             console.log("Successfully locked the orientation");
+            setTimeout(() => {
+                ReactDOM.render(reactApp, document.getElementById('root'));
+            }, 100);
         }, function error(errMsg) {
             console.log("Error locking the orientation :: " + errMsg);
         });

@@ -10,6 +10,11 @@
     src: url('./assets/fonts/Monoton/Monoton-Regular.ttf');
 }
 
+@font-face {
+    font-family: Slant;
+    src: url('./assets/fonts/SLANT.ttf');
+}
+
 body {
     margin: 0;
     padding: 0;

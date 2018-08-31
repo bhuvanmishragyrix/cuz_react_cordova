@@ -28,9 +28,11 @@ const graphicStyleSelect = (props) => {
             <div className={`${styles.borderAroundYourChoiceDisplay} px-3 pb-3 pt-2`}>
                 <YourChoiceDisplay />
             </div>
-            <CustomizeIt />
+            <div className={`mt-2`}>
+                <CustomizeIt />
+            </div>
             <Instructions />
-            <div className={`w-100 text-center my-3`}>
+            <div className={`w-100 text-center mt-2 mb-3`}>
                 <p className={`${styles.text}`}>SELECT A STYLE</p>
             </div>
             <ListOfGraphics imageNameData={imageNameData} />

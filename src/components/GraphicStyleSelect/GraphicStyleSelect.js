@@ -7,6 +7,7 @@ import CustomizeIt from './CustomizeIt/CustomizeIt';
 import Instructions from './InstructionsText/Instructions';
 import ListOfGraphics from './ListOfGraphics/ListOfGraphics';
 import { connect } from 'react-redux';
+import SelectAStyle from './SelectAStyle/SelectAStyle';
 
 const graphicStyleSelect = (props) => {
 
@@ -23,6 +24,8 @@ const graphicStyleSelect = (props) => {
         marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
     }
 
+
+
     return (
         <div style={topMarginGraphicStyleSelect}>
             <div className={`${styles.borderAroundYourChoiceDisplay} px-3 pb-3 pt-2`}>
@@ -32,9 +35,7 @@ const graphicStyleSelect = (props) => {
                 <CustomizeIt />
             </div>
             <Instructions />
-            <div className={`w-100 text-center mt-2 mb-3`}>
-                <p className={`${styles.text}`}>SELECT A STYLE</p>
-            </div>
+            <SelectAStyle />
             <ListOfGraphics imageNameData={imageNameData} />
         </div >
     );

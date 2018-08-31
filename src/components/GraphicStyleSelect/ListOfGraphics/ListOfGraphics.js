@@ -9,7 +9,9 @@ const listOfGraphics = (props) => {
     if (props.imageNameData) {
         content = props.imageNameData.map((el) => {
             return (
-                <img className={`w-100 mb-3`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} />
+                <div className={`text-center`}>
+                    <img className={`w-75 mb-3`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} />
+                </div>
             );
         });
     }

@@ -1,0 +1,9 @@
+.text{
+    font-family: 'Anton';
+    font-size: 20px;
+}
+
+.fixedLeft{
+    position: absolute !important;
+    left: 20px;
+}

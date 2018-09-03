@@ -43,8 +43,8 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                selectedGraphic: action.selectedGraphic,
-                selectedGraphicPrice: action.selectedGraphicPrice
+                selectedGraphic: action.payload.selectedGraphic,
+                selectedGraphicPrice: action.payload.selectedGraphicPrice
             };
     }
     return state;

@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import * as appContants from '../../constants/AppConstants'
 import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
 import styles from './VisualComposerColorCustomiser.css';
+import * as util from '../../util/Util';
 
 class VisualComposerColorCustomiser extends Component {
+
+    partNameFilenameArrays = [];
+    bikeSVGFilenameArrays = [];
 
     constructor(props) {
         super(props);
@@ -28,8 +32,23 @@ class VisualComposerColorCustomiser extends Component {
 
 
     fetchAllPartAndWholeBikeSVGImages = () => {
-        let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-        let image = utf8.decode(bytes);
+
+        this.props.images.forEach((el) => {
+
+
+            if (!el.isBikeSVG) {
+                if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic) {
+                    console.log("Reached Here", el)
+                }
+            }
+            else {
+                this.bikeSVGFilenameArrays.push(el.filename);
+            }
+        }
+        )
+
+        // let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
+        // let image = utf8.decode(bytes);
     };
 
 
@@ -38,6 +57,9 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     render() {
+
+        this.fetchAllPartAndWholeBikeSVGImages();
+
         return (
             <div className={`bg-danger`} style={this.state.wrapperDivStyle}>
                 <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
@@ -53,8 +75,9 @@ class VisualComposerColorCustomiser extends Component {
     }
 };
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
+        images: state.images,
         selectedCategory: state.selectedCategory,
         selectedBrand: state.selectedBrand,
         selectedYear: state.selectedYear,
@@ -64,4 +87,4 @@ mapStateToProps = (state) => {
 };
 
 
-export default VisualComposerColorCustomiser;
+export default connect(mapStateToProps)(VisualComposerColorCustomiser);

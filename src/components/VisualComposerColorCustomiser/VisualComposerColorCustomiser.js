@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import * as appContants from '../../constants/AppConstants'
+import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
+import styles from './VisualComposerColorCustomiser.css';
 
 class VisualComposerColorCustomiser extends Component {
 
@@ -15,17 +18,27 @@ class VisualComposerColorCustomiser extends Component {
             controlsDivStyle: {
                 height: `${(15 / 100) * (remainingHeight)}px`
             },
-            imageDivStyle: {
+            imageAndCarouselDivStyle: {
                 height: `${(85 / 100) * (remainingHeight)}px`
-            }
+            },
+            carouselData: true
         };
+    }
+
+    checkDimentionsOfImageAndFlipOrientationIfNecessary = () => {
+
     }
 
     render() {
         return (
             <div className={`bg-danger`} style={this.state.wrapperDivStyle}>
-                <div className={`bg-success`} style={this.state.imageDivStyle}></div>
-                <div className={`bg-primary`} style={this.state.controlsDivStyle}>
+                <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
+                    <PartNameCarouselComponent carouselData={this.state.carouselData} />
+                    <div className={`${styles.heightOfImageParentDiv} p-3`}>
+
+                    </div>
+                </div>
+                <div className={`bg-primary p-3`} style={this.state.controlsDivStyle}>
                 </div>
             </div>
         );

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
 import ParentForThreeElementTabBarScreens from './ParentForThreeElementTabBarScreens';
-import VisualComposerColorCustomiser from './VisualComposerColorCustomiser';
+import VisualComposerColorCustomiserPage from './VisualComposerColorCustomiserPage';
 import { getFromAPI } from '../util/Util';
 import { LINK_TO_FETCH_JSON_DATA_FROM } from '../constants/AppConstants';
 import { STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA } from '../store/actionTypes';
@@ -29,7 +29,7 @@ class StartPage extends Component {
             <div>
                 <Switch>
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
-                    <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiser}/>
+                    <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage}/>
                     <Route render={LandingPage} />
                 </Switch>
             </div>

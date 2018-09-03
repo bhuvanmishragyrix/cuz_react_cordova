@@ -18,3 +18,9 @@ export const getFromAPI = (url) => {
 export const circularProgress = (size) => {
     return <CircularProgress style={{ color: black }} size={50} />
 };
+
+export const getBase64OfImage = (url) => {
+    return axios.get(url, {
+        responseType: 'arraybuffer'
+    })
+}

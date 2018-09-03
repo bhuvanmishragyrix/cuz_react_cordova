@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import * as appContants from '../../constants/AppConstants'
 import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
@@ -21,9 +22,16 @@ class VisualComposerColorCustomiser extends Component {
             imageAndCarouselDivStyle: {
                 height: `${(85 / 100) * (remainingHeight)}px`
             },
-            carouselData: true
+            carouselData: null
         };
     }
+
+
+    fetchAllPartAndWholeBikeSVGImages = () => {
+        let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
+        let image = utf8.decode(bytes);
+    };
+
 
     checkDimentionsOfImageAndFlipOrientationIfNecessary = () => {
 
@@ -44,5 +52,16 @@ class VisualComposerColorCustomiser extends Component {
         );
     }
 };
+
+mapStateToProps = (state) => {
+    return {
+        selectedCategory: state.selectedCategory,
+        selectedBrand: state.selectedBrand,
+        selectedYear: state.selectedYear,
+        selectedModel: state.selectedModel,
+        selectedGraphic: state.selectedGraphic,
+    };
+};
+
 
 export default VisualComposerColorCustomiser;

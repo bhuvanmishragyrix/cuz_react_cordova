@@ -10,21 +10,22 @@ class VisualComposerColorCustomiser extends Component {
 
     partNameFilenameArrays = [];
     bikeSVGFilenameArrays = [];
+    remainingHeight;
 
     constructor(props) {
         super(props);
 
-        let remainingHeight = window.screen.height - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT
+        this.remainingHeight = window.screen.height - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
 
         this.state = {
             wrapperDivStyle: {
-                height: `${remainingHeight}px`
+                height: `${this.remainingHeight}px`
             },
             controlsDivStyle: {
-                height: `${(15 / 100) * (remainingHeight)}px`
+                height: `${(15 / 100) * (this.remainingHeight)}px`
             },
             imageAndCarouselDivStyle: {
-                height: `${(85 / 100) * (remainingHeight)}px`
+                height: `${(85 / 100) * (this.remainingHeight)}px`
             },
             carouselData: null
         };
@@ -51,10 +52,16 @@ class VisualComposerColorCustomiser extends Component {
         // let image = utf8.decode(bytes);
     };
 
-
-    checkDimentionsOfImageAndFlipOrientationIfNecessary = () => {
-
-    }
+    // componentDidMount() {
+    //     setTimeout(() => {
+    //         screen.orientation.lock('landscape').then(() => {
+    //             console.log("Successfully locked the orientation");
+    //             this.checkDimentionsOfImageAndFlipOrientationIfNecessary();
+    //         }, (errMsg) => {
+    //             console.log("Error locking the orientation :: " + errMsg);
+    //         });
+    //     }, 3000);
+    // }
 
     render() {
 

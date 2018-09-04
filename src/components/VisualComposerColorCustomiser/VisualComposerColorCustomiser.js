@@ -5,12 +5,14 @@ import * as appContants from '../../constants/AppConstants'
 import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
 import styles from './VisualComposerColorCustomiser.css';
 import * as util from '../../util/Util';
+import base64 from 'base-64';
+import utf8 from 'utf8';
 
 class VisualComposerColorCustomiser extends Component {
 
-    partFilenamesArray = [];
+    partFilenamesAndImagesArray = [];
     partNamesArray = [];
-    bikeSVGFilenamesArray = [];
+    bikeSVGFilenamesAndImagesArray = [];
     remainingHeight;
 
     constructor(props) {
@@ -43,11 +45,11 @@ class VisualComposerColorCustomiser extends Component {
 
                     if (!this.partNamesArray.includes(el.partname)) {
                         this.partNamesArray.push(el.partname);
-                        this.partFilenamesArray.push({ partname: el.partname });
+                        this.partFilenamesAndImagesArray.push({ partname: el.partname });
                     }
 
                     if (el.leftOrRight === "Left") {
-                        this.partFilenamesArray.forEach((fileNamesArrayElement) => {
+                        this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
                             if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("left")) {
                                 console.log("Entered Left");
                                 fileNamesArrayElement.left = el.filename;
@@ -55,7 +57,7 @@ class VisualComposerColorCustomiser extends Component {
                         });
                     }
                     else if (el.leftOrRight === "Right") {
-                        this.partFilenamesArray.forEach((fileNamesArrayElement) => {
+                        this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
                             if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("right")) {
                                 console.log("Entered Right");
                                 fileNamesArrayElement.right = el.filename;
@@ -66,7 +68,7 @@ class VisualComposerColorCustomiser extends Component {
                 }
             }
             else {
-                this.bikeSVGFilenamesArray.push(el.filename);
+                this.bikeSVGFilenamesAndImagesArray.push(el.filename);
             }
         }
         )
@@ -74,9 +76,33 @@ class VisualComposerColorCustomiser extends Component {
         // let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
         // let image = utf8.decode(bytes);
 
-        console.log("PartFileNameArray", this.partFilenamesArray);
+        console.log("PartFileNameArray", this.partFilenamesAndImagesArray);
+        console.log("BikeSVG FileNamesArray", this.bikeSVGFilenamesAndImagesArray);
 
-        
+
+    };
+
+    fetchAllPartSVGImages = () => {
+        let arrayOfPartImagePromises = [], j;
+        this.partFilenamesAndImagesArray.forEach((el) => {
+            arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.left}`))
+            arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.right}`))
+        })
+
+        Promise.all(arrayOfPartImagePromises)
+            .then((response) => {
+                console.log(response)
+                this.partFilenamesAndImagesArray.forEach((el, index) => {
+                    for (j = index; j < index + 1; j = j + 2) {
+                        let bytes = base64.decode(new Buffer(response[j].data, 'binary').toString('base64'));
+                        el.leftImage = utf8.decode(bytes);
+                        bytes = base64.decode(new Buffer(response[j + 1].data, 'binary').toString('base64'));
+                        el.righImage = utf8.decode(bytes);
+                    }
+                })
+
+                console.log(this.partFilenamesAndImagesArray);
+            })
     };
 
     // componentDidMount() {
@@ -93,6 +119,7 @@ class VisualComposerColorCustomiser extends Component {
     render() {
 
         this.fetchAllPartAndWholeBikeSVGImageNames();
+        this.fetchAllPartSVGImages();
 
         return (
             <div className={`bg-danger`} style={this.state.wrapperDivStyle}>

@@ -33,16 +33,36 @@ class VisualComposerColorCustomiser extends Component {
     }
 
 
-    fetchAllPartAndWholeBikeSVGImages = () => {
+    fetchAllPartAndWholeBikeSVGImageNames = () => {
 
         this.props.images.forEach((el) => {
 
 
             if (!el.isBikeSVG) {
-                if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic && el.part) {
-                    if (!this.partNamesArray.includes(el.part)) {
-                        this.partNamesArray.push(el.part);
+                if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic && el.partname) {
+
+                    if (!this.partNamesArray.includes(el.partname)) {
+                        this.partNamesArray.push(el.partname);
+                        this.partFilenamesArray.push({ partname: el.partname });
                     }
+
+                    if (el.leftOrRight === "Left") {
+                        this.partFilenamesArray.forEach((fileNamesArrayElement) => {
+                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("left")) {
+                                console.log("Entered Left");
+                                fileNamesArrayElement.left = el.filename;
+                            }
+                        });
+                    }
+                    else if (el.leftOrRight === "Right") {
+                        this.partFilenamesArray.forEach((fileNamesArrayElement) => {
+                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("right")) {
+                                console.log("Entered Right");
+                                fileNamesArrayElement.right = el.filename;
+                            }
+                        });
+                    }
+
                 }
             }
             else {
@@ -53,6 +73,10 @@ class VisualComposerColorCustomiser extends Component {
 
         // let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
         // let image = utf8.decode(bytes);
+
+        console.log("PartFileNameArray", this.partFilenamesArray);
+
+        
     };
 
     // componentDidMount() {
@@ -68,7 +92,7 @@ class VisualComposerColorCustomiser extends Component {
 
     render() {
 
-        this.fetchAllPartAndWholeBikeSVGImages();
+        this.fetchAllPartAndWholeBikeSVGImageNames();
 
         return (
             <div className={`bg-danger`} style={this.state.wrapperDivStyle}>

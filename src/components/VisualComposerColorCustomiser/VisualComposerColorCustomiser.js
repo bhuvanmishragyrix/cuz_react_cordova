@@ -82,6 +82,22 @@ class VisualComposerColorCustomiser extends Component {
 
     };
 
+    convertAllPartsImagesToParsableObjectsAndStore = () => {
+
+        let parser = new DOMParser();
+        let partFilenamesAndImagesArray;
+
+        partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.map((el) => {
+            return {
+                ...el,
+                leftImageObject: parser.parseFromString(el.leftImage, "image/svg+xml").getElementsByTagName("svg")[0],
+                rightImageObject: parser.parseFromString(el.righImage, "image/svg+xml").getElementsByTagName("svg")[0]
+            }
+        });
+
+        this.partFilenamesAndImagesArray = partFilenamesAndImagesArray;
+    }
+
     fetchAllPartSVGImages = () => {
         let arrayOfPartImagePromises = [], j;
         this.partFilenamesAndImagesArray.forEach((el) => {
@@ -101,7 +117,9 @@ class VisualComposerColorCustomiser extends Component {
                     }
                 })
 
-                console.log(this.partFilenamesAndImagesArray);
+                this.convertAllPartsImagesToParsableObjectsAndStore();
+
+                console.log(this.partFilenamesAndImagesArray)
             })
     };
 

@@ -5,7 +5,11 @@ import { checkPropTypes } from 'prop-types';
 
 const partNameCarouSelComponent = (props) => {
 
-    let content = "";
+    let content = (
+        <div className={`${styles.root}`}>
+
+        </div>
+    );
 
     if (props.carouselData) {
         content = (

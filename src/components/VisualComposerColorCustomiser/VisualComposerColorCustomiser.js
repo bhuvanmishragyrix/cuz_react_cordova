@@ -8,8 +8,9 @@ import * as util from '../../util/Util';
 
 class VisualComposerColorCustomiser extends Component {
 
-    partNameFilenameArrays = [];
-    bikeSVGFilenameArrays = [];
+    partFilenamesArray = [];
+    partNamesArray = [];
+    bikeSVGFilenamesArray = [];
     remainingHeight;
 
     constructor(props) {
@@ -39,11 +40,13 @@ class VisualComposerColorCustomiser extends Component {
 
             if (!el.isBikeSVG) {
                 if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic && el.part) {
-                    console.log("Reached Here", el)
+                    if (!this.partNamesArray.includes(el.part)) {
+                        this.partNamesArray.push(el.part);
+                    }
                 }
             }
             else {
-                this.bikeSVGFilenameArrays.push(el.filename);
+                this.bikeSVGFilenamesArray.push(el.filename);
             }
         }
         )

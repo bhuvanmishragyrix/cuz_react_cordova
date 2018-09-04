@@ -304,6 +304,58 @@
             "price": null,
             "filename": "New_product1.jpg",
             "isNewProduct": true
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "part": "Radiator Shrouds",
+            "leftOrRight": "Left",
+            "price": null,
+            "filename": "part1.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "part": "Radiator Shrouds",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part2.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "part": "Tank",
+            "leftOrRight": "Left",
+            "price": null,
+            "filename": "part3.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "part": "Tank",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part4.svg",
+            "isNewProduct": false
         }
     ]
 }

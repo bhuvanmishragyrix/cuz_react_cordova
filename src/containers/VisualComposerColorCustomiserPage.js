@@ -3,7 +3,7 @@ import VisualComposerColorCustomiser from '../components/VisualComposerColorCust
 
 const visualComposerColorCustomiserPage = () => {
     return (
-        <div className={`p-0 m-0`}>
+        <div>
             <VisualComposerColorCustomiser />
         </div>
     );

@@ -7,6 +7,7 @@ import styles from './VisualComposerColorCustomiser.css';
 import * as util from '../../util/Util';
 import base64 from 'base-64';
 import utf8 from 'utf8';
+import $ from 'jquery';
 
 class VisualComposerColorCustomiser extends Component {
 
@@ -25,10 +26,10 @@ class VisualComposerColorCustomiser extends Component {
                 height: `${this.remainingHeight}px`
             },
             controlsDivStyle: {
-                height: `${(15 / 100) * (this.remainingHeight)}px`
+                height: `${(10 / 100) * (this.remainingHeight)}px`
             },
             imageAndCarouselDivStyle: {
-                height: `${(85 / 100) * (this.remainingHeight)}px`
+                height: `${(90 / 100) * (this.remainingHeight)}px`
             },
             carouselData: null
         };
@@ -113,13 +114,20 @@ class VisualComposerColorCustomiser extends Component {
                         let bytes = base64.decode(new Buffer(response[j].data, 'binary').toString('base64'));
                         el.leftImage = utf8.decode(bytes);
                         bytes = base64.decode(new Buffer(response[j + 1].data, 'binary').toString('base64'));
-                        el.righImage = utf8.decode(bytes);
+                        el.rightImage = utf8.decode(bytes);
                     }
                 })
 
                 this.convertAllPartsImagesToParsableObjectsAndStore();
 
                 console.log(this.partFilenamesAndImagesArray)
+
+                document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[0].leftImageObject)
+                // document.getElementsByTagName("svg")[0].style.transform = "rotate(90deg)";
+                // document.getElementsByTagName("svg")[0].style.height = `${$(`.${styles.heightOfImageParentDiv}`).width()}px`;
+
+                console.log("SVG Height", $('svg').height());
+                console.log("SVG Width", $('svg').width());
             })
     };
 

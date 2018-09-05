@@ -1,8 +1,10 @@
 .individualControlElementsStyle {
     height: 100%;
     border: 1px solid black;
+    font-family: 'Anton';
 }
 
 .rootElement {
-    height: 100%;
+    position: fixed;
+    bottom: 5px;
 }

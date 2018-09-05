@@ -2,17 +2,20 @@ import React from 'react';
 
 import styles from './BottomControls.css';
 
-const bottomControls = () => {
+const bottomControls = (props) => {
 
     let controlDivElementWidth = window.screen.width / 5;
+    let controlDivStyle = props.controlDivStyle;
 
     const controlElementStyle = {
         width: `${controlDivElementWidth}px`,
         fontSize: 0.2 * controlDivElementWidth
     };
 
+    console.log("controlDivStyle", controlDivStyle);
+
     return (
-        <div className={`${styles.rootElement}`}>
+        <div style={controlDivStyle} className={`${styles.rootElement}`}>
             <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                 Color
             </div>

@@ -21,7 +21,7 @@ class VisualComposerColorCustomiser extends Component {
     constructor(props) {
         super(props);
 
-        this.remainingHeight = window.screen.height - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
+        this.remainingHeight = 0.9 * window.screen.height - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
 
         this.state = {
             wrapperDivStyle: {
@@ -32,6 +32,9 @@ class VisualComposerColorCustomiser extends Component {
             },
             imageAndCarouselDivStyle: {
                 height: `${(90 / 100) * (this.remainingHeight)}px`
+            },
+            imageDivStyle: {
+                height: ``
             },
             carouselData: null
         };
@@ -150,15 +153,15 @@ class VisualComposerColorCustomiser extends Component {
         this.fetchAllPartSVGImages();
 
         return (
-            <div className={`bg-danger`} style={this.state.wrapperDivStyle}>
+            <div className={``} style={this.state.wrapperDivStyle}>
                 <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
                     <PartNameCarouselComponent carouselData={this.state.carouselData} />
-                    <div className={`${styles.heightOfImageParentDiv} p-3`}>
+                    <div className={`${styles.heightOfImageParentDiv}`}>
 
                     </div>
                 </div>
-                <div className={`bg-primary`} style={this.state.controlsDivStyle}>
-                    <BottomControls />
+                <div className={``} style={this.state.controlsDivStyle}>
+                    <BottomControls controlDivStyle={this.state.controlsDivStyle} />
                 </div>
             </div>
         );

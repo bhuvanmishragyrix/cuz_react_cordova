@@ -1,0 +1,8 @@
+.individualControlElementsStyle {
+    height: 100%;
+    border: 1px solid black;
+}
+
+.rootElement {
+    height: 100%;
+}

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import base64 from 'base-64';
+import utf8 from 'utf8';
+import $ from 'jquery';
 
 import * as appContants from '../../constants/AppConstants'
 import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
 import styles from './VisualComposerColorCustomiser.css';
 import * as util from '../../util/Util';
-import base64 from 'base-64';
-import utf8 from 'utf8';
-import $ from 'jquery';
+import BottomControls from './BottomControls/BottomControls';
+
 
 class VisualComposerColorCustomiser extends Component {
 
@@ -155,7 +157,8 @@ class VisualComposerColorCustomiser extends Component {
 
                     </div>
                 </div>
-                <div className={`bg-primary p-3`} style={this.state.controlsDivStyle}>
+                <div className={`bg-primary`} style={this.state.controlsDivStyle}>
+                    <BottomControls />
                 </div>
             </div>
         );

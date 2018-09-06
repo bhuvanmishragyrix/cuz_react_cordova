@@ -14,6 +14,8 @@ import LeftRightCarousel from './LeftRightCarousel/LeftRightCarousel';
 
 class VisualComposerColorCustomiser extends Component {
 
+    leftRightCarouselData = ["Left Side", "Right Side"];
+
     partFilenamesAndImagesArray = [];
     partNamesArray = [];
     bikeSVGFilenamesAndImagesArray = [];
@@ -162,7 +164,7 @@ class VisualComposerColorCustomiser extends Component {
     populatePartNameAndLeftRightCarouselData = () => {
         this.setState({
             partNameCarouselData: this.partNamesArray,
-            leftRightCarouselData: ["Left Side", "Right Side"]
+            leftRightCarouselData: this.leftRightCarouselData
         });
     }
 

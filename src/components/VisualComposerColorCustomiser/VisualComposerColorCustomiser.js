@@ -150,10 +150,7 @@ class VisualComposerColorCustomiser extends Component {
                 this.convertAllPartsImagesToParsableObjectsAndStore();
                 this.populatePartNameCarouselData();
 
-
-                console.log("IMage object", this.partFilenamesAndImagesArray);
-
-                document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[1].leftImageObject)
+                // document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[1].rightImageObject)
                 // document.getElementsByTagName("svg")[0].style.transform = "rotate(90deg)";
                 // document.getElementsByTagName("svg")[0].style.height = `${$(`.${styles.heightOfImageParentDiv}`).width()}px`;
 

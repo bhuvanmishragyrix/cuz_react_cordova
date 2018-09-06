@@ -20,7 +20,7 @@ class PartNameCarouSelComponent extends Component {
 
     registerCarouselSlideCallback = () => {
         $(`#${styles.partNameCarousel}`).on('slide.bs.carousel', (event) => {
-            this.props.categorySelected(event.to)
+            this.props.carouselSlid(event.to)
         })
     };
 

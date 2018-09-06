@@ -18,7 +18,7 @@ class LeftRightCarouSelComponent extends Component {
 
     registerCarouselSlideCallback = () => {
         $(`#${styles.leftRightCarousel}`).on('slide.bs.carousel', (event) => {
-            this.props.categorySelected(event.to)
+            this.props.carouselSlid(event.to)
         })
     };
 

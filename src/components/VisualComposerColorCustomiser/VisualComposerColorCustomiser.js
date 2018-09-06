@@ -161,7 +161,7 @@ class VisualComposerColorCustomiser extends Component {
 
     populatePartNameAndLeftRightCarouselData = () => {
         this.setState({
-            partNameCarouselData: this.partNamesArray, 
+            partNameCarouselData: this.partNamesArray,
             leftRightCarouselData: ["Left Side", "Right Side"]
         });
     }
@@ -182,16 +182,25 @@ class VisualComposerColorCustomiser extends Component {
         this.fetchAllPartSVGImages();
     }
 
+    partNameCarouselSlid = (slidTo) => {
+        console.log("partNameSlid", slidTo)
+    }
+
+    leftRightCarouselSlid = (slidTo) => {
+        console.log("leftRightSlid", slidTo);
+    }
+
+
     render() {
 
         return (
             <div className={``} style={this.state.wrapperDivStyle}>
                 <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
                     <div className={`${styles.carouselParent}`}>
-                        <PartNameCarouselComponent carouselData={this.state.partNameCarouselData} />
+                        <PartNameCarouselComponent carouselSlid={this.partNameCarouselSlid} carouselData={this.state.partNameCarouselData} />
                     </div>
                     <div className={`${styles.leftRightSelectionParentDiv}`}>
-                        <LeftRightCarousel carouselData={this.state.leftRightCarouselData}/>
+                        <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
                     </div>
                     <div className={`${styles.heightOfImageParentDiv}`}>
 

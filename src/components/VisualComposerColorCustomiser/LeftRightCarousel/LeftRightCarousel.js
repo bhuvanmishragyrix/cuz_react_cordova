@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+
 import styles from './LeftRightCarousel.css';
 
 
@@ -14,11 +16,29 @@ class LeftRightCarouSelComponent extends Component {
         };
     }
 
+    registerCarouselSlideCallback = () => {
+        $(`#${styles.leftRightCarousel}`).on('slide.bs.carousel', (event) => {
+            this.props.categorySelected(event.to)
+        })
+    };
+
+    componentDidMount() {
+        if (this.props.carouselData) {
+            this.registerCarouselSlideCallback();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.carouselData && !prevProps.carouselData) {
+            this.registerCarouselSlideCallback();
+        }
+    }
+
     componentWillReceiveProps(newProps) {
 
         let carouselContent;
 
-        if (newProps.carouselData) {
+        if (newProps.carouselData && !this.props.carouselData) {
 
             carouselContent = newProps.carouselData.map((el, index) => {
                 let activeClass = "";

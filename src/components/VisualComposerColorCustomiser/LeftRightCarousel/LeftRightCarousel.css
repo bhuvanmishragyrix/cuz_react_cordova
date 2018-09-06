@@ -1,0 +1,20 @@
+.root {
+    height: 100%;
+    background-color: white;
+}
+
+#leftRightCarousel {}
+
+.setCarouselIndicatorColor {
+    background-color: gray;
+}
+
+.carouselText {
+    font-family: 'Anton';
+    font-size: 4vw;
+    color: gray;
+}
+
+.height100Percent{
+    height: 100%;
+}

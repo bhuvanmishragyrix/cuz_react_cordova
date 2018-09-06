@@ -9,6 +9,7 @@ import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarou
 import styles from './VisualComposerColorCustomiser.css';
 import * as util from '../../util/Util';
 import BottomControls from './BottomControls/BottomControls';
+import LeftRightCarousel from './LeftRightCarousel/LeftRightCarousel';
 
 
 class VisualComposerColorCustomiser extends Component {
@@ -33,7 +34,8 @@ class VisualComposerColorCustomiser extends Component {
             imageAndCarouselDivStyle: {
                 height: `${(90 / 100) * (this.remainingHeight)}px`
             },
-            carouselData: null
+            partNameCarouselData: null,
+            leftRightCarouselData: null
         };
     }
 
@@ -148,7 +150,7 @@ class VisualComposerColorCustomiser extends Component {
                 })
 
                 this.convertAllPartsImagesToParsableObjectsAndStore();
-                this.populatePartNameCarouselData();
+                this.populatePartNameAndLeftRightCarouselData();
 
                 // document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[1].rightImageObject)
                 // document.getElementsByTagName("svg")[0].style.transform = "rotate(90deg)";
@@ -157,9 +159,10 @@ class VisualComposerColorCustomiser extends Component {
             })
     };
 
-    populatePartNameCarouselData = () => {
+    populatePartNameAndLeftRightCarouselData = () => {
         this.setState({
-            carouselData: this.partNamesArray
+            partNameCarouselData: this.partNamesArray, 
+            leftRightCarouselData: ["Left Side", "Right Side"]
         });
     }
 
@@ -185,10 +188,10 @@ class VisualComposerColorCustomiser extends Component {
             <div className={``} style={this.state.wrapperDivStyle}>
                 <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
                     <div className={`${styles.carouselParent}`}>
-                        <PartNameCarouselComponent carouselData={this.state.carouselData} />
+                        <PartNameCarouselComponent carouselData={this.state.partNameCarouselData} />
                     </div>
                     <div className={`${styles.leftRightSelectionParentDiv}`}>
-
+                        <LeftRightCarousel carouselData={this.state.leftRightCarouselData}/>
                     </div>
                     <div className={`${styles.heightOfImageParentDiv}`}>
 

@@ -1,4 +1,14 @@
-.heightOfImageParentDiv{
-    height: 85%;
+.heightOfImageParentDiv {
+    height: 80%;
     background-color: yellow;
+}
+
+.carouselParent {
+    height: 10%;
+    background-color: black;
+}
+
+.leftRightSelectionParentDiv {
+    background-color: gray;
+    height: 10%;
 }

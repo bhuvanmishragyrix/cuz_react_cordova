@@ -33,9 +33,6 @@ class VisualComposerColorCustomiser extends Component {
             imageAndCarouselDivStyle: {
                 height: `${(90 / 100) * (this.remainingHeight)}px`
             },
-            imageDivStyle: {
-                height: ``
-            },
             carouselData: null
         };
     }
@@ -155,7 +152,12 @@ class VisualComposerColorCustomiser extends Component {
         return (
             <div className={``} style={this.state.wrapperDivStyle}>
                 <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
-                    <PartNameCarouselComponent carouselData={this.state.carouselData} />
+                    <div className={`${styles.carouselParent}`}>
+                        <PartNameCarouselComponent carouselData={this.state.carouselData} />
+                    </div>
+                    <div className={`${styles.leftRightSelectionParentDiv}`}>
+
+                    </div>
                     <div className={`${styles.heightOfImageParentDiv}`}>
 
                     </div>

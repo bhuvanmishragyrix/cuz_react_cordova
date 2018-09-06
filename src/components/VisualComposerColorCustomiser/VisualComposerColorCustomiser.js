@@ -91,33 +91,60 @@ class VisualComposerColorCustomiser extends Component {
         let partFilenamesAndImagesArray;
 
         partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.map((el) => {
-            return {
-                ...el,
-                leftImageObject: parser.parseFromString(el.leftImage, "image/svg+xml").getElementsByTagName("svg")[0],
-                rightImageObject: parser.parseFromString(el.righImage, "image/svg+xml").getElementsByTagName("svg")[0]
+
+            let leftImageObject = null, rightImageObject = null, toreturn;
+
+            toreturn = { ...el };
+
+            if (el.leftImage) {
+                leftImageObject = parser.parseFromString(el.leftImage, "image/svg+xml").getElementsByTagName("svg")[0];
+                toreturn = {
+                    ...toreturn,
+                    leftImageObject: leftImageObject
+                }
             }
+
+            if (el.righImage) {
+                rightImageObject = parser.parseFromString(el.righImage, "image/svg+xml").getElementsByTagName("svg")[0];
+                toreturn = {
+                    ...toreturn,
+                    rightImageObject: rightImageObject
+                }
+            }
+
+            return toreturn;
         });
 
         this.partFilenamesAndImagesArray = partFilenamesAndImagesArray;
     }
 
     fetchAllPartSVGImages = () => {
-        let arrayOfPartImagePromises = [], j;
+        let arrayOfPartImagePromises = [], j, responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
-            arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.left}`))
-            arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.right}`))
+            if (el.left) {
+                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.left}`))
+            }
+            if (el.right) {
+                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.right}`))
+            }
         })
 
         Promise.all(arrayOfPartImagePromises)
             .then((response) => {
                 console.log(response)
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
-                    for (j = index; j < index + 1; j = j + 2) {
-                        let bytes = base64.decode(new Buffer(response[j].data, 'binary').toString('base64'));
-                        el.leftImage = utf8.decode(bytes);
-                        bytes = base64.decode(new Buffer(response[j + 1].data, 'binary').toString('base64'));
-                        el.rightImage = utf8.decode(bytes);
-                    }
+                        let bytes;
+                        if (el.left) {
+                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                            el.leftImage = utf8.decode(bytes);
+                            responseCounter++;
+                        }
+
+                        if (el.right) {
+                            bytes = base64.decode(new Buffer(response[responseCounter + 1].data, 'binary').toString('base64'));
+                            el.rightImage = utf8.decode(bytes);
+                            responseCounter++;
+                        }
                 })
 
                 this.convertAllPartsImagesToParsableObjectsAndStore();

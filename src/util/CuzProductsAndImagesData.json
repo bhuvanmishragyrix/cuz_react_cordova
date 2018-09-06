@@ -343,19 +343,6 @@
             "price": null,
             "filename": "part3.svg",
             "isNewProduct": false
-        },
-        {
-            "category": "Dirtbike",
-            "brand": "Honda",
-            "year": "2016",
-            "model": "DC 550",
-            "graphic": "Graphic 1",
-            "isBikeSVG": false,
-            "partname": "Tank",
-            "leftOrRight": "Right",
-            "price": null,
-            "filename": "part4.svg",
-            "isNewProduct": false
         }
     ]
 }

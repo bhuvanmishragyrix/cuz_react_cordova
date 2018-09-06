@@ -119,7 +119,7 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     fetchAllPartSVGImages = () => {
-        let arrayOfPartImagePromises = [], j, responseCounter = 0;
+        let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.left) {
                 arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.left}`))

@@ -14,7 +14,7 @@ const partNameCarouSelComponent = (props) => {
     if (props.carouselData) {
         content = (
             <div className={`${styles.root}`}>
-
+                Hello World
             </div>
         );
     }

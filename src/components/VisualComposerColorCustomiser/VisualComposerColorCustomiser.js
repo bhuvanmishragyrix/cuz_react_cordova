@@ -53,17 +53,17 @@ class VisualComposerColorCustomiser extends Component {
 
                     if (el.leftOrRight === "Left") {
                         this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
-                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("left")) {
+                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("leftImageName")) {
                                 console.log("Entered Left");
-                                fileNamesArrayElement.left = el.filename;
+                                fileNamesArrayElement.leftImageName = el.filename;
                             }
                         });
                     }
                     else if (el.leftOrRight === "Right") {
                         this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
-                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("right")) {
+                            if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("rightImageName")) {
                                 console.log("Entered Right");
-                                fileNamesArrayElement.right = el.filename;
+                                fileNamesArrayElement.rightImageName = el.filename;
                             }
                         });
                     }
@@ -96,16 +96,16 @@ class VisualComposerColorCustomiser extends Component {
 
             toreturn = { ...el };
 
-            if (el.leftImage) {
-                leftImageObject = parser.parseFromString(el.leftImage, "image/svg+xml").getElementsByTagName("svg")[0];
+            if (el.leftImageName) {
+                leftImageObject = parser.parseFromString(el.leftImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
                 toreturn = {
                     ...toreturn,
                     leftImageObject: leftImageObject
                 }
             }
 
-            if (el.righImage) {
-                rightImageObject = parser.parseFromString(el.righImage, "image/svg+xml").getElementsByTagName("svg")[0];
+            if (el.rightImageName) {
+                rightImageObject = parser.parseFromString(el.rightImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
                 toreturn = {
                     ...toreturn,
                     rightImageObject: rightImageObject
@@ -121,11 +121,11 @@ class VisualComposerColorCustomiser extends Component {
     fetchAllPartSVGImages = () => {
         let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
-            if (el.left) {
-                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.left}`))
+            if (el.leftImageName) {
+                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.leftImageName}`))
             }
-            if (el.right) {
-                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.right}`))
+            if (el.rightImageName) {
+                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.rightImageName}`))
             }
         })
 
@@ -133,32 +133,38 @@ class VisualComposerColorCustomiser extends Component {
             .then((response) => {
                 console.log(response)
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
-                        let bytes;
-                        if (el.left) {
-                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
-                            el.leftImage = utf8.decode(bytes);
-                            responseCounter++;
-                        }
+                    let bytes;
+                    if (el.leftImageName) {
+                        bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                        el.leftImageAsString = utf8.decode(bytes);
+                        responseCounter++;
+                    }
 
-                        if (el.right) {
-                            bytes = base64.decode(new Buffer(response[responseCounter + 1].data, 'binary').toString('base64'));
-                            el.rightImage = utf8.decode(bytes);
-                            responseCounter++;
-                        }
+                    if (el.rightImageName) {
+                        bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                        el.rightImageAsString = utf8.decode(bytes);
+                        responseCounter++;
+                    }
                 })
 
                 this.convertAllPartsImagesToParsableObjectsAndStore();
+                this.populatePartNameCarouselData();
 
-                console.log(this.partFilenamesAndImagesArray)
 
-                document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[0].leftImageObject)
+                console.log("IMage object", this.partFilenamesAndImagesArray);
+
+                document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[1].leftImageObject)
                 // document.getElementsByTagName("svg")[0].style.transform = "rotate(90deg)";
                 // document.getElementsByTagName("svg")[0].style.height = `${$(`.${styles.heightOfImageParentDiv}`).width()}px`;
 
-                console.log("SVG Height", $('svg').height());
-                console.log("SVG Width", $('svg').width());
             })
     };
+
+    populatePartNameCarouselData = () => {
+        this.setState({
+            carouselData: this.partNamesArray
+        });
+    }
 
     // componentDidMount() {
     //     setTimeout(() => {
@@ -171,10 +177,12 @@ class VisualComposerColorCustomiser extends Component {
     //     }, 3000);
     // }
 
-    render() {
-
+    componentDidMount() {
         this.fetchAllPartAndWholeBikeSVGImageNames();
         this.fetchAllPartSVGImages();
+    }
+
+    render() {
 
         return (
             <div className={``} style={this.state.wrapperDivStyle}>

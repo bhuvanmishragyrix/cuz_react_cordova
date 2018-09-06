@@ -23,6 +23,8 @@ class VisualComposerColorCustomiser extends Component {
     bikeSVGFilenamesAndImagesArray = [];
     remainingHeight;
 
+    imageNotPresentDiv;
+
     constructor(props) {
         super(props);
 
@@ -41,6 +43,11 @@ class VisualComposerColorCustomiser extends Component {
             partNameCarouselData: null,
             leftRightCarouselData: null
         };
+
+        let parser = new DOMParser();
+        this.imageNotPresentDiv = parser.parseFromString(`<div id="${styles.imageNotPresentDiv}" class="px-3 d-flex align-items-center justify-content-center">
+        <p class="text-center">The selected side of the image is not available.</p>
+        </div>`, "text/html").getElementsByTagName('div')[0];
     }
 
 
@@ -202,10 +209,35 @@ class VisualComposerColorCustomiser extends Component {
 
     checkIfSelectedImageIsPresentAndRender = () => {
         let currentlySelectedPart = this.partNamesArray[this.partNameCarouselCurrentSelectedIndex];
-        let currentlyPartSide = this.leftRightCarouselData[this.leftRightCarouselCurrentSelectedIndex];
 
+        this.partFilenamesAndImagesArray.forEach((el) => {
 
+            if (el.partname === currentlySelectedPart) {
+
+                console.log("el", el);
+
+                if (this.leftRightCarouselCurrentSelectedIndex === 0 && el.hasOwnProperty("leftImageObject")) {
+                    console.log("Entered Here!");
+                    this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
+                }
+                else if (this.leftRightCarouselCurrentSelectedIndex === 1 && el.hasOwnProperty("rightImageObject")) {
+                    this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
+                }
+                else {
+                    if ($('svg').length != 0) {
+                        $('svg')[0].remove();
+                    }
+                    document.getElementById(styles.parentOfImage).appendChild(this.imageNotPresentDiv);
+                }
+            }
+        });
     }
+
+    checkAndIfNeededRemoveImageNotPresentDivFromScreen = () => {
+        if ($(`#${styles.imageNotPresentDiv}`).length != 0) {
+            $(`#${styles.imageNotPresentDiv}`)[0].remove();
+        }
+    };
 
     renderFirstImageFound = () => {
         this.partFilenamesAndImagesArray.forEach((el) => {
@@ -223,10 +255,18 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     renderImageAccordingToPartNameIndexAndLeftRightIndex = () => {
+
+        if ($('svg').length != 0) {
+            $('svg')[0].remove();
+        }
+        this.checkAndIfNeededRemoveImageNotPresentDivFromScreen();
+
         if (this.leftRightCarouselCurrentSelectedIndex === 0) {
+            console.log("AppendChildLeft", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject)
         }
         else if (this.leftRightCarouselCurrentSelectedIndex === 1) {
+            console.log("AppendChildRight", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject)
         }
     }

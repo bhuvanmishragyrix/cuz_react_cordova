@@ -16,7 +16,7 @@ class VisualComposerColorCustomiser extends Component {
 
     leftRightCarouselData = ["Left Side", "Right Side"];
     partNameCarouselCurrentSelectedIndex = 0;
-    leftRightCarouselCurrentSelectedIndex = 0;
+    leftRightCarouselCurrentSelectedIndex;
 
     partFilenamesAndImagesArray = [];
     partNamesArray = [];
@@ -168,6 +168,8 @@ class VisualComposerColorCustomiser extends Component {
             partNameCarouselData: this.partNamesArray,
             leftRightCarouselData: this.leftRightCarouselData
         });
+
+        this.renderFirstImageFound();
     }
 
     // componentDidMount() {
@@ -189,15 +191,44 @@ class VisualComposerColorCustomiser extends Component {
     partNameCarouselSlid = (slidTo) => {
         this.partNameCarouselCurrentSelectedIndex = slidTo;
         console.log("partNameSlid", this.partNameCarouselCurrentSelectedIndex);
+        this.checkIfSelectedImageIsPresentAndRender();
     }
 
     leftRightCarouselSlid = (slidTo) => {
         this.leftRightCarouselCurrentSelectedIndex = slidTo;
         console.log("leftRightSlid", this.leftRightCarouselCurrentSelectedIndex);
+        this.checkIfSelectedImageIsPresentAndRender();
     }
 
-    checkIfSelectedImageIsPresentAndRender = () => { 
+    checkIfSelectedImageIsPresentAndRender = () => {
+        let currentlySelectedPart = this.partNamesArray[this.partNameCarouselCurrentSelectedIndex];
+        let currentlyPartSide = this.leftRightCarouselData[this.leftRightCarouselCurrentSelectedIndex];
 
+
+    }
+
+    renderFirstImageFound = () => {
+        this.partFilenamesAndImagesArray.forEach((el) => {
+            if (el.partname === this.partNamesArray[this.partNameCarouselCurrentSelectedIndex]) {
+                if (el.hasOwnProperty("leftImageObject")) {
+                    this.leftRightCarouselCurrentSelectedIndex = 0;
+                }
+                else if (el.hasOwnProperty("rightImageObject")) {
+                    this.leftRightCarouselCurrentSelectedIndex = 1;
+                }
+            }
+        });
+
+        this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
+    }
+
+    renderImageAccordingToPartNameIndexAndLeftRightIndex = () => {
+        if (this.leftRightCarouselCurrentSelectedIndex === 0) {
+            document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject)
+        }
+        else if (this.leftRightCarouselCurrentSelectedIndex === 1) {
+            document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject)
+        }
     }
 
 
@@ -212,7 +243,7 @@ class VisualComposerColorCustomiser extends Component {
                     <div className={`${styles.leftRightSelectionParentDiv}`}>
                         <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
                     </div>
-                    <div className={`${styles.heightOfImageParentDiv}`}>
+                    <div className={`${styles.heightOfImageParentDiv}`} id={`${styles.parentOfImage}`}>
 
                     </div>
                 </div>

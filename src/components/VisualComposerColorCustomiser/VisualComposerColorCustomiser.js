@@ -15,6 +15,8 @@ import LeftRightCarousel from './LeftRightCarousel/LeftRightCarousel';
 class VisualComposerColorCustomiser extends Component {
 
     leftRightCarouselData = ["Left Side", "Right Side"];
+    partNameCarouselCurrentSelectedIndex = 0;
+    leftRightCarouselCurrentSelectedIndex = 0;
 
     partFilenamesAndImagesArray = [];
     partNamesArray = [];
@@ -185,11 +187,17 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     partNameCarouselSlid = (slidTo) => {
-        console.log("partNameSlid", slidTo)
+        this.partNameCarouselCurrentSelectedIndex = slidTo;
+        console.log("partNameSlid", this.partNameCarouselCurrentSelectedIndex);
     }
 
     leftRightCarouselSlid = (slidTo) => {
-        console.log("leftRightSlid", slidTo);
+        this.leftRightCarouselCurrentSelectedIndex = slidTo;
+        console.log("leftRightSlid", this.leftRightCarouselCurrentSelectedIndex);
+    }
+
+    checkIfSelectedImageIsPresentAndRender = () => { 
+
     }
 
 

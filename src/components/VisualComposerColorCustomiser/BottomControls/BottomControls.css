@@ -1,10 +1,11 @@
 .individualControlElementsStyle {
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid gray;
     font-family: 'Anton';
+    color: gray;
 }
 
 .rootElement {
     position: fixed;
-    bottom: 5px;
+    bottom: 3px;
 }

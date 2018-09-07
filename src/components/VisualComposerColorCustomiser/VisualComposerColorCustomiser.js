@@ -264,10 +264,12 @@ class VisualComposerColorCustomiser extends Component {
         if (this.leftRightCarouselCurrentSelectedIndex === 0) {
             console.log("AppendChildLeft", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject)
+            $('svg')[0].setAttribute("height", "100%");
         }
         else if (this.leftRightCarouselCurrentSelectedIndex === 1) {
             console.log("AppendChildRight", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject)
+            $('svg')[0].setAttribute("height", "100%");
         }
     }
 
@@ -283,7 +285,7 @@ class VisualComposerColorCustomiser extends Component {
                     <div className={`${styles.leftRightSelectionParentDiv}`}>
                         <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
                     </div>
-                    <div className={`${styles.heightOfImageParentDiv}`} id={`${styles.parentOfImage}`}>
+                    <div className={`${styles.heightOfImageParentDiv} d-flex align-items-center`} id={`${styles.parentOfImage}`}>
 
                     </div>
                 </div>

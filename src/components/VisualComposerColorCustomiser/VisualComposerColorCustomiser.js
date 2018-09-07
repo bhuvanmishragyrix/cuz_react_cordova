@@ -285,7 +285,7 @@ class VisualComposerColorCustomiser extends Component {
                     <div className={`${styles.leftRightSelectionParentDiv}`}>
                         <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
                     </div>
-                    <div className={`${styles.heightOfImageParentDiv} d-flex align-items-center`} id={`${styles.parentOfImage}`}>
+                    <div className={`${styles.heightOfImageParentDiv} d-flex align-items-center justify-content-center`} id={`${styles.parentOfImage}`}>
 
                     </div>
                 </div>

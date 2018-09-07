@@ -278,7 +278,7 @@ class VisualComposerColorCustomiser extends Component {
 
         return (
             <div className={``} style={this.state.wrapperDivStyle}>
-                <div className={`bg-success p-3`} style={this.state.imageAndCarouselDivStyle}>
+                <div className={`p-3`} style={this.state.imageAndCarouselDivStyle}>
                     <div className={`${styles.carouselParent}`}>
                         <PartNameCarouselComponent carouselSlid={this.partNameCarouselSlid} carouselData={this.state.partNameCarouselData} />
                     </div>

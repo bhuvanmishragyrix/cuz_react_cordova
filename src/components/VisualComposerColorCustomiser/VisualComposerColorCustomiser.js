@@ -25,6 +25,11 @@ class VisualComposerColorCustomiser extends Component {
 
     imageNotPresentDiv;
 
+    leftImagesElements;
+    rightImagesElements;
+
+    selectedElement;
+
     constructor(props) {
         super(props);
 
@@ -127,16 +132,101 @@ class VisualComposerColorCustomiser extends Component {
         });
 
         this.partFilenamesAndImagesArray = partFilenamesAndImagesArray;
+        this.addCustomisationLogicToAllImages();
+    }
+
+    addClickEventListenerOnLeftElements = (element) => {
+
+        let pathStyles;
+        if (element.nodeName === "path" || element.nodeName === "rect") {
+            pathStyles = this.parseCss(element);
+            if (pathStyles.fill) {
+                element.addEventListener("click", () => {
+                    this.removeBorderAroundCurrentlySelectedElement(element);
+                    this.selectedElement = element;
+                    this.setBorderAroundCurrentlySelectedElement(element);
+                });
+            }
+        }
+
+    }
+
+    addClickEventListenerOnRightElements = (element) => {
+        let pathStyles;
+        if (element.nodeName === "path" || element.nodeName === "rect") {
+            pathStyles = this.parseCss(element);
+            if (pathStyles.fill) {
+                element.addEventListener("click", () => {
+                    this.removeBorderAroundCurrentlySelectedElement();
+                    this.selectedElement = element;
+                    this.setBorderAroundCurrentlySelectedElement();
+                });
+            }
+
+        }
+    };
+
+    parseCss = (el) => {
+        let output = {};
+
+        if (!el || !el.getAttribute('style')) {
+            return output;
+        }
+
+        let camelize = function camelize(str) {
+            return str.replace(/(?:^|[-])(\w)/g, function (a, c) {
+                c = a.substr(0, 1) === '-' ? c.toUpperCase() : c;
+                return c ? c : '';
+            });
+        }
+
+        let style = el.getAttribute('style').split(';');
+        for (let i = 0; i < style.length; ++i) {
+            let rule = style[i].trim();
+            if (rule) {
+                let ruleParts = rule.split(':');
+                let key = camelize(ruleParts[0].trim());
+                output[key] = ruleParts[1].trim();
+            }
+        }
+
+        return output;
+    }
+
+    removeBorderAroundCurrentlySelectedElement = () => {
+        if (this.selectedElement) {
+            this.selectedElement.removeAttribute('stroke');
+            this.selectedElement.removeAttribute('stroke-width');
+        }
+    }
+
+    setBorderAroundCurrentlySelectedElement = () => {
+        this.selectedElement.setAttribute("stroke", "black");
+        this.selectedElement.setAttribute("stroke-width", "50");
     }
 
     addCustomisationLogicToAllImages = () => {
+        let i, pathStyles;
+
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.leftImageName) {
-            }
+
+                this.leftImagesElements = el.leftImageObject.querySelectorAll('[id]');
+                for (i = 0; i < this.leftImagesElements.length; i++) {
+                    this.addClickEventListenerOnLeftElements(this.leftImagesElements[i]);
+                }
+            };
+
             if (el.rightImageName) {
 
+                this.rightImagesElements = el.rightImageObject.querySelectorAll('[id]');
+                for (i = 0; i < this.rightImagesElements.length; i++) {
+                    this.addClickEventListenerOnRightElements(this.rightImagesElements[i]);
+                }
             }
-        });
+        })
+
+
     }
 
     fetchAllPartSVGImages = () => {
@@ -219,9 +309,9 @@ class VisualComposerColorCustomiser extends Component {
         this.partFilenamesAndImagesArray.forEach((el) => {
 
             if (el.partname === currentlySelectedPart) {
-    
 
-                if (this.leftRightCarouselCurrentSelectedIndex === 0 && el.hasOwnProperty("leftImageObject")) {        
+
+                if (this.leftRightCarouselCurrentSelectedIndex === 0 && el.hasOwnProperty("leftImageObject")) {
                     this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
                 }
                 else if (this.leftRightCarouselCurrentSelectedIndex === 1 && el.hasOwnProperty("rightImageObject")) {

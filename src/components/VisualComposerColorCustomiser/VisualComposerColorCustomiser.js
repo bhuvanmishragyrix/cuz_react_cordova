@@ -67,7 +67,6 @@ class VisualComposerColorCustomiser extends Component {
                     if (el.leftOrRight === "Left") {
                         this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
                             if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("leftImageName")) {
-                                console.log("Entered Left");
                                 fileNamesArrayElement.leftImageName = el.filename;
                             }
                         });
@@ -75,7 +74,6 @@ class VisualComposerColorCustomiser extends Component {
                     else if (el.leftOrRight === "Right") {
                         this.partFilenamesAndImagesArray.forEach((fileNamesArrayElement) => {
                             if (fileNamesArrayElement.partname === el.partname && !fileNamesArrayElement.hasOwnProperty("rightImageName")) {
-                                console.log("Entered Right");
                                 fileNamesArrayElement.rightImageName = el.filename;
                             }
                         });
@@ -131,6 +129,16 @@ class VisualComposerColorCustomiser extends Component {
         this.partFilenamesAndImagesArray = partFilenamesAndImagesArray;
     }
 
+    addCustomisationLogicToAllImages = () => {
+        this.partFilenamesAndImagesArray.forEach((el) => {
+            if (el.leftImageName) {
+            }
+            if (el.rightImageName) {
+
+            }
+        });
+    }
+
     fetchAllPartSVGImages = () => {
         let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
@@ -144,7 +152,6 @@ class VisualComposerColorCustomiser extends Component {
 
         Promise.all(arrayOfPartImagePromises)
             .then((response) => {
-                console.log(response)
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
                     let bytes;
                     if (el.leftImageName) {
@@ -203,7 +210,6 @@ class VisualComposerColorCustomiser extends Component {
 
     leftRightCarouselSlid = (slidTo) => {
         this.leftRightCarouselCurrentSelectedIndex = slidTo;
-        console.log("leftRightSlid", this.leftRightCarouselCurrentSelectedIndex);
         this.checkIfSelectedImageIsPresentAndRender();
     }
 
@@ -213,11 +219,9 @@ class VisualComposerColorCustomiser extends Component {
         this.partFilenamesAndImagesArray.forEach((el) => {
 
             if (el.partname === currentlySelectedPart) {
+    
 
-                console.log("el", el);
-
-                if (this.leftRightCarouselCurrentSelectedIndex === 0 && el.hasOwnProperty("leftImageObject")) {
-                    console.log("Entered Here!");
+                if (this.leftRightCarouselCurrentSelectedIndex === 0 && el.hasOwnProperty("leftImageObject")) {        
                     this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
                 }
                 else if (this.leftRightCarouselCurrentSelectedIndex === 1 && el.hasOwnProperty("rightImageObject")) {
@@ -262,12 +266,10 @@ class VisualComposerColorCustomiser extends Component {
         this.checkAndIfNeededRemoveImageNotPresentDivFromScreen();
 
         if (this.leftRightCarouselCurrentSelectedIndex === 0) {
-            console.log("AppendChildLeft", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject)
             $('svg')[0].setAttribute("height", "100%");
         }
         else if (this.leftRightCarouselCurrentSelectedIndex === 1) {
-            console.log("AppendChildRight", this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject);
             document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject)
             $('svg')[0].setAttribute("height", "100%");
         }

@@ -136,62 +136,28 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     addClickEventListenerOnLeftElements = (element) => {
-
-        let pathStyles;
         if (element.nodeName === "path" || element.nodeName === "rect") {
             pathStyles = this.parseCss(element);
-            if (pathStyles.fill) {
                 element.addEventListener("click", () => {
                     this.removeBorderAroundCurrentlySelectedElement(element);
                     this.selectedElement = element;
                     this.setBorderAroundCurrentlySelectedElement(element);
                 });
-            }
         }
 
     }
 
     addClickEventListenerOnRightElements = (element) => {
-        let pathStyles;
         if (element.nodeName === "path" || element.nodeName === "rect") {
             pathStyles = this.parseCss(element);
-            if (pathStyles.fill) {
                 element.addEventListener("click", () => {
                     this.removeBorderAroundCurrentlySelectedElement();
                     this.selectedElement = element;
                     this.setBorderAroundCurrentlySelectedElement();
                 });
-            }
 
         }
     };
-
-    parseCss = (el) => {
-        let output = {};
-
-        if (!el || !el.getAttribute('style')) {
-            return output;
-        }
-
-        let camelize = function camelize(str) {
-            return str.replace(/(?:^|[-])(\w)/g, function (a, c) {
-                c = a.substr(0, 1) === '-' ? c.toUpperCase() : c;
-                return c ? c : '';
-            });
-        }
-
-        let style = el.getAttribute('style').split(';');
-        for (let i = 0; i < style.length; ++i) {
-            let rule = style[i].trim();
-            if (rule) {
-                let ruleParts = rule.split(':');
-                let key = camelize(ruleParts[0].trim());
-                output[key] = ruleParts[1].trim();
-            }
-        }
-
-        return output;
-    }
 
     removeBorderAroundCurrentlySelectedElement = () => {
         if (this.selectedElement) {
@@ -201,6 +167,7 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     setBorderAroundCurrentlySelectedElement = () => {
+        console.log("Hello World!");
         this.selectedElement.setAttribute("stroke", "black");
         this.selectedElement.setAttribute("stroke-width", "50");
     }

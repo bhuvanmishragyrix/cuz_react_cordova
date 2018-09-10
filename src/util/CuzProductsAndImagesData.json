@@ -343,6 +343,97 @@
             "price": null,
             "filename": "part3.svg",
             "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "Tank",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part4.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "ABC",
+            "leftOrRight": "Left",
+            "price": null,
+            "filename": "part5.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "ABC",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part6.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "XYZ",
+            "leftOrRight": "Left",
+            "price": null,
+            "filename": "part7.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "XYZ",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part9.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "PQR",
+            "leftOrRight": "Left",
+            "price": null,
+            "filename": "part11.svg",
+            "isNewProduct": false
+        },
+        {
+            "category": "Dirtbike",
+            "brand": "Honda",
+            "year": "2016",
+            "model": "DC 550",
+            "graphic": "Graphic 1",
+            "isBikeSVG": false,
+            "partname": "PQR",
+            "leftOrRight": "Right",
+            "price": null,
+            "filename": "part12.svg",
+            "isNewProduct": false
         }
     ]
 }

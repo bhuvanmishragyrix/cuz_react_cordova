@@ -47,7 +47,8 @@ class VisualComposerColorCustomiser extends Component {
             },
             partNameCarouselData: null,
             leftRightCarouselData: null,
-            isNextEnable: false
+            isNextEnable: false,
+            fetchAllImages: false
         };
 
         let parser = new DOMParser();
@@ -220,6 +221,9 @@ class VisualComposerColorCustomiser extends Component {
 
         Promise.all(arrayOfPartImagePromises)
             .then((response) => {
+                this.setState({
+                    fetchAllImages: true
+                });
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
                     let bytes;
                     if (el.leftImageName) {
@@ -349,7 +353,7 @@ class VisualComposerColorCustomiser extends Component {
 
     onDoneClick = () => {
         this.removeBorderAroundCurrentlySelectedElement();
-        this.selectedElement=null;
+        this.selectedElement = null;
     }
 
     changeIsNextEnable = () => {
@@ -413,20 +417,32 @@ class VisualComposerColorCustomiser extends Component {
 
         return (
             <div className={``} style={this.state.wrapperDivStyle} >
-                <div className={`p-3`} style={this.state.imageAndCarouselDivStyle}>
-                    <div className={`${styles.carouselParent}`}>
-                        <PartNameCarouselComponent carouselSlid={this.partNameCarouselSlid} carouselData={this.state.partNameCarouselData} />
-                    </div>
-                    <div className={`${styles.leftRightSelectionParentDiv}`}>
-                        <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
-                    </div>
-                    <div className={`${styles.heightOfImageParentDiv} d-flex align-items-center justify-content-center`} id={`${styles.parentOfImage}`}>
 
+
+                {this.state.fetchAllImages ? (
+                    <div className={`p-3`} style={this.state.imageAndCarouselDivStyle}>
+                        <div className={`${styles.carouselParent}`}>
+                            <PartNameCarouselComponent carouselSlid={this.partNameCarouselSlid} carouselData={this.state.partNameCarouselData} />
+                        </div>
+                        <div className={`${styles.leftRightSelectionParentDiv}`}>
+                            <LeftRightCarousel carouselSlid={this.leftRightCarouselSlid} carouselData={this.state.leftRightCarouselData} />
+                        </div>
+                        <div className={`${styles.heightOfImageParentDiv} d-flex align-items-center justify-content-center`} id={`${styles.parentOfImage}`}>
+
+                        </div>
                     </div>
-                </div>
-                <div className={``} style={this.state.controlsDivStyle}>
-                    <BottomControls resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
-                </div>
+                ) : (
+                        <div className={`h-100 d-flex align-items-center justify-content-center`}>
+                            {util.circularProgress()}
+                        </div>
+                    )}
+
+
+                {this.state.fetchAllImages ? (
+                    <div className={``} style={this.state.controlsDivStyle}>
+                        <BottomControls resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
+                    </div>
+                ) : ""}
             </div >
         );
     }

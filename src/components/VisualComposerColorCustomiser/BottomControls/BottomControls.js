@@ -37,10 +37,10 @@ class BottomControls extends Component {
                     Reset
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Done
+                    Preview
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Preview
+                    Done
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Next

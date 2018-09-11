@@ -31,7 +31,7 @@ class BottomControls extends Component {
         return (
             <div style={this.state.controlDivStyle} className={`${styles.rootElement}`}>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    <input id="color-select" type="color" className={`p-0 m-0`} />
+                    <input id="color-select" onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Reset

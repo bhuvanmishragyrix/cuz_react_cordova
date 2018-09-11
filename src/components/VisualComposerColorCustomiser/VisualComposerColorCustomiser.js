@@ -137,22 +137,22 @@ class VisualComposerColorCustomiser extends Component {
 
     addClickEventListenerOnLeftElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
-                element.addEventListener("click", () => {
-                    this.removeBorderAroundCurrentlySelectedElement(element);
-                    this.selectedElement = element;
-                    this.setBorderAroundCurrentlySelectedElement(element);
-                });
+            element.addEventListener("click", () => {
+                this.removeBorderAroundCurrentlySelectedElement(element);
+                this.selectedElement = element;
+                this.setBorderAroundCurrentlySelectedElement(element);
+            });
         }
 
     }
 
     addClickEventListenerOnRightElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
-                element.addEventListener("click", () => {
-                    this.removeBorderAroundCurrentlySelectedElement();
-                    this.selectedElement = element;
-                    this.setBorderAroundCurrentlySelectedElement();
-                });
+            element.addEventListener("click", () => {
+                this.removeBorderAroundCurrentlySelectedElement();
+                this.selectedElement = element;
+                this.setBorderAroundCurrentlySelectedElement();
+            });
 
         }
     };
@@ -330,6 +330,10 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    onColorChanged = (event) => {
+        this.selectedElement.style.fill = event.target.value;
+    };
+
 
     render() {
 
@@ -347,7 +351,7 @@ class VisualComposerColorCustomiser extends Component {
                     </div>
                 </div>
                 <div className={``} style={this.state.controlsDivStyle}>
-                    <BottomControls controlDivStyle={this.state.controlsDivStyle} />
+                    <BottomControls colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
                 </div>
             </div>
         );

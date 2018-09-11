@@ -349,6 +349,7 @@ class VisualComposerColorCustomiser extends Component {
 
     onDoneClick = () => {
         this.removeBorderAroundCurrentlySelectedElement();
+        this.selectedElement=null;
     }
 
     changeIsNextEnable = () => {

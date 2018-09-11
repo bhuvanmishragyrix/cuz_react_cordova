@@ -43,10 +43,12 @@ class BottomControls extends Component {
         this.props.changeIsNextEnable();
     }
 
-    setColorOrInput = (newProps) => {
-        let selectedElementColorArray = this.convertRGBColorToHex(newProps.colorOfInput.toString().split("(")[1].split(")")[0].split(","))
-        selectedElementColorArray = "#" + selectedElementColorArray.join("");
-        $(`#${styles.colorInput}`)[0].value = selectedElementColorArray;
+    setColorOfInput = (newProps) => {
+        if(newProps.colorOfInput) {
+            let selectedElementColorArray = this.convertRGBColorToHex(newProps.colorOfInput.toString().split("(")[1].split(")")[0].split(","))
+            selectedElementColorArray = "#" + selectedElementColorArray.join("");
+            $(`#${styles.colorInput}`)[0].value = selectedElementColorArray;
+        }
     }
 
     convertRGBColorToHex = (rGB) => {
@@ -98,9 +100,9 @@ class BottomControls extends Component {
             }
         }
 
-        if (newProps.colorOfInput !== this.props.colorOfInput) {
-            this.setColorOrInput(newProps);
-        }
+
+        this.setColorOfInput(newProps);
+
     }
 
     render() {

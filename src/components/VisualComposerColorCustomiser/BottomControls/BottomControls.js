@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import styles from './BottomControls.css';
 
@@ -18,7 +19,7 @@ class BottomControls extends Component {
         this.state = {
             controlDivStyle: this.props.controlDivStyle,
             doneClick: this.doneClick,
-            nextClick: () => {},
+            nextClick: () => { },
             nextControlElementStyle: {
                 ...this.controlElementStyle,
                 color: "gray"
@@ -42,6 +43,19 @@ class BottomControls extends Component {
         this.props.changeIsNextEnable();
     }
 
+    setColorOrInput = (newProps) => {
+        let selectedElementColorArray = this.convertRGBColorToHex(newProps.colorOfInput.toString().split("(")[1].split(")")[0].split(","))
+        selectedElementColorArray = "#" + selectedElementColorArray.join("");
+        $(`#${styles.colorInput}`)[0].value = selectedElementColorArray;
+    }
+
+    convertRGBColorToHex = (rGB) => {
+        return rGB.map(function (x) {             //For each array element
+            x = parseInt(x).toString(16);      //Convert to a base16 string
+            return (x.length == 1) ? "0" + x : x;  //Add zero if we get only one character
+        });
+    }
+
     componentWillReceiveProps(newProps) {
 
         console.log("NewProps", newProps);
@@ -59,7 +73,7 @@ class BottomControls extends Component {
                     nextControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "gray",
-                        nextClick: () => {}
+                        nextClick: () => { }
                     },
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
@@ -73,7 +87,7 @@ class BottomControls extends Component {
                     nextControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "black",
-                        nextClick: this.redirectToPreviewPage 
+                        nextClick: this.redirectToPreviewPage
                     },
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
@@ -83,6 +97,10 @@ class BottomControls extends Component {
                 });
             }
         }
+
+        if (newProps.colorOfInput !== this.props.colorOfInput) {
+            this.setColorOrInput(newProps);
+        }
     }
 
     render() {
@@ -90,7 +108,7 @@ class BottomControls extends Component {
         return (
             <div style={this.state.controlDivStyle} className={`${styles.rootElement}`}>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    <input id="color-select" onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
+                    <input id={styles.colorInput} onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Reset

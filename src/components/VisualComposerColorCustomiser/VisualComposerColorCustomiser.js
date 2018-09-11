@@ -136,7 +136,7 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     addClickEventListenerOnLeftElements = (element) => {
-        if (element.nodeName === "path" || element.nodeName === "rect") {
+        if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
             pathStyles = this.parseCss(element);
                 element.addEventListener("click", () => {
                     this.removeBorderAroundCurrentlySelectedElement(element);
@@ -148,7 +148,7 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     addClickEventListenerOnRightElements = (element) => {
-        if (element.nodeName === "path" || element.nodeName === "rect") {
+        if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
             pathStyles = this.parseCss(element);
                 element.addEventListener("click", () => {
                     this.removeBorderAroundCurrentlySelectedElement();

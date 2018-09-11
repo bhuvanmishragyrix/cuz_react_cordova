@@ -75,13 +75,13 @@ class BottomControls extends Component {
                     nextControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "gray",
-                        nextClick: () => { }
                     },
+                    nextClick: () => { },
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "black",
-                        doneClick: this.doneClick
-                    }
+                    },
+                    doneClick: this.doneClick
                 });
             }
             else if (newProps.isNextEnable === true) {
@@ -89,13 +89,14 @@ class BottomControls extends Component {
                     nextControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "black",
-                        nextClick: this.redirectToPreviewPage
+                        
                     },
+                    nextClick: this.redirectToPreviewPage,
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "gray",
-                        doneClick: () => { }
-                    }
+                    },
+                    doneClick: () => { }
                 });
             }
         }

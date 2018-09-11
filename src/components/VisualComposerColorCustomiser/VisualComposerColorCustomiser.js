@@ -360,9 +360,16 @@ class VisualComposerColorCustomiser extends Component {
 
     changeColorOfColorPicker = () => {
 
-        this.setState({
-            colorOfInput: this.selectedElement.style.fill
-        });
+        if (this.selectedElement.style.fill) {
+            this.setState({
+                colorOfInput: this.selectedElement.style.fill
+            });
+        }
+        else {
+            this.setState({
+                colorOfInput: "rgb(0,0,0)"
+            });
+        }
     }
 
     render() {

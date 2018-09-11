@@ -1,38 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import styles from './BottomControls.css';
 
-const bottomControls = (props) => {
+class BottomControls extends Component {
 
-    let controlDivElementWidth = window.screen.width / 5;
-    let controlDivStyle = props.controlDivStyle;
+    controlDivElementWidth = window.screen.width / 5;
+    controlElementStyle = {
+        width: `${this.controlDivElementWidth}px`,
+        fontSize: 0.2 * this.controlDivElementWidth
+    }
 
-    const controlElementStyle = {
-        width: `${controlDivElementWidth}px`,
-        fontSize: 0.2 * controlDivElementWidth
-    };
+    constructor(props) {
+        super(props);
 
-    console.log("controlDivStyle", controlDivStyle);
+        this.state = {
+            controlDivStyle: this.props.controlDivStyle,
+        };
+    }
 
-    return (
-        <div style={controlDivStyle} className={`${styles.rootElement}`}>
-            <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                <input id="color-select" type="color" className={`p-0 m-0`}/>
+    componentWillReceiveProps(newProps) {
+        if (newProps.controlDivStyle !== this.props.controlDivStyle) {
+            this.setState({
+                controlDivStyle: this.props.controlDivStyle
+            });
+        }
+    }
+
+    render() {
+
+        return (
+            <div style={this.state.controlDivStyle} className={`${styles.rootElement}`}>
+                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                    <input id="color-select" type="color" className={`p-0 m-0`} />
+                </div>
+                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                    Reset
+                </div>
+                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                    Done
+                </div>
+                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                    Preview
+                </div>
+                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                    Next
+                </div>
             </div>
-            <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                Reset
-            </div>
-            <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                Done
-            </div>
-            <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                Preview
-            </div>
-            <div style={controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                Next
-            </div>
-        </div>
-    );
+        );
+    }
+
 };
 
-export default bottomControls;
+export default BottomControls;

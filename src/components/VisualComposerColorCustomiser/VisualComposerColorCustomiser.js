@@ -184,7 +184,7 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     addCustomisationLogicToAllImages = () => {
-        let i, pathStyles;
+        let i;
 
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.leftImageName) {
@@ -372,10 +372,46 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    onResetClick = () => {
+
+        let parser = new DOMParser();
+        let i;
+
+
+        if (this.leftRightCarouselCurrentSelectedIndex === 0) {
+            if ($('svg').length != 0) {
+                $('svg')[0].remove();
+                let resetImage = parser.parseFromString(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+
+                this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject = resetImage;
+                document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject);
+                $('svg')[0].setAttribute("height", "100%");
+                this.leftImagesElements = this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].leftImageObject.querySelectorAll('[id]');
+                for (i = 0; i < this.leftImagesElements.length; i++) {
+                    this.addClickEventListenerOnLeftElements(this.leftImagesElements[i]);
+                }
+            }
+        }
+        else if (this.leftRightCarouselCurrentSelectedIndex === 1) {
+            if ($('svg').length != 0) {
+                $('svg')[0].remove();
+                let resetImage = parser.parseFromString(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+
+                this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject = resetImage;
+                document.getElementById(styles.parentOfImage).appendChild(this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject)
+                $('svg')[0].setAttribute("height", "100%");
+                this.rightImagesElements = this.partFilenamesAndImagesArray[this.partNameCarouselCurrentSelectedIndex].rightImageObject.querySelectorAll('[id]');
+                for (i = 0; i < this.rightImagesElements.length; i++) {
+                    this.addClickEventListenerOnRightElements(this.rightImagesElements[i]);
+                }
+            }
+        }
+    }
+
     render() {
 
         return (
-            <div className={``} style={this.state.wrapperDivStyle}>
+            <div className={``} style={this.state.wrapperDivStyle} >
                 <div className={`p-3`} style={this.state.imageAndCarouselDivStyle}>
                     <div className={`${styles.carouselParent}`}>
                         <PartNameCarouselComponent carouselSlid={this.partNameCarouselSlid} carouselData={this.state.partNameCarouselData} />
@@ -388,9 +424,9 @@ class VisualComposerColorCustomiser extends Component {
                     </div>
                 </div>
                 <div className={``} style={this.state.controlsDivStyle}>
-                    <BottomControls colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
+                    <BottomControls resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
                 </div>
-            </div>
+            </div >
         );
     }
 };

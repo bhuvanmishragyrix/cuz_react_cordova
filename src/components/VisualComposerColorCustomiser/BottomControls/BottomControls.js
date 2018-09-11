@@ -113,7 +113,7 @@ class BottomControls extends Component {
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     <input id={styles.colorInput} onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
                 </div>
-                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                <div style={this.controlElementStyle} onClick={this.props.resetClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Reset
                 </div>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>

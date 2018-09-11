@@ -1,8 +1,8 @@
 .individualControlElementsStyle {
     height: 100%;
-    border: 1px solid gray;
+    border: 1px solid black;
     font-family: 'Anton';
-    color: gray;
+    color: black;
 }
 
 .rootElement {

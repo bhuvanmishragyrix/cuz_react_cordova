@@ -46,7 +46,8 @@ class VisualComposerColorCustomiser extends Component {
                 height: `${(90 / 100) * (this.remainingHeight)}px`
             },
             partNameCarouselData: null,
-            leftRightCarouselData: null
+            leftRightCarouselData: null,
+            isNextEnable: false
         };
 
         let parser = new DOMParser();
@@ -141,6 +142,11 @@ class VisualComposerColorCustomiser extends Component {
                 this.removeBorderAroundCurrentlySelectedElement(element);
                 this.selectedElement = element;
                 this.setBorderAroundCurrentlySelectedElement(element);
+                if(this.state.isNextEnable) {
+                    this.setState({
+                        isNextEnable: !this.state.isNextEnable
+                    });
+                }
             });
         }
 
@@ -152,6 +158,11 @@ class VisualComposerColorCustomiser extends Component {
                 this.removeBorderAroundCurrentlySelectedElement();
                 this.selectedElement = element;
                 this.setBorderAroundCurrentlySelectedElement();
+                if(this.state.isNextEnable) {
+                    this.setState({
+                        isNextEnable: !this.state.isNextEnable
+                    });
+                }
             });
 
         }
@@ -334,6 +345,16 @@ class VisualComposerColorCustomiser extends Component {
         this.selectedElement.style.fill = event.target.value;
     };
 
+    onDoneClick = () => {
+        this.removeBorderAroundCurrentlySelectedElement();
+    }
+
+    changeIsNextEnable = () => {
+console.log("ChangeIsNextEnable");
+        this.setState({
+            isNextEnable: !this.state.isNextEnable
+        });
+    }
 
     render() {
 
@@ -351,7 +372,7 @@ class VisualComposerColorCustomiser extends Component {
                     </div>
                 </div>
                 <div className={``} style={this.state.controlsDivStyle}>
-                    <BottomControls colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
+                    <BottomControls changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
                 </div>
             </div>
         );

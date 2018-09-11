@@ -10,19 +10,78 @@ class BottomControls extends Component {
         fontSize: 0.2 * this.controlDivElementWidth
     }
 
+
+
     constructor(props) {
         super(props);
 
         this.state = {
             controlDivStyle: this.props.controlDivStyle,
+            doneClick: this.doneClick,
+            nextClick: () => {},
+            nextControlElementStyle: {
+                ...this.controlElementStyle,
+                color: "gray"
+            },
+            doneControlElementStyle: {
+                ...this.controlElementStyle,
+                color: "black"
+            }
         };
+
+        console.log("This.props", this.props);
+    }
+
+    redirectToPreviewPage = () => {
+        this.props.changeIsNextEnable();
+        console.log("Redirect");
+    }
+
+    doneClick = () => {
+        this.props.doneClick();
+        this.props.changeIsNextEnable();
     }
 
     componentWillReceiveProps(newProps) {
+
+        console.log("NewProps", newProps);
+
         if (newProps.controlDivStyle !== this.props.controlDivStyle) {
             this.setState({
                 controlDivStyle: this.props.controlDivStyle
             });
+        }
+
+        if (newProps.isNextEnable !== this.props.isNextEnable) {
+
+            if (newProps.isNextEnable === false) {
+                this.setState({
+                    nextControlElementStyle: {
+                        ...this.controlElementStyle,
+                        color: "gray",
+                        nextClick: () => {}
+                    },
+                    doneControlElementStyle: {
+                        ...this.controlElementStyle,
+                        color: "black",
+                        doneClick: this.doneClick
+                    }
+                });
+            }
+            else if (newProps.isNextEnable === true) {
+                this.setState({
+                    nextControlElementStyle: {
+                        ...this.controlElementStyle,
+                        color: "black",
+                        nextClick: this.redirectToPreviewPage 
+                    },
+                    doneControlElementStyle: {
+                        ...this.controlElementStyle,
+                        color: "gray",
+                        doneClick: () => { }
+                    }
+                });
+            }
         }
     }
 
@@ -39,10 +98,10 @@ class BottomControls extends Component {
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Preview
                 </div>
-                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                <div style={this.state.doneControlElementStyle} onClick={this.state.doneClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Done
                 </div>
-                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                <div style={this.state.nextControlElementStyle} onClick={this.state.nextClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Next
                 </div>
             </div>

@@ -94,13 +94,6 @@ class VisualComposerColorCustomiser extends Component {
         }
         )
 
-        // let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-        // let image = utf8.decode(bytes);
-
-        console.log("PartFileNameArray", this.partFilenamesAndImagesArray);
-        console.log("BikeSVG FileNamesArray", this.bikeSVGFilenamesAndImagesArray);
-
-
     };
 
     convertAllPartsImagesToParsableObjectsAndStore = () => {
@@ -179,7 +172,6 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     setBorderAroundCurrentlySelectedElement = () => {
-        console.log("Hello World!");
         this.selectedElement.setAttribute("stroke", "black");
         this.selectedElement.setAttribute("stroke-width", "50");
     }
@@ -260,17 +252,6 @@ class VisualComposerColorCustomiser extends Component {
         this.renderFirstImageFound();
     }
 
-    // componentDidMount() {
-    //     setTimeout(() => {
-    //         screen.orientation.lock('landscape').then(() => {
-    //             console.log("Successfully locked the orientation");
-    //             this.checkDimentionsOfImageAndFlipOrientationIfNecessary();
-    //         }, (errMsg) => {
-    //             console.log("Error locking the orientation :: " + errMsg);
-    //         });
-    //     }, 3000);
-    // }
-
     componentDidMount() {
         this.fetchAllPartAndWholeBikeSVGImageNames();
         this.fetchAllPartSVGImages();
@@ -278,7 +259,6 @@ class VisualComposerColorCustomiser extends Component {
 
     partNameCarouselSlid = (slidTo) => {
         this.partNameCarouselCurrentSelectedIndex = slidTo;
-        console.log("partNameSlid", this.partNameCarouselCurrentSelectedIndex);
         this.checkIfSelectedImageIsPresentAndRender();
     }
 
@@ -361,7 +341,6 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     changeIsNextEnable = () => {
-        console.log("ChangeIsNextEnable");
         this.setState({
             isNextEnable: !this.state.isNextEnable
         });
@@ -418,8 +397,6 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     render() {
-
-        console.log("Fetch all images", this.state.fetchAllImages);
 
         return (
             <div className={``} style={this.state.wrapperDivStyle} >

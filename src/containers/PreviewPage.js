@@ -3,7 +3,7 @@ import Preview from '../components/Preview/Preview';
 
 const previewPage = () => {
     return (
-        <div>
+        <div className={`mx-3`}>
             <Preview />
         </div>
     );

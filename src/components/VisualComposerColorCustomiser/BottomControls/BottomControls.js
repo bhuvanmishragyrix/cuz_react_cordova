@@ -29,8 +29,6 @@ class BottomControls extends Component {
                 color: "black"
             }
         };
-
-        console.log("This.props", this.props);
     }
 
     redirectToPreviewPage = () => {
@@ -59,8 +57,6 @@ class BottomControls extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-
-        console.log("NewProps", newProps);
 
         if (newProps.controlDivStyle !== this.props.controlDivStyle) {
             this.setState({

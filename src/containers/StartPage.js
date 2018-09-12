@@ -9,6 +9,7 @@ import VisualComposerColorCustomiserPage from './VisualComposerColorCustomiserPa
 import { getFromAPI } from '../util/Util';
 import { LINK_TO_FETCH_JSON_DATA_FROM } from '../constants/AppConstants';
 import { STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA } from '../store/actionTypes';
+import PreviewPage from './PreviewPage'
 
 class StartPage extends Component {
 
@@ -30,6 +31,7 @@ class StartPage extends Component {
                 <Switch>
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage}/>
+                    <Route path="/preview" component={PreviewPage}/>
                     <Route render={LandingPage} />
                 </Switch>
             </div>

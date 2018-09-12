@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import base64 from 'base-64';
 import utf8 from 'utf8';
 import $ from 'jquery';
+import { withRouter } from 'react-router-dom';
 
 import * as appContants from '../../constants/AppConstants'
 import PartNameCarouselComponent from './PartNameCarouselComponent/PartNameCarouselComponent';
@@ -401,6 +402,8 @@ class VisualComposerColorCustomiser extends Component {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
 
+
+        this.props.history.push('/preview');
     };
 
     render() {
@@ -463,4 +466,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisualComposerColorCustomiser);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(VisualComposerColorCustomiser));

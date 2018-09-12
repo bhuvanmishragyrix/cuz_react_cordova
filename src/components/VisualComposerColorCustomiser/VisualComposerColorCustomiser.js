@@ -10,6 +10,7 @@ import styles from './VisualComposerColorCustomiser.css';
 import * as util from '../../util/Util';
 import BottomControls from './BottomControls/BottomControls';
 import LeftRightCarousel from './LeftRightCarousel/LeftRightCarousel';
+import * as actionTypes from '../../store/actionTypes';
 
 
 class VisualComposerColorCustomiser extends Component {
@@ -396,6 +397,12 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage = () => {
+        let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
+        this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
+
+    };
+
     render() {
 
         return (
@@ -423,7 +430,7 @@ class VisualComposerColorCustomiser extends Component {
 
                 {this.state.fetchAllImages ? (
                     <div className={``} style={this.state.controlsDivStyle}>
-                        <BottomControls resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
+                        <BottomControls previewClick={this.storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage} resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
                     </div>
                 ) : ""}
             </div >
@@ -442,5 +449,18 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeCustomisedPartImagesInStore: (payload) => {
+            dispatch({
+                type: actionTypes.STORE_CUSTOMISED_PARTS_IMAGES,
+                payload: {
+                    customisedPartsImages: payload
+                }
+            });
+        }
+    };
+}
 
-export default connect(mapStateToProps)(VisualComposerColorCustomiser);
+
+export default connect(mapStateToProps, mapDispatchToProps)(VisualComposerColorCustomiser);

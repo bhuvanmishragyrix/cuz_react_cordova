@@ -112,7 +112,7 @@ class BottomControls extends Component {
                 <div style={this.controlElementStyle} onClick={this.props.resetClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Reset
                 </div>
-                <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
+                <div style={this.controlElementStyle} onClick={this.props.previewClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     Preview
                 </div>
                 <div style={this.state.doneControlElementStyle} onClick={this.state.doneClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>

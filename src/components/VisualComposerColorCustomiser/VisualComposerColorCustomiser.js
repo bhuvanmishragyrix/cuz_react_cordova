@@ -221,9 +221,11 @@ class VisualComposerColorCustomiser extends Component {
 
         Promise.all(arrayOfPartImagePromises)
             .then((response) => {
-                this.setState({
-                    fetchAllImages: true
-                });
+                if (response.length > 0) {
+                    this.setState({
+                        fetchAllImages: true
+                    });
+                }
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
                     let bytes;
                     if (el.leftImageName) {
@@ -332,8 +334,10 @@ class VisualComposerColorCustomiser extends Component {
 
     renderImageAccordingToPartNameIndexAndLeftRightIndex = () => {
 
-        if ($('svg').length != 0) {
-            $('svg')[0].remove();
+        if (this.state.fetchAllImages) {
+            if ($('svg').length != 0) {
+                $('svg')[0].remove();
+            }
         }
         this.checkAndIfNeededRemoveImageNotPresentDivFromScreen();
 
@@ -414,6 +418,8 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     render() {
+
+        console.log("Fetch all images", this.state.fetchAllImages);
 
         return (
             <div className={``} style={this.state.wrapperDivStyle} >

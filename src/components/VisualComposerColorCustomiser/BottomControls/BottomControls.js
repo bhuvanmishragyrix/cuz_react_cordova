@@ -8,7 +8,8 @@ class BottomControls extends Component {
     controlDivElementWidth = window.screen.width / 5;
     controlElementStyle = {
         width: `${this.controlDivElementWidth}px`,
-        fontSize: 0.2 * this.controlDivElementWidth
+        fontSize: 0.13 * this.controlDivElementWidth,
+        fontWeight: "bold"
     }
 
 
@@ -42,7 +43,7 @@ class BottomControls extends Component {
     }
 
     setColorOfInput = (newProps) => {
-        if(newProps.colorOfInput) {
+        if (newProps.colorOfInput) {
             let selectedElementColorArray = this.convertRGBColorToHex(newProps.colorOfInput.toString().split("(")[1].split(")")[0].split(","))
             selectedElementColorArray = "#" + selectedElementColorArray.join("");
             $(`#${styles.colorInput}`)[0].value = selectedElementColorArray;
@@ -85,7 +86,7 @@ class BottomControls extends Component {
                     nextControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "black",
-                        
+
                     },
                     nextClick: this.redirectToPreviewPage,
                     doneControlElementStyle: {
@@ -109,17 +110,21 @@ class BottomControls extends Component {
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
                     <input id={styles.colorInput} onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
                 </div>
-                <div style={this.controlElementStyle} onClick={this.props.resetClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Reset
+                <div style={this.controlElementStyle} onClick={this.props.resetClick} className={`d-inline-flex justify-content-center align-items-center flex-column ${styles.individualControlElementsStyle}`}>
+                    <i className={`fa fa-undo ${styles.iconFontSize}`} aria-hidden="true"></i>
+                    <p className={`p-0 m-0`}>Reset</p>
                 </div>
-                <div style={this.controlElementStyle} onClick={this.props.previewClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Preview
+                <div style={this.controlElementStyle} onClick={this.props.previewClick} className={`d-inline-flex justify-content-center align-items-center flex-column ${styles.individualControlElementsStyle}`}>
+                    <i className={`fa fa-eye ${styles.iconFontSize}`} aria-hidden="true"></i>
+                    <p className={`p-0 m-0`}>Preview</p>
                 </div>
-                <div style={this.state.doneControlElementStyle} onClick={this.state.doneClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Done
+                <div style={this.state.doneControlElementStyle} onClick={this.state.doneClick} className={`d-inline-flex justify-content-center align-items-center flex-column ${styles.individualControlElementsStyle}`}>
+                    <i className={`fa fa-check ${styles.iconFontSize}`} aria-hidden="true"></i>
+                    <p className={`p-0 m-0`}>Done</p>
                 </div>
-                <div style={this.state.nextControlElementStyle} onClick={this.state.nextClick} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    Next
+                <div style={this.state.nextControlElementStyle} onClick={this.state.nextClick} className={`d-inline-flex justify-content-center align-items-center flex-column ${styles.individualControlElementsStyle}`}>
+                    <i className={`fa fa-arrow-right ${styles.iconFontSize}`} aria-hidden="true"></i>
+                    <p className={`p-0 m-0`}>Next</p>
                 </div>
             </div>
         );

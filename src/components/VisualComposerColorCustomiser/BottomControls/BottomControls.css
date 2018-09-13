@@ -1,7 +1,5 @@
 .individualControlElementsStyle {
     height: 100%;
-    border: 1px solid black;
-    font-family: 'Anton';
     color: black;
 }
 
@@ -11,3 +9,7 @@
 }
 
 #colorInput {}
+
+.iconFontSize {
+    font-size: 9vw;
+}

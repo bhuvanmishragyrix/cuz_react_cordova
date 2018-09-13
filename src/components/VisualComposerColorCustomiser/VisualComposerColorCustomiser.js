@@ -42,7 +42,7 @@ class VisualComposerColorCustomiser extends Component {
                 height: `${this.remainingHeight}px`
             },
             controlsDivStyle: {
-                height: `${(10 / 100) * (this.remainingHeight)}px`
+                height: `${(8 / 100) * (this.remainingHeight)}px`
             },
             imageAndCarouselDivStyle: {
                 height: `${(90 / 100) * (this.remainingHeight)}px`

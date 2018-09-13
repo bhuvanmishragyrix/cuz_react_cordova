@@ -32,9 +32,9 @@ class BottomControls extends Component {
         };
     }
 
-    redirectToPreviewPage = () => {
+    redirectToPaymentsPage = () => {
         this.props.changeIsNextEnable();
-        console.log("Redirect");
+        this.props.nextClick()
     }
 
     doneClick = () => {
@@ -88,7 +88,7 @@ class BottomControls extends Component {
                         color: "black",
 
                     },
-                    nextClick: this.redirectToPreviewPage,
+                    nextClick: this.redirectToPaymentsPage,
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "gray",

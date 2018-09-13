@@ -2,3 +2,8 @@
     font-family: 'Anton';
     font-size: 20px;
 }
+
+.bottomControls {
+    position: fixed;
+    bottom: 0;
+}

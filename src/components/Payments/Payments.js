@@ -2,6 +2,7 @@ import React from 'react';
 
 import styles from './Payments.css';
 import Item from './Item/Item';
+import BottomControls from './BottomControls/BottomControls';
 
 import * as appConstants from '../../constants/AppConstants';
 
@@ -17,6 +18,10 @@ const payments = () => {
                 <p className={`${styles.text}`}>YOUR SHOPPING</p>
             </div>
             <Item />
+
+            <div className={`${styles.bottomControls} w-100`}>
+                <BottomControls />
+            </div>
         </div>
     );
 };

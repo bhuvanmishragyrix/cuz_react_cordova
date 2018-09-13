@@ -6,7 +6,9 @@ const paymentsPage = () => {
     return (
         <div>
             <ThreeElementTabBar hideShareIcon={true} />
-            <Payments />
+            <div className={`mx-3`}>
+                <Payments />
+            </div>
         </div>
     );
 }

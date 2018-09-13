@@ -1,0 +1,7 @@
+.itemRoot{
+    height: 200px;
+}
+
+.borderedContainer {
+    border: 1px solid gray;
+}

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import styles from './Payments.css';
+import Item from './Item/Item';
+
 import * as appConstants from '../../constants/AppConstants';
 
 const payments = () => {
@@ -10,7 +13,10 @@ const payments = () => {
 
     return (
         <div style={topMarginPaymentsPage}>
-            Hello World!
+            <div className={`text-center`}>
+                <p className={`${styles.text}`}>YOUR SHOPPING</p>
+            </div>
+            <Item />
         </div>
     );
 };

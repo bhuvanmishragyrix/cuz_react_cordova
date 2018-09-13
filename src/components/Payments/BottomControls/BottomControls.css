@@ -3,3 +3,29 @@
     font-size: 20px;
     color: gray;
 }
+
+.checkoutIcon {
+    font-size: 50px;
+    color: green;
+}
+
+.cartIcon {
+    color: gray;
+    font-size: 30px;
+}
+
+.euroIcon {
+    color: gray;
+    font-size: 15px;
+}
+
+.totalText {
+    font-size: 15px;
+    color: gray;
+}
+
+.priceText {
+    font-size: 15px;
+    color: gray;
+    font-weight: bold;
+}

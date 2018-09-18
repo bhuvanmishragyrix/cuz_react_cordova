@@ -25,5 +25,6 @@
     </platform>
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <plugin name="cordova-plugin-cache-clear" spec="^1.3.7" />
+    <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
     <engine name="android" spec="^7.0.0" />
 </widget>

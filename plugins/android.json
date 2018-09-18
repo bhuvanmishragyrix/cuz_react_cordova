@@ -15,6 +15,9 @@
     },
     "cordova-plugin-cache-clear": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {

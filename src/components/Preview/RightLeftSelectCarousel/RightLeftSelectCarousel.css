@@ -1,0 +1,14 @@
+#carouselId {}
+
+.setCarouselIndicatorColor {
+    background-color: gray;
+}
+
+.root {
+    margin-top: 40px;
+    width: 40%;
+}
+
+.text {
+    font-family: 'Anton';
+}

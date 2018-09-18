@@ -7,6 +7,7 @@ import $ from 'jquery';
 import * as util from '../../util/Util';
 import * as appContants from '../../constants/AppConstants';
 import styles from './Preview.css';
+import RightLeftSelectCarousel from './RightLeftSelectCarousel/RightLeftSelectCarousel';
 
 class Preview extends Component {
 
@@ -15,6 +16,7 @@ class Preview extends Component {
     previewImageObject;
     imageIds = [];
     imageIdsAndFillPair;
+    leftRightCarouselData = ["Left Side", "Right Side"];
 
     constructor(props) {
         super(props);
@@ -40,7 +42,9 @@ class Preview extends Component {
 
     mapCustomisedImagesColorsToPreviewImage = (element) => {
         if (element.style.fill) {
-            this.previewImageObject.getElementById(element.id).style.fill = element.style.fill;
+            if (this.previewImageObject.getElementById(element.id)) {
+                this.previewImageObject.getElementById(element.id).style.fill = element.style.fill;
+            }
         }
     }
 
@@ -61,44 +65,58 @@ class Preview extends Component {
                 //     console.log("Error locking the orientation :: " + errMsg);
                 // });
 
-                this.setState({
-                    loaderContent: ""
-                }, () => {
-                    let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-                    this.previewImageAsString = utf8.decode(bytes);
 
-                    let parser = new DOMParser();
-                    this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+                screen.orientation.lock('landscape').then(() => {
 
-                    this.props.customisedPartsImages.forEach((el) => {
-
-                        if (el.leftImageName) {
-
-                            el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el);
-                            });
-
+                    this.setState({
+                        loaderContent: "",
+                        wrapperDivStyle: {
+                            height: window.screen.width,
+                            imageParent: window.screen.width
                         }
+                    }, () => {
+                        let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
+                        this.previewImageAsString = utf8.decode(bytes);
 
-                        if (el.rightImageName) {
+                        let parser = new DOMParser();
+                        this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
 
-                            el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el);
-                            });
+                        this.props.customisedPartsImages.forEach((el) => {
 
-                        }
+                            if (el.leftImageName) {
+
+                                el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
+                                    this.mapCustomisedImagesColorsToPreviewImage(el);
+                                });
+
+                            }
+
+                            if (el.rightImageName) {
+
+                                el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
+                                    this.mapCustomisedImagesColorsToPreviewImage(el);
+                                });
+
+                            }
+                        });
+
+                        document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
+                        $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
+                        document.getElementsByTagName("svg")[0].classList.add(styles.svg);
+                        AndroidFullScreen.leanMode(() => { console.log("Lean Mode Successful"); }, () => { console.log("Lean Mode Error") });
                     });
 
-                    document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
-                    $('svg')[0].setAttribute("height", "100%");
-                    $('svg')[0].setAttribute("width", "100%");
+                }, function error(errMsg) {
+                    console.log("Error locking the orientation :: " + errMsg);
                 });
+
             });
     }
 
     render() {
         return (
-            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={``}>
+            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex flex-column align-items-center justify-content-between`}>
+            <RightLeftSelectCarousel carouselData={this.leftRightCarouselData}/>
                 <div style={this.state.imageParent} className={``}>
                     {this.state.loaderContent}
                 </div>

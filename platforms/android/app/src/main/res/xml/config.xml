@@ -10,6 +10,9 @@
     <feature name="CacheClear">
         <param name="android-package" value="com.anrip.cordova.CacheClear" />
     </feature>
+    <feature name="AndroidFullScreen">
+        <param name="android-package" value="com.mesmotronic.plugins.FullScreenPlugin" />
+    </feature>
     <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

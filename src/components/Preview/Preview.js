@@ -27,9 +27,6 @@ class Preview extends Component {
             loaderContent: util.circularProgress(),
             wrapperDivStyle: {
                 height: `${this.remainingHeight}px`,
-                display:"flex",
-                flexDirection : "column",
-                alignItems: "center",
                 justifyContent: "center"
             },
             loaderState: {
@@ -80,8 +77,6 @@ class Preview extends Component {
                         this.setState({
                             wrapperDivStyle: {
                                 height: window.screen.width,
-                                display:"flex",
-                                alignItems: "center",
                                 flexDirection: "column",
                                 justifyContent: "space-between"
                             },
@@ -133,7 +128,7 @@ class Preview extends Component {
 
     render() {
         return (
-            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`pb-1`}>
+            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex align-items-center pb-1`}>
                 <RightLeftSelectCarousel isDisplayed={this.state.isCarouselDisplayed} carouselData={this.leftRightCarouselData} />
                 {this.state.loaderContent}
             </div>

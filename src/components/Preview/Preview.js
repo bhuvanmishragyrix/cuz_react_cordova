@@ -42,11 +42,11 @@ class Preview extends Component {
         };
 
         this.previewImageFileNames = this.props.images.filter((el) => {
-            if (this.props.selectedCategory === el.selectedCategory &&
-                this.props.selectedBrand === el.selectedBrand &&
-                this.props.selectedYear === el.selectedYear &&
-                this.props.selectedModel === el.selectedModel &&
-                this.props.selectedGraphic === el.selectedGraphic &&
+            if (this.props.selectedCategory === el.category &&
+                this.props.selectedBrand === el.brand &&
+                this.props.selectedYear === el.year &&
+                this.props.selectedModel === el.model &&
+                this.props.selectedGraphic === el.graphic &&
                 el.isBikeSVG) {
                 return true;
             }
@@ -134,7 +134,7 @@ class Preview extends Component {
 
     componentDidMount() {
 
-        this.sideSelected(0);
+        this.sideSelected(1);
 
     }
 
@@ -156,6 +156,7 @@ class Preview extends Component {
             })
         }
         else if (index === 1) {
+            console.log("Render SVG", this.previewImageFileNames);
             this.previewImageFileNames.forEach((el) => {
                 if (el.leftOrRight) {
                     if (el.leftOrRight === "Right") {
@@ -165,8 +166,6 @@ class Preview extends Component {
 
             })
         }
-
-        console.log("Render SVG");
 
 
         if ($('svg').length > 0) {

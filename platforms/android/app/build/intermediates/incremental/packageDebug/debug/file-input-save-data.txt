@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Sep 19 17:07:57 IST 2018
+#Wed Sep 19 17:21:17 IST 2018
 25.file=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/mipmap-xxhdpi-v4/icon.png
 41.base=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/assets/debug
 25.base=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_

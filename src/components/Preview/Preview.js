@@ -47,15 +47,15 @@ class Preview extends Component {
 
     changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
 
-            screen.orientation.lock('portrait').then(() => {
+        screen.orientation.lock('portrait').then(() => {
 
-                window.history.back();
-                document.removeEventListener("backbutton", this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener);
+            window.history.back();
+            document.removeEventListener("backbutton", this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener);
 
-            }, function error(errMsg) {
-                console.log("Error locking the orientation :: " + errMsg);
-            });
-        
+        }, function error(errMsg) {
+            console.log("Error locking the orientation :: " + errMsg);
+        });
+
     }
 
     mapCustomisedImagesColorsToPreviewImage = (element) => {
@@ -70,74 +70,56 @@ class Preview extends Component {
 
         util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.previewImageFileName[0].filename}`)
             .then((response) => {
-                // screen.orientation.lock('landscape').then(() => {
-                //     this.setState({
-                //         wrapperDivStyle:{
-                //             height: `${this.remainingWidth}px`,
-                //             width: `${this.remainingHeight}px`
-                //         },
-                //         loaderContent: ""
-                //     });
 
-                // }, function error(errMsg) {
-                //     console.log("Error locking the orientation :: " + errMsg);
-                // });
+                screen.orientation.lock('landscape').then(() => {
 
-
-                this.setState({
-                    loaderContent: ""
-                }, () => {
-
-                    screen.orientation.lock('landscape').then(() => {
-
-                        this.setState({
-                            wrapperDivStyle: {
-                                height: `${this.remainingWidth}px`,
-                                flexDirection: "column",
-                                justifyContent: "space-between"
-                            },
-                            loaderState: {
-                                display: "none",
-                                height: `0px`
-                            },
-                            isCarouselDisplayed: true
-                        });
-
-                        let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-                        this.previewImageAsString = utf8.decode(bytes);
-
-                        let parser = new DOMParser();
-                        this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
-
-                        this.props.customisedPartsImages.forEach((el) => {
-
-                            if (el.leftImageName) {
-
-                                el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
-                                    this.mapCustomisedImagesColorsToPreviewImage(el);
-                                });
-
-                            }
-
-                            if (el.rightImageName) {
-
-                                el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
-                                    this.mapCustomisedImagesColorsToPreviewImage(el);
-                                });
-
-                            }
-                        });
-
-                        document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
-                        $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
-                        // document.getElementsByTagName("svg")[0].classList.add(styles.svg);
-
-                    }, function error(errMsg) {
-                        console.log("Error locking the orientation :: " + errMsg);
+                    this.setState({
+                        loaderContent: "",
+                        wrapperDivStyle: {
+                            height: `${this.remainingWidth}px`,
+                            flexDirection: "column",
+                            justifyContent: "space-between"
+                        },
+                        loaderState: {
+                            display: "none",
+                            height: `0px`
+                        },
+                        isCarouselDisplayed: true
                     });
 
+                    let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
+                    this.previewImageAsString = utf8.decode(bytes);
 
-                })
+                    let parser = new DOMParser();
+                    this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+
+                    this.props.customisedPartsImages.forEach((el) => {
+
+                        if (el.leftImageName) {
+
+                            el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
+                                this.mapCustomisedImagesColorsToPreviewImage(el);
+                            });
+
+                        }
+
+                        if (el.rightImageName) {
+
+                            el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
+                                this.mapCustomisedImagesColorsToPreviewImage(el);
+                            });
+
+                        }
+                    });
+
+                    document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
+                    $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
+
+                }, function error(errMsg) {
+                    console.log("Error locking the orientation :: " + errMsg);
+                });
+
+
             });
     }
 

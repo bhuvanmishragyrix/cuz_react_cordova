@@ -102,7 +102,7 @@ class Preview extends Component {
 
                         document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
                         $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
-                        document.getElementsByTagName("svg")[0].classList.add(styles.svg);
+                        // document.getElementsByTagName("svg")[0].classList.add(styles.svg);
                         AndroidFullScreen.leanMode(() => { console.log("Lean Mode Successful"); }, () => { console.log("Lean Mode Error") });
                     });
 
@@ -115,7 +115,7 @@ class Preview extends Component {
 
     render() {
         return (
-            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex flex-column align-items-center justify-content-between`}>
+            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex flex-column align-items-center justify-content-between pb-1`}>
             <RightLeftSelectCarousel carouselData={this.leftRightCarouselData}/>
                 <div style={this.state.imageParent} className={``}>
                     {this.state.loaderContent}

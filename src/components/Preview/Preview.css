@@ -5,3 +5,9 @@
 .svg {
     margin-bottom: 2px;
 }
+
+.sideNotAvailableDiv {
+    width: 50%;
+    background-color: gray;
+    font-family: 'Anton';
+}

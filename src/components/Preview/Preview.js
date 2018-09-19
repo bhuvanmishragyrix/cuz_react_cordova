@@ -17,6 +17,11 @@ class Preview extends Component {
     imageIds = [];
     imageIdsAndFillPair;
     leftRightCarouselData = ["Left Side", "Right Side"];
+    currentlySelectedCarouselIndex = 0;
+    svgHeight = 0.7 * window.screen.width;
+    imageNotAvailableDiv = new DOMParser().parseFromString(`<div style=" height: ${this.svgHeight};" class="${styles.sideNotAvailableDiv} d-flex justify-content-center align-items-center p-3">
+    <p class="text-center">This side is not available for preview!</p>
+    </div>`, "text/html").getElementsByTagName('div')[0];
 
     constructor(props) {
         super(props);
@@ -36,8 +41,13 @@ class Preview extends Component {
             isCarouselDisplayed: false
         };
 
-        this.previewImageFileName = this.props.images.filter((el) => {
-            if (el.isBikeSVG) {
+        this.previewImageFileNames = this.props.images.filter((el) => {
+            if (this.props.selectedCategory === el.selectedCategory &&
+                this.props.selectedBrand === el.selectedBrand &&
+                this.props.selectedYear === el.selectedYear &&
+                this.props.selectedModel === el.selectedModel &&
+                this.props.selectedGraphic === el.selectedGraphic &&
+                el.isBikeSVG) {
                 return true;
             }
         });
@@ -66,11 +76,10 @@ class Preview extends Component {
         }
     }
 
-    componentDidMount() {
+    renderSVG = (filename) => {
 
-        util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.previewImageFileName[0].filename}`)
+        util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${filename}`)
             .then((response) => {
-
                 screen.orientation.lock('landscape').then(() => {
 
                     this.setState({
@@ -113,7 +122,7 @@ class Preview extends Component {
                     });
 
                     document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
-                    $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
+                    $('svg')[0].setAttribute("height", this.svgHeight);
 
                 }, function error(errMsg) {
                     console.log("Error locking the orientation :: " + errMsg);
@@ -123,10 +132,61 @@ class Preview extends Component {
             });
     }
 
+    componentDidMount() {
+
+        this.sideSelected(0);
+
+    }
+
+    sideSelected = (index) => {
+
+
+        if ($('svg').length > 0) {
+            $('svg')[0].remove();
+        }
+
+        if (index === 0) {
+            this.previewImageFileNames.forEach((el) => {
+                if (el.leftOrRight) {
+                    if (el.leftOrRight === "Left") {
+                        this.renderSVG(el.filename);
+                    }
+                }
+
+            })
+        }
+        else if (index === 1) {
+            this.previewImageFileNames.forEach((el) => {
+                if (el.leftOrRight) {
+                    if (el.leftOrRight === "Right") {
+                        this.renderSVG(el.filename);
+                    }
+                }
+
+            })
+        }
+
+        console.log("Render SVG");
+
+
+        if ($('svg').length > 0) {
+
+            if (document.getElementsByClassName(styles.sideNotAvailableDiv).length > 0) {
+                document.getElementsByClassName(styles.sideNotAvailableDiv)[0].remove();
+            }
+
+        }
+        else {
+            if (!document.getElementsByClassName(styles.sideNotAvailableDiv).length > 0) {
+                document.getElementById(styles.parentOfImage).appendChild(this.imageNotAvailableDiv);
+            }
+        }
+    }
+
     render() {
         return (
             <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex align-items-center pb-1`}>
-                <RightLeftSelectCarousel isDisplayed={this.state.isCarouselDisplayed} carouselData={this.leftRightCarouselData} />
+                <RightLeftSelectCarousel sideSelected={this.sideSelected} isDisplayed={this.state.isCarouselDisplayed} carouselData={this.leftRightCarouselData} />
                 {this.state.loaderContent}
             </div>
         );
@@ -136,8 +196,12 @@ class Preview extends Component {
 const mapStateToProps = (state) => {
     return {
         images: state.images,
-        selectedGraphic: state.selectedGraphic,
-        customisedPartsImages: state.customisedPartsImages
+        customisedPartsImages: state.customisedPartsImages,
+        selectedCategory: state.selectedCategory,
+        selectedBrand: state.selectedBrand,
+        selectedYear: state.selectedYear,
+        selectedModel: state.selectedModel,
+        selectedGraphic: state.selectedGraphic
     };
 };
 

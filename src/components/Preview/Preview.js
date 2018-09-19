@@ -22,6 +22,7 @@ class Preview extends Component {
         super(props);
 
         this.remainingHeight = 0.9 * window.screen.height - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
+        this.remainingWidth = 0.9 * window.screen.width - appContants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
 
         this.state = {
             loaderContent: util.circularProgress(),
@@ -46,16 +47,15 @@ class Preview extends Component {
 
     changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
 
-        AndroidFullScreen.showSystemUI(() => {console.log("Show System UI Success")}, () => {console.log("Show System UI Error")});
+            screen.orientation.lock('portrait').then(() => {
 
-        screen.orientation.lock('portrait').then(() => {
+                window.history.back();
+                document.removeEventListener("backbutton", this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener);
 
-            window.history.back();
-            document.removeEventListener("backbutton", this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener);
-
-        }, function error(errMsg) {
-            console.log("Error locking the orientation :: " + errMsg);
-        });
+            }, function error(errMsg) {
+                console.log("Error locking the orientation :: " + errMsg);
+            });
+        
     }
 
     mapCustomisedImagesColorsToPreviewImage = (element) => {
@@ -92,7 +92,7 @@ class Preview extends Component {
 
                         this.setState({
                             wrapperDivStyle: {
-                                height: window.screen.width,
+                                height: `${this.remainingWidth}px`,
                                 flexDirection: "column",
                                 justifyContent: "space-between"
                             },
@@ -131,7 +131,6 @@ class Preview extends Component {
                         document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
                         $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
                         // document.getElementsByTagName("svg")[0].classList.add(styles.svg);
-                        AndroidFullScreen.leanMode(() => { console.log("Lean Mode Successful"); }, () => { console.log("Lean Mode Error") });
 
                     }, function error(errMsg) {
                         console.log("Error locking the orientation :: " + errMsg);

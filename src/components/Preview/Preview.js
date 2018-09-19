@@ -40,6 +40,20 @@ class Preview extends Component {
                 return true;
             }
         });
+
+        document.addEventListener('backbutton', this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener, false);
+    }
+
+    changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
+
+        screen.orientation.lock('portrait').then(() => {
+
+            window.history.back();
+            document.removeEventListener("backbutton", this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener);
+
+        }, function error(errMsg) {
+            console.log("Error locking the orientation :: " + errMsg);
+        });
     }
 
     mapCustomisedImagesColorsToPreviewImage = (element) => {

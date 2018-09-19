@@ -46,6 +46,8 @@ class Preview extends Component {
 
     changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
 
+        AndroidFullScreen.showSystemUI(() => {console.log("Show System UI Success")}, () => {console.log("Show System UI Error")});
+
         screen.orientation.lock('portrait').then(() => {
 
             window.history.back();

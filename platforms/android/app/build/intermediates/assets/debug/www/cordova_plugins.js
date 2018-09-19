@@ -29,6 +29,14 @@ module.exports = [
     "clobbers": [
       "AndroidFullScreen"
     ]
+  },
+  {
+    "id": "cordova-plugin-statusbar.statusbar",
+    "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+    "pluginId": "cordova-plugin-statusbar",
+    "clobbers": [
+      "window.StatusBar"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -38,7 +46,8 @@ module.exports.metadata =
   "es6-promise-plugin": "4.2.2",
   "cordova-plugin-screen-orientation": "3.0.1",
   "cordova-plugin-cache-clear": "1.3.7",
-  "cordova-plugin-fullscreen": "1.1.0"
+  "cordova-plugin-fullscreen": "1.1.0",
+  "cordova-plugin-statusbar": "2.4.2"
 };
 // BOTTOM OF METADATA
 });

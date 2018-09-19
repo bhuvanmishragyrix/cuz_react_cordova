@@ -31,40 +31,38 @@ class CarouselComponent extends Component {
 
     render() {
 
-        let content, carouselContent;
+        let content ="", carouselContent;
 
+        if (this.props.isDisplayed) {
+            carouselContent = this.props.carouselData.map((el, index) => {
+                let activeClass = "";
+                if (index === 0) {
+                    activeClass = "active";
+                }
 
+                return (
+                    <div className={`carousel-item ${activeClass} text-center ${styles.text}`}>
+                        {el}
+                    </div>
+                )
+            })
 
-
-        carouselContent = this.props.carouselData.map((el, index) => {
-            let activeClass = "";
-            if (index === 0) {
-                activeClass = "active";
-            }
-
-            return (
-                <div className={`carousel-item ${activeClass} text-center ${styles.text}`}>
-                    {el}
+            content = (
+                <div id={styles.carouselId} className={`carousel slide ${styles.root}`} data-interval="false" data-ride="carousel">
+                    <div className="carousel-inner">
+                        {carouselContent}
+                    </div>
+                    <a className={`carousel-control-prev`} href={`#${styles.carouselId}`} role="button" data-slide="prev">
+                        <span className={`carousel-control-prev-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
+                        <span className="sr-only">Previous</span>
+                    </a>
+                    <a className={`carousel-control-next`} href={`#${styles.carouselId}`} role="button" data-slide="next">
+                        <span className={`carousel-control-next-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
+                        <span className="sr-only">Next</span>
+                    </a>
                 </div>
-            )
-        })
-
-        content = (
-            <div id={styles.carouselId} className={`carousel slide ${styles.root}`} data-interval="false" data-ride="carousel">
-                <div className="carousel-inner">
-                    {carouselContent}
-                </div>
-                <a className={`carousel-control-prev`} href={`#${styles.carouselId}`} role="button" data-slide="prev">
-                    <span className={`carousel-control-prev-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className={`carousel-control-next`} href={`#${styles.carouselId}`} role="button" data-slide="next">
-                    <span className={`carousel-control-next-icon ${styles.setCarouselIndicatorColor}`} aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
-            </div>
-        );
-
+            );
+        }
 
         return (
             content

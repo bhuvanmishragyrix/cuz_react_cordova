@@ -26,11 +26,16 @@ class Preview extends Component {
         this.state = {
             loaderContent: util.circularProgress(),
             wrapperDivStyle: {
+                height: `${this.remainingHeight}px`,
+                display:"flex",
+                flexDirection : "column",
+                alignItems: "center",
+                justifyContent: "center"
+            },
+            loaderState: {
                 height: `${this.remainingHeight}px`
             },
-            imageParent: {
-
-            }
+            isCarouselDisplayed: false
         };
 
         this.previewImageFileName = this.props.images.filter((el) => {
@@ -66,15 +71,27 @@ class Preview extends Component {
                 // });
 
 
-                screen.orientation.lock('landscape').then(() => {
+                this.setState({
+                    loaderContent: ""
+                }, () => {
 
-                    this.setState({
-                        loaderContent: "",
-                        wrapperDivStyle: {
-                            height: window.screen.width,
-                            imageParent: window.screen.width
-                        }
-                    }, () => {
+                    screen.orientation.lock('landscape').then(() => {
+
+                        this.setState({
+                            wrapperDivStyle: {
+                                height: window.screen.width,
+                                display:"flex",
+                                alignItems: "center",
+                                flexDirection: "column",
+                                justifyContent: "space-between"
+                            },
+                            loaderState: {
+                                display: "none",
+                                height: `0px`
+                            },
+                            isCarouselDisplayed: true
+                        });
+
                         let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
                         this.previewImageAsString = utf8.decode(bytes);
 
@@ -104,22 +121,21 @@ class Preview extends Component {
                         $('svg')[0].setAttribute("height", 0.7 * window.screen.width);
                         // document.getElementsByTagName("svg")[0].classList.add(styles.svg);
                         AndroidFullScreen.leanMode(() => { console.log("Lean Mode Successful"); }, () => { console.log("Lean Mode Error") });
+
+                    }, function error(errMsg) {
+                        console.log("Error locking the orientation :: " + errMsg);
                     });
 
-                }, function error(errMsg) {
-                    console.log("Error locking the orientation :: " + errMsg);
-                });
 
+                })
             });
     }
 
     render() {
         return (
-            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex flex-column align-items-center justify-content-between pb-1`}>
-            <RightLeftSelectCarousel carouselData={this.leftRightCarouselData}/>
-                <div style={this.state.imageParent} className={``}>
-                    {this.state.loaderContent}
-                </div>
+            <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`pb-1`}>
+                <RightLeftSelectCarousel isDisplayed={this.state.isCarouselDisplayed} carouselData={this.leftRightCarouselData} />
+                {this.state.loaderContent}
             </div>
         );
     }

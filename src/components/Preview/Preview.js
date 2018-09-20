@@ -35,9 +35,6 @@ class Preview extends Component {
                 height: `${this.remainingHeight}px`,
                 justifyContent: "center"
             },
-            loaderState: {
-                height: `${this.remainingHeight}px`
-            },
             isCarouselDisplayed: false
         };
 
@@ -88,10 +85,6 @@ class Preview extends Component {
                             height: `${this.remainingWidth}px`,
                             flexDirection: "column",
                             justifyContent: "space-between"
-                        },
-                        loaderState: {
-                            display: "none",
-                            height: `0px`
                         },
                         isCarouselDisplayed: true
                     });

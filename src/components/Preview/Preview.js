@@ -85,22 +85,25 @@ class Preview extends Component {
 
     }
 
-    mapCustomisedImagesColorsToPreviewImage = (element, leftOrRight) => {
+    mapCustomisedImagesColorsToPreviewImage = (element) => {
         if (element.style.fill) {
-            if (leftOrRight === "Left") {
-                if (this.leftPreviewImageInArray.length > 0 && this.leftPreviewImageInArray[0].getElementById(element.id)) {
 
-                    this.leftPreviewImageInArray[0].getElementById(element.id).style.fill = element.style.fill;
-                }
-            }
-            else if (leftOrRight === "Right") {
-                if (this.rightPreviewImageInArray.length > 0 && this.rightPreviewImageInArray[0].getElementById(element.id)) {
+            this.sideFileNamesAndImagesArray.forEach((el) => {
+                if (el.leftImageObject && el.leftImageObject.getElementById(element.id)) {
 
-                    this.rightPreviewImageInArray[0].getElementById(element.id).style.fill = element.style.fill;
+                    el.leftImageObject.getElementById(element.id).style.fill = element.style.fill;
                 }
-            }
+                else if (el.rightImageObject && el.rightImageObject.getElementById(element.id)) {
+    
+                    el.rightImageObject.getElementById(element.id).style.fill = element.style.fill;
+                }
+            });
         }
+
+
+
     }
+
 
     // renderSVG = (filename) => {
 
@@ -234,7 +237,7 @@ class Preview extends Component {
                         if (el.leftImageName) {
 
                             el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el, "Left");
+                                this.mapCustomisedImagesColorsToPreviewImage(el);
                             });
 
                         }
@@ -242,7 +245,7 @@ class Preview extends Component {
                         if (el.rightImageName) {
 
                             el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el, "Right");
+                                this.mapCustomisedImagesColorsToPreviewImage(el);
                             });
 
                         }

@@ -403,23 +403,10 @@
             "model": "DC 550",
             "graphic": "Graphic 1",
             "isBikeSVG": false,
-            "partname": "Fork Guard",
-            "leftOrRight": "Right",
-            "price": null,
-            "filename": "part9.svg",
-            "isNewProduct": false
-        },
-        {
-            "category": "Dirtbike",
-            "brand": "Honda",
-            "year": "2016",
-            "model": "DC 550",
-            "graphic": "Graphic 1",
-            "isBikeSVG": false,
             "partname": "Swing Arm",
             "leftOrRight": "Left",
             "price": null,
-            "filename": "part11.svg",
+            "filename": "part12.svg",
             "isNewProduct": false
         },
         {
@@ -432,7 +419,7 @@
             "partname": "Swing Arm",
             "leftOrRight": "Right",
             "price": null,
-            "filename": "part12.svg",
+            "filename": "part11.svg",
             "isNewProduct": false
         },
         {

@@ -255,8 +255,34 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     componentDidMount() {
-        this.fetchAllPartAndWholeBikeSVGImageNames();
-        this.fetchAllPartSVGImages();
+
+        if (this.props.customisedPartsImages) {
+            this.partFilenamesAndImagesArray = this.props.customisedPartsImages.slice();
+            this.addCustomisationLogicToAllImages();
+
+            console.log(this.props.visualComposerPartNamesArray, this.props.visualComposerLeftRightCarouselData, this.props.customisedPartsImages);
+
+            this.partNamesArray = this.props.visualComposerPartNamesArray;
+
+            this.setState({
+                fetchAllImages: true,
+
+            }, () => {
+                this.setState({
+                    partNameCarouselData: this.props.visualComposerPartNamesArray,
+                    leftRightCarouselData: this.props.visualComposerLeftRightCarouselData
+                }, () => {
+                    this.renderFirstImageFound();
+                })
+            });
+
+            console.log("Reached");
+
+        }
+        else {
+            this.fetchAllPartAndWholeBikeSVGImageNames();
+            this.fetchAllPartSVGImages();
+        }
     }
 
     partNameCarouselSlid = (slidTo) => {
@@ -398,10 +424,18 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    storePartNameArrayAndLeftRightCarouselDataInStore = () => {
+        this.props.storePartNameArrayAndLeftRightCarouselData(this.partNamesArray
+            , this.leftRightCarouselData);
+
+
+    }
+
     storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage = () => {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
 
+        this.storePartNameArrayAndLeftRightCarouselDataInStore();
 
         this.props.history.push('/preview');
     };
@@ -456,6 +490,9 @@ const mapStateToProps = (state) => {
         selectedYear: state.selectedYear,
         selectedModel: state.selectedModel,
         selectedGraphic: state.selectedGraphic,
+        customisedPartsImages: state.customisedPartsImages,
+        visualComposerPartNamesArray: state.visualComposerPartNamesArray,
+        visualComposerLeftRightCarouselData: state.visualComposerLeftRightCarouselData
     };
 };
 
@@ -468,6 +505,15 @@ const mapDispatchToProps = (dispatch) => {
                     customisedPartsImages: payload
                 }
             });
+        },
+        storePartNameArrayAndLeftRightCarouselData: (partNamesArray, carouselData) => {
+            dispatch({
+                type: actionTypes.STORE_PART_NAME_ARRAY_AND_LEFT_RIGHT_CAROUSEL_DATA,
+                payload: {
+                    visualComposerPartNamesArray: partNamesArray,
+                    visualComposerLeftRightCarouselData: carouselData
+                }
+            })
         }
     };
 }

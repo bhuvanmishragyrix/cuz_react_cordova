@@ -9,7 +9,7 @@ const initialState = {
     selectedCategoryImageFileName: null,
     selectedGraphic: null,
     selectedGraphicPrice: null,
-    customisedPartsImages:null
+    customisedPartsImages: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,13 +46,19 @@ const reducer = (state = initialState, action) => {
                 selectedGraphicPrice: action.payload.selectedGraphicPrice
             };
 
-            case actionTypes.STORE_CUSTOMISED_PARTS_IMAGES: 
+        case actionTypes.STORE_CUSTOMISED_PARTS_IMAGES:
 
-            console.log("Customised Parts Images",action.payload.customisedPartsImages);
-            
             return {
                 ...state,
                 customisedPartsImages: action.payload.customisedPartsImages
+            }
+
+        case actionTypes.STORE_PART_NAME_ARRAY_AND_LEFT_RIGHT_CAROUSEL_DATA:
+
+            return {
+                ...state,
+                visualComposerPartNamesArray: action.payload.visualComposerPartNamesArray,
+                visualComposerLeftRightCarouselData: action.payload.visualComposerLeftRightCarouselData
             }
     }
     return state;

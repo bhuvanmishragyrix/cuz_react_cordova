@@ -1,4 +1,4 @@
-#Thu Sep 20 11:02:43 IST 2018
+#Thu Sep 20 11:22:04 IST 2018
 base.0=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
 file.0=/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex

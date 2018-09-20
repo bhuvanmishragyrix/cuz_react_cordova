@@ -48,7 +48,7 @@ class CarouselComponent extends Component {
             })
 
             content = (
-                <div id={styles.carouselId} className={`carousel slide ${styles.root}`} data-interval="false" data-ride="carousel">
+                <div id={styles.carouselId} className={`carousel slide ${styles.root} mb-3`} data-interval="false" data-ride="carousel">
                     <div className="carousel-inner">
                         {carouselContent}
                     </div>

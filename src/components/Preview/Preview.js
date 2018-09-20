@@ -182,7 +182,7 @@ class Preview extends Component {
                             wrapperDivStyle: {
                                 height: `${this.remainingWidth}px`,
                                 flexDirection: "column",
-                                justifyContent: "space-between"
+                                justifyContent: "flex-end"
                             },
                             isCarouselDisplayed: true
                         })
@@ -289,6 +289,7 @@ class Preview extends Component {
 
                 if (el.leftOrRight === "Left") {
                     document.getElementById(styles.parentOfImage).appendChild(el.leftImageObject)
+                    $('svg')[0].setAttribute("height", this.svgHeight)
                 }
 
             })
@@ -298,6 +299,7 @@ class Preview extends Component {
 
                 if (el.leftOrRight === "Right") {
                     document.getElementById(styles.parentOfImage).appendChild(el.rightImageObject)
+                    $('svg')[0].setAttribute("height", this.svgHeight)
                 }
 
 

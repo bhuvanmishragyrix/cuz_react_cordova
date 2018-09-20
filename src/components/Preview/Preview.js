@@ -11,7 +11,7 @@ import RightLeftSelectCarousel from './RightLeftSelectCarousel/RightLeftSelectCa
 
 class Preview extends Component {
 
-    previewImageFileName;
+    previewImageFileNames;
     previewImageAsString;
     previewImageObject;
     imageIds = [];
@@ -19,6 +19,10 @@ class Preview extends Component {
     leftRightCarouselData = ["Left Side", "Right Side"];
     currentlySelectedCarouselIndex = 0;
     svgHeight = 0.7 * window.screen.width;
+    sideFileNamesAndImagesArray;
+    arrayOfPromisesOfImagesToFetch = [];
+    leftPreviewImageInArray;
+    rightPreviewImageInArray;
     imageNotAvailableDiv = new DOMParser().parseFromString(`<div style=" height: ${this.svgHeight};" class="${styles.sideNotAvailableDiv} d-flex justify-content-center align-items-center p-3">
     <p class="text-center">This side is not available for preview!</p>
     </div>`, "text/html").getElementsByTagName('div')[0];
@@ -49,7 +53,23 @@ class Preview extends Component {
             }
         });
 
+        this.sideFileNamesAndImagesArray = this.previewImageFileNames.map((el) => {
+            return {
+                leftOrRight: el.leftOrRight,
+                filename: el.filename
+            };
+        });
+
         document.addEventListener('backbutton', this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener, false);
+    }
+
+    createPromiseArrayOfImages = () => {
+        this.sideFileNamesAndImagesArray.forEach((el) => {
+            let promiseOfImage = util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`);
+
+            this.arrayOfPromisesOfImagesToFetch.push(promiseOfImage);
+
+        });
     }
 
     changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
@@ -65,42 +85,156 @@ class Preview extends Component {
 
     }
 
-    mapCustomisedImagesColorsToPreviewImage = (element) => {
+    mapCustomisedImagesColorsToPreviewImage = (element, leftOrRight) => {
         if (element.style.fill) {
-            if (this.previewImageObject.getElementById(element.id)) {
-                this.previewImageObject.getElementById(element.id).style.fill = element.style.fill;
+            if (leftOrRight === "Left") {
+                if (this.leftPreviewImageInArray.length > 0 && this.leftPreviewImageInArray[0].getElementById(element.id)) {
+
+                    this.leftPreviewImageInArray[0].getElementById(element.id).style.fill = element.style.fill;
+                }
+            }
+            else if (leftOrRight === "Right") {
+                if (this.rightPreviewImageInArray.length > 0 && this.rightPreviewImageInArray[0].getElementById(element.id)) {
+
+                    this.rightPreviewImageInArray[0].getElementById(element.id).style.fill = element.style.fill;
+                }
             }
         }
     }
 
-    renderSVG = (filename) => {
+    // renderSVG = (filename) => {
 
-        util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${filename}`)
+    //     util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${filename}`)
+    //         .then((response) => {
+    //             screen.orientation.lock('landscape').then(() => {
+
+    //                 this.setState({
+    //                     loaderContent: "",
+    //                     wrapperDivStyle: {
+    //                         height: `${this.remainingWidth}px`,
+    //                         flexDirection: "column",
+    //                         justifyContent: "space-between"
+    //                     },
+    //                     isCarouselDisplayed: true
+    //                 });
+
+    //                 let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
+    //                 this.previewImageAsString = utf8.decode(bytes);
+
+    //                 let parser = new DOMParser();
+    //                 this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+
+    //                 this.props.customisedPartsImages.forEach((el) => {
+
+    //                     if (el.leftImageName) {
+
+    //                         el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
+    //                             this.mapCustomisedImagesColorsToPreviewImage(el);
+    //                         });
+
+    //                     }
+
+    //                     if (el.rightImageName) {
+
+    //                         el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
+    //                             this.mapCustomisedImagesColorsToPreviewImage(el);
+    //                         });
+
+    //                     }
+    //                 });
+
+    //                 document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
+    //                 $('svg')[0].setAttribute("height", this.svgHeight);
+
+    //             }, function error(errMsg) {
+    //                 console.log("Error locking the orientation :: " + errMsg);
+    //             });
+
+
+    //         });
+    // }
+
+    populateImagesAsObjectsInsideFileNamesAndImagesArray = () => {
+        let parser = new DOMParser();
+        this.sideFileNamesAndImagesArray.forEach((el) => {
+            if (el.leftOrRight === "Left") {
+                el.leftImageObject = parser.parseFromString(el.leftSidePreviewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+            }
+            else if (el.leftOrRight === "Right") {
+                el.rightImageObject = parser.parseFromString(el.rightSidePreviewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+            }
+        });
+    }
+
+    populateImagesAsStringsInsideFileNamesAndImagesArray = () => {
+
+        let responseCounter = 0;
+
+        Promise.all(this.arrayOfPromisesOfImagesToFetch)
             .then((response) => {
+
                 screen.orientation.lock('landscape').then(() => {
 
-                    this.setState({
-                        loaderContent: "",
-                        wrapperDivStyle: {
-                            height: `${this.remainingWidth}px`,
-                            flexDirection: "column",
-                            justifyContent: "space-between"
-                        },
-                        isCarouselDisplayed: true
+
+                    if (response.length > 0) {
+                        this.setState({
+                            loaderContent: "",
+                            wrapperDivStyle: {
+                                height: `${this.remainingWidth}px`,
+                                flexDirection: "column",
+                                justifyContent: "space-between"
+                            },
+                            isCarouselDisplayed: true
+                        })
+                    }
+
+                    this.sideFileNamesAndImagesArray.forEach((el) => {
+                        if (el.leftOrRight === "Left") {
+
+                            let bytes;
+
+                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                            el.leftSidePreviewImageAsString = utf8.decode(bytes);
+                            responseCounter++;
+                        }
+                        else if (el.leftOrRight === "Right") {
+                            let bytes;
+
+                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                            el.rightSidePreviewImageAsString = utf8.decode(bytes);
+                            responseCounter++;
+                        }
                     });
 
-                    let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-                    this.previewImageAsString = utf8.decode(bytes);
+                    this.populateImagesAsObjectsInsideFileNamesAndImagesArray();
 
-                    let parser = new DOMParser();
-                    this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
+                    this.leftPreviewImageInArray = this.sideFileNamesAndImagesArray.filter((el) => {
+                        if (el.leftOrRight === "Left") {
+                            return true;
+                        }
+                    });
+
+                    if (this.leftPreviewImageInArray.length > 0) {
+                        this.leftPreviewImageInArray = this.leftPreviewImageInArray[0].leftImageObject;
+                    }
+
+                    this.rightPreviewImageInArray = this.sideFileNamesAndImagesArray.filter((el) => {
+                        if (el.leftOrRight === "Right") {
+                            return true;
+                        }
+                    });
+
+                    if (this.rightPreviewImageInArray.length > 0) {
+                        this.rightPreviewImageInArray = this.rightPreviewImageInArray[0].rightImageObject;
+                    }
+
 
                     this.props.customisedPartsImages.forEach((el) => {
 
                         if (el.leftImageName) {
 
                             el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el);
+                                this.mapCustomisedImagesColorsToPreviewImage(el, "Left");
                             });
 
                         }
@@ -108,26 +242,38 @@ class Preview extends Component {
                         if (el.rightImageName) {
 
                             el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
-                                this.mapCustomisedImagesColorsToPreviewImage(el);
+                                this.mapCustomisedImagesColorsToPreviewImage(el, "Right");
                             });
 
                         }
                     });
 
-                    document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
-                    $('svg')[0].setAttribute("height", this.svgHeight);
+                    this.renderFirstImage();
+
 
                 }, function error(errMsg) {
                     console.log("Error locking the orientation :: " + errMsg);
                 });
 
 
-            });
+            })
+    }
+
+    renderFirstImage = () => {
+
+        if (this.leftPreviewImageInArray.length > 0) {
+            document.getElementById(styles.parentOfImage).appendChild(this.leftPreviewImageInArray[0]);
+            $('svg')[0].setAttribute("height", this.svgHeight);
+        }
+        else {
+            document.getElementById(styles.parentOfImage).appendChild(this.imageNotAvailableDiv)
+        }
     }
 
     componentDidMount() {
 
-        this.sideSelected(1);
+        this.createPromiseArrayOfImages();
+        this.populateImagesAsStringsInsideFileNamesAndImagesArray();
 
     }
 
@@ -139,23 +285,21 @@ class Preview extends Component {
         }
 
         if (index === 0) {
-            this.previewImageFileNames.forEach((el) => {
-                if (el.leftOrRight) {
-                    if (el.leftOrRight === "Left") {
-                        this.renderSVG(el.filename);
-                    }
+            this.sideFileNamesAndImagesArray.forEach((el) => {
+
+                if (el.leftOrRight === "Left") {
+                    document.getElementById(styles.parentOfImage).appendChild(el.leftImageObject)
                 }
 
             })
         }
         else if (index === 1) {
-            console.log("Render SVG", this.previewImageFileNames);
-            this.previewImageFileNames.forEach((el) => {
-                if (el.leftOrRight) {
-                    if (el.leftOrRight === "Right") {
-                        this.renderSVG(el.filename);
-                    }
+            this.sideFileNamesAndImagesArray.forEach((el) => {
+
+                if (el.leftOrRight === "Right") {
+                    document.getElementById(styles.parentOfImage).appendChild(el.rightImageObject)
                 }
+
 
             })
         }

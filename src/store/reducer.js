@@ -9,7 +9,8 @@ const initialState = {
     selectedCategoryImageFileName: null,
     selectedGraphic: null,
     selectedGraphicPrice: null,
-    customisedPartsImages: null
+    customisedPartsImages: null,
+    selectedGraphicDescription: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +60,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 visualComposerPartNamesArray: action.payload.visualComposerPartNamesArray,
                 visualComposerLeftRightCarouselData: action.payload.visualComposerLeftRightCarouselData
+            }
+
+        case actionTypes.STORE_GRAPHIC_DESCRIPTION:
+
+            return {
+                ...state,
+                selectedGraphicDescription: action.payload.selectedGraphicDescription
             }
     }
     return state;

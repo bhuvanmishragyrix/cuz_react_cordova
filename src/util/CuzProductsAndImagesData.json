@@ -33,6 +33,10 @@
             "Graphic 2",
             null
         ],
+        "graphicDescription": [
+            "A short Description",
+            null
+        ],
         "isBikeSVG": [
             true,
             false
@@ -69,7 +73,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Dirtbike_category.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -82,7 +87,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Cycle_category.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -95,7 +101,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Honda_logo.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -108,7 +115,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Suzuki_logo.png",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -121,7 +129,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Firefox_logo.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -134,7 +143,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Montra_logo.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": null,
@@ -147,7 +157,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "2016_image.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": null,
@@ -160,7 +171,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "2017_image.png",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -173,7 +185,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Honda_1.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -186,7 +199,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Honda_2.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -199,7 +213,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Suzuki_1.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -212,7 +227,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Suzuki_2.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -225,7 +241,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Firefox_1.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -238,7 +255,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Firefox_2.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -251,7 +269,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Montra_1.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Bicycle",
@@ -264,7 +283,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "Montra_2.png",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -277,7 +297,8 @@
             "leftOrRight": null,
             "price": 199,
             "filename": "Graphic_1.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": "These Custom Dirt Bike Graphics come complete with Shrouds Decals, Fender Decals, Swing Arm Decals, Fork Guard Decals, Number Plate Decals and Air Box Decals."
         },
         {
             "category": "Dirtbike",
@@ -290,7 +311,8 @@
             "leftOrRight": null,
             "price": 99,
             "filename": "Graphic_2.jpg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": "These Custom Dirt Bike Graphics come complete with Shrouds Decals, Fender Decals, Swing Arm Decals, Fork Guard Decals, Number Plate Decals and Air Box Decals."
         },
         {
             "category": null,
@@ -303,7 +325,8 @@
             "leftOrRight": null,
             "price": null,
             "filename": "New_product1.jpg",
-            "isNewProduct": true
+            "isNewProduct": true,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -316,7 +339,8 @@
             "leftOrRight": "Left",
             "price": null,
             "filename": "part1.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -329,7 +353,8 @@
             "leftOrRight": "Right",
             "price": null,
             "filename": "part2.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -342,7 +367,8 @@
             "leftOrRight": "Left",
             "price": null,
             "filename": "part3.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -355,7 +381,8 @@
             "leftOrRight": "Right",
             "price": null,
             "filename": "part4.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -368,7 +395,8 @@
             "leftOrRight": "Left",
             "price": null,
             "filename": "part5.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -381,7 +409,8 @@
             "leftOrRight": "Right",
             "price": null,
             "filename": "part6.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -394,7 +423,8 @@
             "leftOrRight": "Left",
             "price": null,
             "filename": "part7.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -407,7 +437,8 @@
             "leftOrRight": "Left",
             "price": null,
             "filename": "part12.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -420,7 +451,8 @@
             "leftOrRight": "Right",
             "price": null,
             "filename": "part11.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         },
         {
             "category": "Dirtbike",
@@ -433,7 +465,8 @@
             "leftOrRight": "Right",
             "price": null,
             "filename": "print.svg",
-            "isNewProduct": false
+            "isNewProduct": false,
+            "graphicDescription": null
         }
     ]
 }

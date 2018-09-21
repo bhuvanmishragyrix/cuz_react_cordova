@@ -28,6 +28,7 @@ const graphicStyleSelect = (props) => {
 
     const onGraphicSelect = (index) => {
         props.storeSelectedGraphicAndPriceInStore(imageNameData[index].graphic, imageNameData[index].price);
+        props.storeGraphicDescriptionInStore(imageNameData[index].graphicDescription);
         props.history.push('/visualComposerColorCustomiser');
     };
 
@@ -65,6 +66,13 @@ const mapDispatchToProps = (dispatch) => {
                 type: actionTypes.STORE_GRAPHIC_NAME_AND_PRICE, payload: {
                     selectedGraphic: graphic,
                     selectedGraphicPrice: graphicPrice
+                }
+            })
+        },
+        storeGraphicDescriptionInStore: (description) => {
+            dispatch({
+                type: actionTypes.STORE_GRAPHIC_DESCRIPTION, payload: {
+                    selectedGraphicDescription: description
                 }
             })
         }

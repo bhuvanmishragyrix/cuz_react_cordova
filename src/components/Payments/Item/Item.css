@@ -1,7 +1,31 @@
-.itemRoot{
-    height: 200px;
-}
+.itemRoot {}
 
 .borderedContainer {
     border: 1px solid gray;
+}
+
+#forGettingHeightOfImage {}
+
+.euroIcon {
+    color: gray;
+    font-size: 15px;
+}
+
+.priceText {
+    font-size: 15px;
+    color: gray;
+    font-weight: bold;
+}
+
+.descriptionText {
+    color: gray;
+    font-family: 'Anton';
+    font-size: 5vw;
+
+}
+
+.text{
+    color: gray;
+    font-family: 'Anton';
+    font-size: 3vw;
 }

@@ -17,7 +17,7 @@ const login = () => {
                 <p className={`d-inline ${styles.newToCuzText} m-0 p-0`}>New to CUZ?</p>
                 <div className={`d-inline ${styles.lineDiv}`}></div>
             </div>
-            <button className={`btn btn-primary form-control mt-2`}>Sign up</button>
+            <button className={`btn btn-light form-control mt-4 ${styles.signUp}`}>Sign up</button>
         </div>
     );
 };

@@ -11,6 +11,7 @@ import { LINK_TO_FETCH_JSON_DATA_FROM } from '../constants/AppConstants';
 import { STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA } from '../store/actionTypes';
 import PreviewPage from './PreviewPage';
 import PaymentsPage from './PaymentsPage';
+import LoginPage from './LoginPage';
 
 class StartPage extends Component {
 
@@ -30,6 +31,7 @@ class StartPage extends Component {
         return (
             <div>
                 <Switch>
+                    <Route path="/login" component={LoginPage}/>
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage} />
                     <Route path="/preview" component={PreviewPage} />

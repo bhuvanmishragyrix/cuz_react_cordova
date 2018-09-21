@@ -12,13 +12,17 @@ const threeElementTabBar = (props) => {
 
     return (
         <div style={{ height: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + 10}px` }} className={`${ThreeElementTabBarStyles.navBar} w-100`}>
-            <i style={{ fontSize: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR}px` }} className={`${ThreeElementTabBarStyles.tabBarIconColor} ${ThreeElementTabBarStyles.hamburgerMenu} fa fa-bars`} aria-hidden="true"></i>
+            {props.hideMenuIcon ? "" : (
+                <i style={{ fontSize: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR}px` }} className={`${ThreeElementTabBarStyles.tabBarIconColor} ${ThreeElementTabBarStyles.hamburgerMenu} fa fa-bars`} aria-hidden="true"></i>
+            )}
+
             <img src={logo} style={{ height: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR}px` }} className={ThreeElementTabBarStyles.logo} />
             {props.hideShareIcon ? (
                 ""
             ) : (
                     <i style={{ fontSize: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR}px` }} className={`${ThreeElementTabBarStyles.tabBarIconColor} ${ThreeElementTabBarStyles.shareMenu} fa fa-share-alt`} aria-hidden="true"></i>
-                )}
+                )
+            }
         </div>
     );
 

@@ -17,7 +17,8 @@ class Landing extends Component {
     }
 
     redirectToParentForThreeElementTabBarScreens = () => {
-        this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
+        // this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
+        this.props.history.replace('/login');
     };
 
     render() {

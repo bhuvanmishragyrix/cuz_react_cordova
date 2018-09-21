@@ -448,7 +448,7 @@ class VisualComposerColorCustomiser extends Component {
         this.storePartNameArrayAndLeftRightCarouselDataInStore();
         this.onDoneClick();
 
-        this.props.history.push('payments');
+        this.props.history.push('/payments');
     }
 
     render() {

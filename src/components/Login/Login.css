@@ -7,3 +7,14 @@
     font-family: 'Anton';
     font-size: 4vw;
 }
+
+.lineDiv {
+    background-color: gray;
+    height: 2px;
+    width: 30vw;
+}
+
+.newToCuzText{
+    font-size: 4vw;
+    font-family: 'Anton';
+}

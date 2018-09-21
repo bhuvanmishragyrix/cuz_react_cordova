@@ -445,6 +445,9 @@ class VisualComposerColorCustomiser extends Component {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
 
+        this.storePartNameArrayAndLeftRightCarouselDataInStore();
+        this.onDoneClick();
+
         this.props.history.push('payments');
     }
 

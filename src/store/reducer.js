@@ -10,10 +10,15 @@ const initialState = {
     selectedGraphic: null,
     selectedGraphicPrice: null,
     customisedPartsImages: null,
-    selectedGraphicDescription: null
+    selectedGraphicDescription: null,
+    visualComposerPartNamesArray: null,
+    visualComposerLeftRightCarouselData: null
 };
 
 const reducer = (state = initialState, action) => {
+
+    console.log("Action", action);
+
     switch (action.type) {
         case actionTypes.STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA:
 
@@ -67,6 +72,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedGraphicDescription: action.payload.selectedGraphicDescription
+            }
+
+        case actionTypes.CLEAR_CUSTOMISED_IMAGES_AND_PARTS_ARRAY_AND_CAROUSEL_DATA_AND_PRICE:
+
+            return {
+                ...state,
+                selectedGraphicPrice: null,
+                customisedPartsImages: null,
+                visualComposerPartNamesArray: null,
+                visualComposerLeftRightCarouselData: null
             }
     }
     return state;

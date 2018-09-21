@@ -57,6 +57,21 @@ class VisualComposerColorCustomiser extends Component {
         this.imageNotPresentDiv = parser.parseFromString(`<div id="${styles.imageNotPresentDiv}" class="px-3 d-flex align-items-center justify-content-center">
         <p class="text-center">The selected side of the image is not available.</p>
         </div>`, "text/html").getElementsByTagName('div')[0];
+
+        document.addEventListener('backbutton', this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener, false);
+    }
+
+    clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener = () => {
+
+        this.props.clearCustomisedImagesPartsArrayCarouselDataAndPriceFromStore();
+        // window.CacheClear(() => {
+
+        // }, () => {
+        //     console.log("Cache Cleared Unsuccessful");
+        // });
+
+        window.history.back();
+        document.removeEventListener("backbutton", this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener);
     }
 
 
@@ -257,10 +272,9 @@ class VisualComposerColorCustomiser extends Component {
     componentDidMount() {
 
         if (this.props.customisedPartsImages) {
+
             this.partFilenamesAndImagesArray = this.props.customisedPartsImages.slice();
             this.addCustomisationLogicToAllImages();
-
-            console.log(this.props.visualComposerPartNamesArray, this.props.visualComposerLeftRightCarouselData, this.props.customisedPartsImages);
 
             this.partNamesArray = this.props.visualComposerPartNamesArray;
 
@@ -276,10 +290,11 @@ class VisualComposerColorCustomiser extends Component {
                 })
             });
 
-            console.log("Reached");
-
         }
         else {
+
+            console.log("Second");
+
             this.fetchAllPartAndWholeBikeSVGImageNames();
             this.fetchAllPartSVGImages();
         }
@@ -438,6 +453,8 @@ class VisualComposerColorCustomiser extends Component {
         this.storePartNameArrayAndLeftRightCarouselDataInStore();
         this.onDoneClick();
 
+        document.removeEventListener("backbutton", this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener);
+
         this.props.history.push('/preview');
     };
 
@@ -447,6 +464,8 @@ class VisualComposerColorCustomiser extends Component {
 
         this.storePartNameArrayAndLeftRightCarouselDataInStore();
         this.onDoneClick();
+
+        document.removeEventListener("backbutton", this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener);
 
         this.props.history.push('/payments');
     }
@@ -517,6 +536,11 @@ const mapDispatchToProps = (dispatch) => {
                     visualComposerPartNamesArray: partNamesArray,
                     visualComposerLeftRightCarouselData: carouselData
                 }
+            })
+        },
+        clearCustomisedImagesPartsArrayCarouselDataAndPriceFromStore: () => {
+            dispatch({
+                type: actionTypes.CLEAR_CUSTOMISED_IMAGES_AND_PARTS_ARRAY_AND_CAROUSEL_DATA_AND_PRICE
             })
         }
     };

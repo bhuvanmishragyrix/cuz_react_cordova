@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 const signUp = (props) => {
 
     let navigateToLogin = () => {
-        props.history.push('/login');
+        props.history.replace('/login');
     };
 
     return (

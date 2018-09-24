@@ -9,6 +9,10 @@ const login = (props) => {
         props.history.replace('/signUp');
     };
 
+    let navigateToCategorySelectPage = () => {
+        props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
+    };
+
     return (
         <div className={`mx-3 mb-2`}>
             <p className={`${styles.loginHeader} text-center`}>Login</p>
@@ -17,7 +21,7 @@ const login = (props) => {
             <label className={`${styles.labelText} mt-2`}>Password</label>
             <input className={`form-control`} />
             <div className={`text-center mt-4`}>
-                <button className={`btn btn-primary form-control`}>Login</button>
+                <button onClick={navigateToCategorySelectPage} className={`btn btn-primary form-control`}>Login</button>
             </div>
             <div className={`d-flex justify-content-between align-items-center mt-4`}>
                 <div className={`d-inline ${styles.lineDiv}`}></div>

@@ -61,14 +61,14 @@ class CategorySelect extends Component {
 
         if (newProps[`productsAndImagesData`] && !this.props[`productsAndImagesData`]) {
             this.categorySelected(0);
-        }
 
-        this.setState({
-            categoryCarouselData: this.categoryCarouselData,
-            newProductCarouselData: this.newProductCarouselData,
-            isContinueButtonDisabled: false,
-            onContinueClick: this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage
-        });
+            this.setState({
+                categoryCarouselData: this.categoryCarouselData,
+                newProductCarouselData: this.newProductCarouselData,
+                isContinueButtonDisabled: false,
+                onContinueClick: this.storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage
+            });
+        }
     }
 
     setMarginOnNewProduct = (height) => {

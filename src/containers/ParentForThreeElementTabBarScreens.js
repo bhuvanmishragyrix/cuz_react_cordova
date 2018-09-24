@@ -9,7 +9,7 @@ import graphicStyleSelectPage from  './GraphicStyleSelectionPage';
 const parentForThreeElementTabBarScreens = () => {
     return (
         <div>
-            <ThreeElementTabBar />
+            <ThreeElementTabBar hideMenuIcon={true} hideShareIcon={true}/>
             <Switch>
                 <Route path="/parentForThreeElementTabBarScreens/categorySelectPage" component={CategorySelectPage} />
                 <Route path="/parentForThreeElementTabBarScreens/brandYearModalSelectPage" component={BrandYearModelSelectionPage}/>

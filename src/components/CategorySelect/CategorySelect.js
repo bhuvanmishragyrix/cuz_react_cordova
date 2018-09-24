@@ -94,7 +94,7 @@ class CategorySelect extends Component {
 
     render() {
         return (
-            <div style={this.state.topMarginCategorySelect}>
+            <div style={this.state.topMarginCategorySelect} className={`mb-2`}>
                 <p className={CategorySelectStyles.text}>SELECT A CATEGORY</p>
                 <div className={CategorySelectStyles.borderAroundCarousel}>
                     <CategoryCarouselComponent categorySelected={this.categorySelected} categoryCarouselData={this.state.categoryCarouselData} />
@@ -106,7 +106,7 @@ class CategorySelect extends Component {
                 <div style={this.state.setMarginBottom} className={`${CategorySelectStyles.borderAroundCarousel}`}>
                     <NewProductCarouselComponent newProductCarouselData={this.state.newProductCarouselData} />
                 </div>
-                <BottomNavigation setHeightOfBottomNavigation={this.setMarginOnNewProduct} />
+                {/* <BottomNavigation setHeightOfBottomNavigation={this.setMarginOnNewProduct} /> */}
             </div>
         );
     }

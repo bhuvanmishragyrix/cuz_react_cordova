@@ -33,7 +33,7 @@ class YourChoiceDisplay extends Component {
     render() {
         return (
             <div>
-                <p className={`${styles.text}`}>YOUR CHOICE IS</p>
+                <p className={`${styles.text}`}>YOUR CHOICE IS :</p>
                 <div className={`container`}>
                     <div className={`row`}>
                         <div className={`col-6`}>

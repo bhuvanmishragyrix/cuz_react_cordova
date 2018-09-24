@@ -12,6 +12,7 @@ import { STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA } from '../store/actionType
 import PreviewPage from './PreviewPage';
 import PaymentsPage from './PaymentsPage';
 import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 
 class StartPage extends Component {
 
@@ -32,6 +33,7 @@ class StartPage extends Component {
             <div>
                 <Switch>
                     <Route path="/login" component={LoginPage}/>
+                    <Route path="/signUp" component={SignUpPage}/>
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage} />
                     <Route path="/preview" component={PreviewPage} />

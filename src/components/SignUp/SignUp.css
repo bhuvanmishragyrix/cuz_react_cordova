@@ -1,0 +1,24 @@
+.signUpHeader {
+    font-family: 'Anton';
+    font-size: 6vw;
+}
+
+.labelText {
+    font-family: 'Anton';
+    font-size: 4vw;
+}
+
+.lineDiv {
+    background-color: gray;
+    height: 2px;
+    width: 30vw;
+}
+
+.alreadyAMemberText{
+    font-size: 4vw;
+    font-family: 'Anton';
+}
+
+.login {
+    border: 1px solid black;
+}

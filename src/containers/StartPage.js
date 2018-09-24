@@ -23,6 +23,15 @@ class StartPage extends Component {
     componentDidMount() {
         getFromAPI(LINK_TO_FETCH_JSON_DATA_FROM)
             .then((data) => {
+                let stringifiedData = data.data.toString();
+
+                try {
+                    JSON.parse(stringifiedData);
+                }
+                catch (err) {
+                    console.log("Error parsing the JSON Data returned from server.", err);
+                }
+
                 this.props.storeProductsAndImagesJSONData(data.data);
             })
             .catch((err) => { console.log("Error", err) });
@@ -32,8 +41,8 @@ class StartPage extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path="/login" component={LoginPage}/>
-                    <Route path="/signUp" component={SignUpPage}/>
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/signUp" component={SignUpPage} />
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage} />
                     <Route path="/preview" component={PreviewPage} />

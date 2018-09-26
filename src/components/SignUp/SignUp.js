@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './SignUp.css';
 import { withRouter } from 'react-router-dom';
 
 import * as AWSUserManagement from '../../util/AWSUserManagement';
 
-const signUp = (props) => {
+class SignUp extends Component {
 
-    let email, password;
+    email;
+    password;
+    successContent = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
 
-    let onEmailChange = (evt) => {
-        email = evt.target.value;
+    onEmailChange = (evt) => {
+        this.email = evt.target.value;
     };
 
-    let onPasswordChange = (evt) => {
-        password = evt.target.value;
+    onPasswordChange = (evt) => {
+        this.password = evt.target.value;
     };
 
-    let signUp = () => {
+    signUp = () => {
 
 
         // AWS.config.region = 'us-east-2';
@@ -48,37 +50,58 @@ const signUp = (props) => {
         //     });
 
 
-        AWSUserManagement.signUp(email, password)
+        AWSUserManagement.signUp(this.email, this.password)
             .then((result) => {
                 console.log("Success SignUp", result);
+                this.setState({
+                    content: this.successContent
+                });
             })
             .catch((err) => {
                 console.log("Error SignUp", err.message);
             });
     }
 
-    let navigateToLogin = () => {
-        props.history.replace('/login');
+    navigateToLogin = () => {
+        this.props.history.replace('/login');
     };
 
-    return (
-        <div className={`mx-3 mb-2`} >
+    defaultContent = (
+        <div>
             <p className={`${styles.signUpHeader} text-center`}>SignUp</p>
             <label className={`${styles.labelText}`}>Email Id</label>
-            <input onChange={onEmailChange} className={`form-control`} />
+            <input onChange={this.onEmailChange} className={`form-control`} />
             <label className={`${styles.labelText} mt-2`}>Password</label>
-            <input onChange={onPasswordChange} type={`password`} className={`form-control`} />
+            <input onChange={this.onPasswordChange} type={`password`} className={`form-control`} />
             <div className={`text-center mt-4`}>
-                <button className={`btn btn-primary form-control`} onClick={signUp}>SignUp</button>
+                <button className={`btn btn-primary form-control`} onClick={this.signUp}>SignUp</button>
             </div>
             <div className={`d-flex justify-content-between align-items-center mt-4`}>
                 <div className={`d-inline ${styles.lineDiv}`}></div>
                 <p className={`d-inline ${styles.alreadyAMemberText} m-0 p-0`}>Already a member?</p>
                 <div className={`d-inline ${styles.lineDiv}`}></div>
             </div>
-            <button onClick={navigateToLogin} className={`btn btn-light form-control mt-4 ${styles.login}`}>Login</button>
-        </div >
+        </div>
     );
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            content: this.defaultContent
+        };
+    }
+
+    render() {
+        return (
+            <div className={`mx-3 mb-2`} >
+                {this.state.content}
+                <button onClick={this.navigateToLogin} className={`btn btn-light form-control mt-4 ${styles.login}`}>Login</button>
+            </div >
+        );
+
+    }
+
 };
 
-export default withRouter(signUp);
+export default withRouter(SignUp);

@@ -22,3 +22,8 @@
 .login {
     border: 1px solid black;
 }
+
+.signUpSuccessText {
+    font-size: 4vw;
+    font-family: 'Anton';
+}

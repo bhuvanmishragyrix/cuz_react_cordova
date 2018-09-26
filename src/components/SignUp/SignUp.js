@@ -4,12 +4,14 @@ import { withRouter } from 'react-router-dom';
 
 import * as AWSUserManagement from '../../util/AWSUserManagement';
 import * as util from '../../util/Util';
+import ErrorDisplay from './ErrorDisplay/ErrorDisplay';
 
 class SignUp extends Component {
 
     email;
     password;
     successText = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
+    signUpHeader = (<p className={`${styles.signUpHeader} text-center`}>SignUp</p>);
 
     onEmailChange = (evt) => {
         this.email = evt.target.value;
@@ -24,9 +26,10 @@ class SignUp extends Component {
         this.setState({
             content: (
                 <div>
+                    {this.signUpHeader}
                     {this.inputs}
                     <div className={`text-center mt-3`}>
-                    {util.circularProgress()}
+                        {util.circularProgress()}
                     </div>
                 </div>
             )
@@ -75,6 +78,23 @@ class SignUp extends Component {
                 });
             })
             .catch((err) => {
+
+                let errorText = "An error has occured. Please try again.";
+
+                if (err.message === "An account with the given email already exists.") {
+                    errorText = err.message;
+                }
+
+                this.setState({
+                    content: (
+                        <div>
+                            <ErrorDisplay text={errorText}/>
+                            {this.inputs}
+                            {this.signUpButtonAndAlreadyAMemberText}
+                            {this.loginButton}
+                        </div>
+                    )
+                });
                 console.log("Error SignUp", err.message);
             });
     }
@@ -85,7 +105,6 @@ class SignUp extends Component {
 
     inputs = (
         <div>
-            <p className={`${styles.signUpHeader} text-center`}>SignUp</p>
             <label className={`${styles.labelText}`}>Email Id</label>
             <input onChange={this.onEmailChange} className={`form-control`} />
             <label className={`${styles.labelText} mt-2`}>Password</label>
@@ -114,6 +133,7 @@ class SignUp extends Component {
         this.state = {
             content: (
                 <div>
+                    {this.signUpHeader}
                     {this.inputs}
                     {this.signUpButtonAndAlreadyAMemberText}
                     {this.loginButton}

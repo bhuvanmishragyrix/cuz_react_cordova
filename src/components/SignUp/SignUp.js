@@ -29,64 +29,24 @@ const signUp = (props) => {
         // });
 
 
-        AWSUserManagement.authenticateUser('bhuvanmishra13@gmail.com', '123456')
+        // AWSUserManagement.authenticateUser('bhuvanmishra13@gmail.com', '123456')
+        //     .then((result) => {
+        //         console.log("Success Auth", result);
+        //     })
+        //     .catch((err) => {
+        //         console.log("Error Auth", err.message)
+        //     });
+
+
+        AWSUserManagement.signUp('test@test.com', '123456')
             .then((result) => {
-                console.log("Success Auth", result);
+                console.log("Success SignUp", result);
             })
             .catch((err) => {
-                console.log("Error Auth", err)
+                console.log("Error SignUp", err.message);
             });
 
 
-        // var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({ apiVersion: '2016-04-18' });
-
-        // var params = {
-        //     ClientId: '6aba19vfkda9b9da8olmcdsq0j', /* required */
-        //     Password: '123456', /* required */
-        //     Username: 'bhuvanmishra13@gmail.com', /* required */
-        // };
-
-        // cognitoidentityserviceprovider.signUp(params, function (err, data) {
-        //     if (err) console.log(err, err.stack); // an error occurred
-        //     else console.log(data);           // successful response
-        // });
-
-
-
-
-        // let AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
-        // var poolData = {
-        //     UserPoolId: 'us-east-2_146m7SvBa',
-        //     ClientId: '6aba19vfkda9b9da8olmcdsq0j'
-        // };
-        // var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-
-
-        // userPool.signUp('bhuvanmishra13@gmail.com', '123456', [], null, 
-        //     function (err, result) {
-
-        //         console.log("Success", err, result)
-
-        //         // var accessToken = result.getAccessToken().getJwtToken();
-
-        //         /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
-        //         // var idToken = result.idToken.jwtToken;
-        //     },
-
-        //     function (err, result) {
-        //         console.log("Failure", err, result);
-        //     }
-        // );
-
-        // function (err, result) {
-        //     if (err) {
-        //         console.log("Error", err);
-        //         return;
-        //     }
-        //     cognitoUser = result.user;
-        //     console.log('user name is ' + cognitoUser.getUsername());
-        // }
 
 
 
@@ -111,55 +71,6 @@ const signUp = (props) => {
         //         return;
         //     }
         //     console.log('call result: ' + result);
-        // });
-
-
-
-
-
-
-
-
-
-
-        let AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
-
-
-
-
-
-
-
-
-
-
-
-        // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        //     IdentityPoolId: 'us-east-2:d77b718b-4c74-4938-a7ad-8c91d0dbcb41',
-        // });
-
-        // AWS.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'})
-
-
-        // var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({ apiVersion: '2016-04-18' });
-
-        // cognitoidentityserviceprovider.adminInitiateAuth({
-        //     AuthFlow: 'ADMIN_NO_SRP_AUTH',
-        //     ClientId: '6aba19vfkda9b9da8olmcdsq0j',
-        //     UserPoolId: 'us-east-2_146m7SvBa',
-        //     AuthParameters: {
-        //         USERNAME: 'bhuvanmishra13@gmail.com',
-        //         PASSWORD: '123456',
-        //     },
-        // }, function (err, data) {
-        //     if (err) {
-        //         console.log("Error", err)
-
-        //         return
-        //     }
-
-        //     console.log("Success", data);
         // });
 
 

@@ -36,3 +36,31 @@ export function authenticateUser(username, password) {
 
     return promiseForAuthenticate;
 }
+
+export function signUp(email, password) {
+    const promiseForSignUp = new Promise((resolve, reject) => {
+
+        var poolData = {
+            UserPoolId: appConstants.USER_POOL_ID,
+            ClientId: appConstants.APP_CLIENT_ID
+        };
+        var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+        userPool.signUp(email, password, [], null,
+            function (err, result) {
+
+                if (err) {
+                    console.log("Error", err);
+                    reject(err);
+                }
+                else {
+                    console.log("Success", result);
+                    resolve(result);
+                }
+            }
+        );
+    });
+
+    return promiseForSignUp;
+
+}

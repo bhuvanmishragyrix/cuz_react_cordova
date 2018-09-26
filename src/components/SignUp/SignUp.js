@@ -29,7 +29,7 @@ const signUp = (props) => {
         // });
 
 
-        AWSUserManagement.AuthenticateUser('bhuvanmishra13@gmail.com', '123456')
+        AWSUserManagement.authenticateUser('bhuvanmishra13@gmail.com', '123456')
             .then((result) => {
                 console.log("Success Auth", result);
             })

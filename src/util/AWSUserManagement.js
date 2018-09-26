@@ -1,7 +1,7 @@
 let AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 import * as appConstants from '../constants/AppConstants';
 
-export function AuthenticateUser(username, password) {
+export function authenticateUser(username, password) {
     const promiseForAuthenticate = new Promise((resolve, reject) => {
 
         var authenticationData = {

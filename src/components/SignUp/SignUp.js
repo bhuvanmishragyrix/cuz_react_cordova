@@ -6,6 +6,16 @@ import * as AWSUserManagement from '../../util/AWSUserManagement';
 
 const signUp = (props) => {
 
+    let email, password;
+
+    let onEmailChange = (evt) => {
+        email = evt.target.value;
+    };
+
+    let onPasswordChange = (evt) => {
+        password = evt.target.value;
+    };
+
     let signUp = () => {
 
 
@@ -38,48 +48,16 @@ const signUp = (props) => {
         //     });
 
 
-        AWSUserManagement.signUp('test@test.com', '123456')
+        AWSUserManagement.signUp(email, password)
             .then((result) => {
                 console.log("Success SignUp", result);
             })
             .catch((err) => {
                 console.log("Error SignUp", err.message);
             });
-
-
-
-
-
-
-        // let AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
-        // var poolData = {
-        //     UserPoolId: 'us-east-2_146m7SvBa', // Your user pool id here
-        //     ClientId: '6aba19vfkda9b9da8olmcdsq0j' // Your client id here
-        // };
-
-        // var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-        // var userData = {
-        //     Username: 'bhuvanmishra13@gmail.com',
-        //     Pool: userPool
-        // };
-
-        // var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-        // cognitoUser.confirmRegistration('588787', true, function (err, result) {
-        //     if (err) {
-        //         console.log(err.message || JSON.stringify(err));
-        //         return;
-        //     }
-        //     console.log('call result: ' + result);
-        // });
-
-
-
     }
 
     let navigateToLogin = () => {
-
-        signUp();
         props.history.replace('/login');
     };
 
@@ -87,11 +65,11 @@ const signUp = (props) => {
         <div className={`mx-3 mb-2`} >
             <p className={`${styles.signUpHeader} text-center`}>SignUp</p>
             <label className={`${styles.labelText}`}>Email Id</label>
-            <input className={`form-control`} />
+            <input onChange={onEmailChange} className={`form-control`} />
             <label className={`${styles.labelText} mt-2`}>Password</label>
-            <input className={`form-control`} />
+            <input onChange={onPasswordChange} type={`password`} className={`form-control`} />
             <div className={`text-center mt-4`}>
-                <button className={`btn btn-primary form-control`}>SignUp</button>
+                <button className={`btn btn-primary form-control`} onClick={signUp}>SignUp</button>
             </div>
             <div className={`d-flex justify-content-between align-items-center mt-4`}>
                 <div className={`d-inline ${styles.lineDiv}`}></div>

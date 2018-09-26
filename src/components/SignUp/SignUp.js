@@ -82,6 +82,9 @@ class SignUp extends Component {
                     if (err.message === "An account with the given email already exists.") {
                         errorText = err.message;
                     }
+                    else if (err.message === "Username should be an email.") {
+                        errorText = "Please enter a valid email."
+                    }
 
                     this.setState({
                         content: (

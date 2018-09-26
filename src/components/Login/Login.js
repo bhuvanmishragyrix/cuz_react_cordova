@@ -4,8 +4,8 @@ import styles from './Login.css';
 import { withRouter } from 'react-router-dom';
 
 import * as AWSUserManagement from '../../util/AWSUserManagement';
-
 import * as util from '../../util/Util';
+import ErrorDisplay from './ErrorDisplay/ErrorDisplay';
 
 class Login extends Component {
 
@@ -30,6 +30,8 @@ class Login extends Component {
 
     login = () => {
 
+        let errorText = "An error occured. Please try again.";
+
         this.setState({
             content: (
                 <div>
@@ -42,23 +44,43 @@ class Login extends Component {
             )
         });
 
-        AWSUserManagement.authenticateUser(this.email, this.password)
-            .then((result) => {
-                this.navigateToCategorySelectPage();
-                console.log("Success Auth", result);
-            })
-            .catch((err) => {
-                this.state = {
-                    content: (
-                        <div>
-                            {this.loginHeader}
-                            {this.inputs}
-                            {this.loginButtonNewToCuzSignUpButton}
-                        </div>
-                    )
-                };
-                console.log("Error Auth", err.message)
+        if (!this.email || !this.password) {
+            errorText = "Email or Password cannot be empty.";
+            this.setState({
+                content: (
+                    <div>
+                        <ErrorDisplay text={errorText} />
+                        {this.inputs}
+                        {this.loginButtonNewToCuzSignUpButton}
+                    </div>
+                )
             });
+        }
+        else {
+            AWSUserManagement.authenticateUser(this.email, this.password)
+                .then((result) => {
+                    this.navigateToCategorySelectPage();
+                    console.log("Success Auth", result);
+                })
+                .catch((err) => {
+                    if (err.message === "Incorrect username or password.") {
+                        errorText = err.message;
+                    }
+                    else if (err.message === "User does not exist.") {
+                        errorText = "Incorrect username or password.";
+                    }
+                    this.setState({
+                        content: (
+                            <div>
+                                <ErrorDisplay text={errorText} />
+                                {this.inputs}
+                                {this.loginButtonNewToCuzSignUpButton}
+                            </div>
+                        )
+                    });
+                    console.log("Error Auth", err.message)
+                });
+        }
     }
 
     inputs = (

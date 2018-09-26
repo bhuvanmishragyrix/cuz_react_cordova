@@ -3,12 +3,13 @@ import styles from './SignUp.css';
 import { withRouter } from 'react-router-dom';
 
 import * as AWSUserManagement from '../../util/AWSUserManagement';
+import * as util from '../../util/Util';
 
 class SignUp extends Component {
 
     email;
     password;
-    successContent = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
+    successText = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
 
     onEmailChange = (evt) => {
         this.email = evt.target.value;
@@ -19,6 +20,17 @@ class SignUp extends Component {
     };
 
     signUp = () => {
+
+        this.setState({
+            content: (
+                <div>
+                    {this.inputs}
+                    <div className={`text-center mt-3`}>
+                    {util.circularProgress()}
+                    </div>
+                </div>
+            )
+        });
 
 
         // AWS.config.region = 'us-east-2';
@@ -54,7 +66,12 @@ class SignUp extends Component {
             .then((result) => {
                 console.log("Success SignUp", result);
                 this.setState({
-                    content: this.successContent
+                    content: (
+                        <div>
+                            {this.successText}
+                            {this.loginButton}
+                        </div>
+                    )
                 });
             })
             .catch((err) => {
@@ -66,13 +83,18 @@ class SignUp extends Component {
         this.props.history.replace('/login');
     };
 
-    defaultContent = (
+    inputs = (
         <div>
             <p className={`${styles.signUpHeader} text-center`}>SignUp</p>
             <label className={`${styles.labelText}`}>Email Id</label>
             <input onChange={this.onEmailChange} className={`form-control`} />
             <label className={`${styles.labelText} mt-2`}>Password</label>
             <input onChange={this.onPasswordChange} type={`password`} className={`form-control`} />
+        </div>
+    );
+
+    signUpButtonAndAlreadyAMemberText = (
+        <div>
             <div className={`text-center mt-4`}>
                 <button className={`btn btn-primary form-control`} onClick={this.signUp}>SignUp</button>
             </div>
@@ -84,11 +106,19 @@ class SignUp extends Component {
         </div>
     );
 
+    loginButton = (<button onClick={this.navigateToLogin} className={`btn btn-light form-control mt-4 ${styles.login}`}>Login</button>);
+
     constructor(props) {
         super(props);
 
         this.state = {
-            content: this.defaultContent
+            content: (
+                <div>
+                    {this.inputs}
+                    {this.signUpButtonAndAlreadyAMemberText}
+                    {this.loginButton}
+                </div>
+            )
         };
     }
 
@@ -96,7 +126,6 @@ class SignUp extends Component {
         return (
             <div className={`mx-3 mb-2`} >
                 {this.state.content}
-                <button onClick={this.navigateToLogin} className={`btn btn-light form-control mt-4 ${styles.login}`}>Login</button>
             </div >
         );
 

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import * as AWSUserManagement from '../../util/AWSUserManagement';
 import * as util from '../../util/Util';
 import ErrorDisplay from './ErrorDisplay/ErrorDisplay';
+import { isNull } from 'util';
 
 class SignUp extends Component {
 
@@ -23,6 +24,8 @@ class SignUp extends Component {
 
     signUp = () => {
 
+        let errorText = "An error has occured. Please try again.";
+
         this.setState({
             content: (
                 <div>
@@ -34,6 +37,65 @@ class SignUp extends Component {
                 </div>
             )
         });
+
+        if (!this.email || !this.password) {
+            errorText = "Email or Password cannot be empty.";
+            this.setState({
+                content: (
+                    <div>
+                        <ErrorDisplay text={errorText} />
+                        {this.inputs}
+                        {this.signUpButtonAndAlreadyAMemberText}
+                        {this.loginButton}
+                    </div>
+                )
+            });
+        }
+        else if (this.password.length < 6) {
+            errorText = "The length of the password must be atleast 6 characters.";
+            this.setState({
+                content: (
+                    <div>
+                        <ErrorDisplay text={errorText} />
+                        {this.inputs}
+                        {this.signUpButtonAndAlreadyAMemberText}
+                        {this.loginButton}
+                    </div>
+                )
+            });
+        }
+        else {
+            AWSUserManagement.signUp(this.email, this.password)
+                .then((result) => {
+                    console.log("Success SignUp", result);
+                    this.setState({
+                        content: (
+                            <div>
+                                {this.successText}
+                                {this.loginButton}
+                            </div>
+                        )
+                    });
+                })
+                .catch((err) => {
+
+                    if (err.message === "An account with the given email already exists.") {
+                        errorText = err.message;
+                    }
+
+                    this.setState({
+                        content: (
+                            <div>
+                                <ErrorDisplay text={errorText} />
+                                {this.inputs}
+                                {this.signUpButtonAndAlreadyAMemberText}
+                                {this.loginButton}
+                            </div>
+                        )
+                    });
+                    console.log("Error SignUp", err.message);
+                });
+        }
 
 
         // AWS.config.region = 'us-east-2';
@@ -65,38 +127,7 @@ class SignUp extends Component {
         //     });
 
 
-        AWSUserManagement.signUp(this.email, this.password)
-            .then((result) => {
-                console.log("Success SignUp", result);
-                this.setState({
-                    content: (
-                        <div>
-                            {this.successText}
-                            {this.loginButton}
-                        </div>
-                    )
-                });
-            })
-            .catch((err) => {
 
-                let errorText = "An error has occured. Please try again.";
-
-                if (err.message === "An account with the given email already exists.") {
-                    errorText = err.message;
-                }
-
-                this.setState({
-                    content: (
-                        <div>
-                            <ErrorDisplay text={errorText}/>
-                            {this.inputs}
-                            {this.signUpButtonAndAlreadyAMemberText}
-                            {this.loginButton}
-                        </div>
-                    )
-                });
-                console.log("Error SignUp", err.message);
-            });
     }
 
     navigateToLogin = () => {

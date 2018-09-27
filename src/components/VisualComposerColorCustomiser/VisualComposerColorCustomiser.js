@@ -222,10 +222,10 @@ class VisualComposerColorCustomiser extends Component {
         let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.leftImageName) {
-                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken,el.leftImageName))
+                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken, `${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.leftImageName}`))
             }
             if (el.rightImageName) {
-                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken,el.rightImageName))
+                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken, `${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.rightImageName}`))
             }
         })
 

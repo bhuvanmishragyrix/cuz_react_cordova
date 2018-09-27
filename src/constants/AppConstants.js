@@ -6,7 +6,7 @@ export const TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES = 30;
 export const LINK_TO_FETCH_JSON_DATA_FROM = "https://s3-ap-southeast-2.amazonaws.com/cuz-gyrix/CuzProductsAndImagesData.json";
 export const LINK_TO_ROOT_PATH_OF_IMAGES = "https://s3-ap-southeast-2.amazonaws.com/cuz-gyrix/images/";
 
-export const USER_POOL_ID = 'us-east-2_146m7SvBa';
-export const APP_CLIENT_ID = '6aba19vfkda9b9da8olmcdsq0j';
-export const IDENTITY_POOL_ID = 'us-east-2:d77b718b-4c74-4938-a7ad-8c91d0dbcb41';
-export const REGION = 'us-east-2';
+export const USER_POOL_ID = 'eu-west-2_j76zp7Qp5';
+export const APP_CLIENT_ID = '2bnk6t71916t1jn93umtbg9344';
+export const IDENTITY_POOL_ID = 'eu-west-2:4736e324-0213-4f61-b247-3c197f4e1be9';
+export const REGION = 'eu-west-2';

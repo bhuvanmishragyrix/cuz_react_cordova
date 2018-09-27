@@ -6,9 +6,6 @@ import { withRouter } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import ParentForThreeElementTabBarScreens from './ParentForThreeElementTabBarScreens';
 import VisualComposerColorCustomiserPage from './VisualComposerColorCustomiserPage';
-import { getFromAPI } from '../util/Util';
-import { LINK_TO_FETCH_JSON_DATA_FROM } from '../constants/AppConstants';
-import { STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA } from '../store/actionTypes';
 import PreviewPage from './PreviewPage';
 import PaymentsPage from './PaymentsPage';
 import LoginPage from './LoginPage';
@@ -18,23 +15,6 @@ class StartPage extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        getFromAPI(LINK_TO_FETCH_JSON_DATA_FROM)
-            .then((data) => {
-                let stringifiedData = data.data.toString();
-
-                try {
-                    JSON.parse(stringifiedData);
-                }
-                catch (err) {
-                    console.log("Error parsing the JSON Data returned from server.", err);
-                }
-
-                this.props.storeProductsAndImagesJSONData(data.data);
-            })
-            .catch((err) => { console.log("Error", err) });
     }
 
     render() {
@@ -54,12 +34,4 @@ class StartPage extends Component {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        storeProductsAndImagesJSONData: (data) => {
-            dispatch({ type: STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA, payload: data })
-        }
-    };
-};
-
-export default withRouter(connect(null, mapDispatchToProps)(StartPage));
+export default withRouter(StartPage);

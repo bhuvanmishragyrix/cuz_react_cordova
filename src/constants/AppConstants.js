@@ -3,10 +3,10 @@ export const HEIGHT_OF_THREE_ELEMENT_TAB_BAR = 50;
 export const HEIGHT_OF_BOTTOM_MENU = 50;
 export const TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES = 30;
 
-export const LINK_TO_FETCH_JSON_DATA_FROM = "https://s3-ap-southeast-2.amazonaws.com/cuz-gyrix/CuzProductsAndImagesData.json";
-// export const LINK_TO_ROOT_PATH_OF_IMAGES = "https://s3-ap-southeast-2.amazonaws.com/cuz-gyrix/images/";
+export const FILE_NAME_OF_APP_JSON_FILE = "CuzProductsAndImagesData.json";
+export const LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES = "https://s3.eu-west-2.amazonaws.com/cuz-cordova/NonEditableAppDisplayOnlyImages/";
 
-export const LINK_TO_ROOT_PATH_OF_IMAGES = "images/";
+export const LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES = "images/";
 
 export const USER_POOL_ID = 'eu-west-2_j76zp7Qp5';
 export const APP_CLIENT_ID = '2bnk6t71916t1jn93umtbg9344';

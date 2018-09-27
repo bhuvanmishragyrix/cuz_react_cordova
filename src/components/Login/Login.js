@@ -10,6 +10,10 @@ import ErrorDisplay from './ErrorDisplay/ErrorDisplay';
 import * as actionTypes from '../../store/actionTypes';
 
 import * as AWSServicesManagement from '../../util/AWSServicesManagement';
+import * as AppConstants from '../../constants/AppConstants';
+import base64 from 'base-64';
+import utf8 from 'utf8';
+
 
 class Login extends Component {
 
@@ -64,9 +68,24 @@ class Login extends Component {
             AWSUserManagement.authenticateUser(this.email, this.password)
                 .then((jWTToken) => {
                     this.props.storeUserJWTTokenInStore(jWTToken);
-                    AWSServicesManagement.storeImageInS3(jWTToken);
-                    this.navigateToCategorySelectPage();
-                    console.log("Success Auth", result);
+                    AWSServicesManagement.getJSONFromS3(this.props.userJWTToken, AppConstants.FILE_NAME_OF_APP_JSON_FILE)
+                        .then((data) => {
+                            let bytes;
+                            bytes = base64.decode(new Buffer(data, 'binary').toString('base64'));
+                            let jsonData = utf8.decode(bytes);
+
+                            try {
+                                JSON.parse(jsonData);
+                            }
+                            catch (err) {
+                                console.log("Error parsing the JSON Data returned from server.", err);
+                            }
+
+                            this.navigateToCategorySelectPage();
+
+                            this.props.storeProductsAndImagesJSONData(JSON.parse(jsonData));
+                        })
+                        .catch((err) => { console.log("Error", err) });
                 })
                 .catch((err) => {
                     if (err.message === "Incorrect username or password.") {
@@ -140,6 +159,12 @@ class Login extends Component {
 
 };
 
+const mapstateToProps = (state) => {
+    return {
+        userJWTToken: state.userJWTToken
+    };
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         storeUserJWTTokenInStore: (token) => {
@@ -147,8 +172,11 @@ const mapDispatchToProps = (dispatch) => {
                 type: actionTypes.STORE_USER_JWT_TOKEN,
                 payload: { userJWTToken: token }
             })
+        },
+        storeProductsAndImagesJSONData: (data) => {
+            dispatch({ type: actionTypes.STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA, payload: data })
         }
     };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(mapstateToProps, mapDispatchToProps)(Login));

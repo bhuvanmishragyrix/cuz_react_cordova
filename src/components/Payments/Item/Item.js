@@ -37,7 +37,7 @@ class Item extends Component {
                     <div className={`container`}>
                         <div className={`row my-3`}>
                             <div className={`col-6`}>
-                                <img onLoad={this.imageLoaded} id={styles.forGettingHeightOfImage} className={`w-100`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.props.imageFileName}`} />
+                                <img onLoad={this.imageLoaded} id={styles.forGettingHeightOfImage} className={`w-100`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${this.props.imageFileName}`} />
                             </div>
                             <div className={`col-6`}>
                                 <div style={this.state.rightColumn}>

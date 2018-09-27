@@ -37,7 +37,7 @@ class YourChoiceDisplay extends Component {
                 <div className={`container`}>
                     <div className={`row`}>
                         <div className={`col-6`}>
-                            <img onLoad={this.onImageLoaded} className={`w-100 ${styles.forGettingHeightOfImage}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${this.props.selectedCategoryImageFileName}`} />
+                            <img onLoad={this.onImageLoaded} className={`w-100 ${styles.forGettingHeightOfImage}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${this.props.selectedCategoryImageFileName}`} />
                         </div>
                         <div className={`col-6`}>
                             <div style={this.state.heightOfDiv}>

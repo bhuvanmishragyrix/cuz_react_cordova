@@ -12,7 +12,7 @@ const listOfGraphics = (props) => {
             return (
                 <div onClick={() => {props.onGraphicSelect(index)}} className={`d-flex justify-content-center mb-3`}>
                     <div className={`w-75`}>
-                        <img className={`${styles.imageStyle}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} />
+                        <img className={`${styles.imageStyle}`} src={`${appConstants.LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${el.filename}`} />
                         <p className={`${styles.text} p-0 my-0 mb-0 mt-2`}>{el.graphic}</p>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
+import { LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES } from '../../../constants/AppConstants';
 import styles from './Carousel.css';
 import { circularProgress } from '../../../util/Util';
 
@@ -54,7 +54,7 @@ class Carousel extends Component {
                 return (
                     <div style={this.setWidthAndHeight} className={`carousel-item ${activeClass}`}>
                         <div className={`d-flex justify-content-center align-items-center ${styles.fullHeight}`}>
-                            <img className={`${styles.setImageBackgroundSize} w-25`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                            <img className={`${styles.setImageBackgroundSize} w-25`} src={`${LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${el.filename}`} alt={el.category} />
                         </div>
                     </div>
                 )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
+import { LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES } from '../../../constants/AppConstants';
 import CarouselStyles from './CarouselComponentStyles.css';
 import { circularProgress } from '../../../util/Util';
 
@@ -46,7 +46,7 @@ class CarouselComponent extends Component {
 
                 return (
                     <div className={`carousel-item ${activeClass} ${CarouselStyles.setWidthAndHeight} text-center`}>
-                        <img className={`${CarouselStyles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                        <img className={`${CarouselStyles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${el.filename}`} alt={el.category} />
                         <div className="carousel-caption">
                             <h5 className={CarouselStyles.captionText}>{el.category}</h5>
                         </div>

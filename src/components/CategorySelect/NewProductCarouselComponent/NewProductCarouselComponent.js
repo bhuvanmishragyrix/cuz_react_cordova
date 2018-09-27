@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LINK_TO_ROOT_PATH_OF_IMAGES } from '../../../constants/AppConstants';
+import { LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES } from '../../../constants/AppConstants';
 import CarouselStyles from './NewProductComponentStyles.css';
 import { circularProgress } from '../../../util/Util';
 
@@ -19,7 +19,7 @@ const carouselComponent = (props) => {
 
             return (
                 <div className={`carousel-item ${activeClass} ${CarouselStyles.setWidthAndHeight} d-flex align-items-center justify-content-center`}>
-                    <img className={`${CarouselStyles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`} alt={el.category} />
+                    <img className={`${CarouselStyles.setImageBackgroundSize} w-75`} src={`${LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES}${el.filename}`} alt={el.category} />
                 </div>
             )
         })

@@ -65,7 +65,7 @@ class Preview extends Component {
 
     createPromiseArrayOfImages = () => {
         this.sideFileNamesAndImagesArray.forEach((el) => {
-            let promiseOfImage = util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.filename}`);
+            let promiseOfImage = util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${el.filename}`);
 
             this.arrayOfPromisesOfImagesToFetch.push(promiseOfImage);
 
@@ -107,7 +107,7 @@ class Preview extends Component {
 
     // renderSVG = (filename) => {
 
-    //     util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${filename}`)
+    //     util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${filename}`)
     //         .then((response) => {
     //             screen.orientation.lock('landscape').then(() => {
 

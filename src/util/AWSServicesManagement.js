@@ -30,7 +30,7 @@ export function storeImageInS3(jWTToken) {
 
 export function getSVGImageFromS3(jWTToken, fileName) {
 
-    const promiseForImageStore = new Promise((resolve, reject) => {
+    const promiseForImageGet = new Promise((resolve, reject) => {
 
         setAWSCredentials(jWTToken);
 
@@ -53,6 +53,35 @@ export function getSVGImageFromS3(jWTToken, fileName) {
 
     });
 
-    return promiseForImageStore;
+    return promiseForImageGet;
+
+}
+
+export function getJSONFromS3(jWTToken, fileName) {
+
+    const promiseForJSONGet = new Promise((resolve, reject) => {
+
+        setAWSCredentials(jWTToken);
+
+        var s3 = new AWS.S3();
+
+        var params = {
+            Bucket: appConstants.BUCKET_NAME,
+            Key: fileName
+        };
+        s3.getObject(params, function (err, data) {
+            if (err) {
+                reject(err);
+                console.log(err, err.stack); // an error occurred
+            }
+            else {
+                resolve(data.Body)
+                console.log(data);           // successful response
+            }
+        });
+
+    });
+
+    return promiseForJSONGet;
 
 }

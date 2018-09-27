@@ -10,3 +10,4 @@ export const USER_POOL_ID = 'eu-west-2_j76zp7Qp5';
 export const APP_CLIENT_ID = '2bnk6t71916t1jn93umtbg9344';
 export const IDENTITY_POOL_ID = 'eu-west-2:4736e324-0213-4f61-b247-3c197f4e1be9';
 export const REGION = 'eu-west-2';
+export const BUCKET_NAME = 'cuz-cordova';

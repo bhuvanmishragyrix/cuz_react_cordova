@@ -12,6 +12,7 @@ import * as util from '../../util/Util';
 import BottomControls from './BottomControls/BottomControls';
 import LeftRightCarousel from './LeftRightCarousel/LeftRightCarousel';
 import * as actionTypes from '../../store/actionTypes';
+import * as AWSServicesManagement from '../../util/AWSServicesManagement';
 
 
 class VisualComposerColorCustomiser extends Component {
@@ -221,10 +222,10 @@ class VisualComposerColorCustomiser extends Component {
         let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.leftImageName) {
-                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.leftImageName}`))
+                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken,el.leftImageName))
             }
             if (el.rightImageName) {
-                arrayOfPartImagePromises.push(util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_IMAGES}${el.rightImageName}`))
+                arrayOfPartImagePromises.push(AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken,el.rightImageName))
             }
         })
 
@@ -238,13 +239,13 @@ class VisualComposerColorCustomiser extends Component {
                 this.partFilenamesAndImagesArray.forEach((el, index) => {
                     let bytes;
                     if (el.leftImageName) {
-                        bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                        bytes = base64.decode(new Buffer(response[responseCounter], 'binary').toString('base64'));
                         el.leftImageAsString = utf8.decode(bytes);
                         responseCounter++;
                     }
 
                     if (el.rightImageName) {
-                        bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                        bytes = base64.decode(new Buffer(response[responseCounter], 'binary').toString('base64'));
                         el.rightImageAsString = utf8.decode(bytes);
                         responseCounter++;
                     }
@@ -515,7 +516,9 @@ const mapStateToProps = (state) => {
         selectedGraphic: state.selectedGraphic,
         customisedPartsImages: state.customisedPartsImages,
         visualComposerPartNamesArray: state.visualComposerPartNamesArray,
-        visualComposerLeftRightCarouselData: state.visualComposerLeftRightCarouselData
+        visualComposerLeftRightCarouselData: state.visualComposerLeftRightCarouselData,
+        userJWTToken: state.userJWTToken
+
     };
 };
 

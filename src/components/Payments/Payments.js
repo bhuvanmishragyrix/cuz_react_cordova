@@ -14,8 +14,6 @@ const payments = (props) => {
         marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
     }
 
-    AWSServicesManagement.getSVGImageFromS3(props.userJWTToken, 'print.svg');
-
     return (
         <div style={topMarginPaymentsPage}>
             <div className={`text-center`}>

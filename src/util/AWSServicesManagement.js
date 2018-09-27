@@ -41,8 +41,14 @@ export function getSVGImageFromS3(jWTToken, fileName) {
             Key: fileName
         };
         s3.getObject(params, function (err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else console.log(data);           // successful response
+            if (err) {
+                reject(err);
+                console.log(err, err.stack); // an error occurred
+            }
+            else {
+                resolve(data.Body)
+                console.log(data);           // successful response
+            }
         });
 
     });

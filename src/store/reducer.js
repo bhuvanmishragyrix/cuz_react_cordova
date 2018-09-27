@@ -12,7 +12,8 @@ const initialState = {
     customisedPartsImages: null,
     selectedGraphicDescription: null,
     visualComposerPartNamesArray: null,
-    visualComposerLeftRightCarouselData: null
+    visualComposerLeftRightCarouselData: null,
+    userJWTToken: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -81,6 +82,13 @@ const reducer = (state = initialState, action) => {
                 visualComposerPartNamesArray: null,
                 visualComposerLeftRightCarouselData: null
             }
+
+        case actionTypes.STORE_USER_JWT_TOKEN:
+
+            return {
+                ...state,
+                userJWTToken: action.payload.userJWTToken
+            };
     }
     return state;
 };

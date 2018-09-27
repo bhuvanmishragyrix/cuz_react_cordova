@@ -8,3 +8,5 @@ export const LINK_TO_ROOT_PATH_OF_IMAGES = "https://s3-ap-southeast-2.amazonaws.
 
 export const USER_POOL_ID = 'us-east-2_146m7SvBa';
 export const APP_CLIENT_ID = '6aba19vfkda9b9da8olmcdsq0j';
+export const IDENTITY_POOL_ID = 'us-east-2:d77b718b-4c74-4938-a7ad-8c91d0dbcb41';
+export const REGION = 'us-east-2';

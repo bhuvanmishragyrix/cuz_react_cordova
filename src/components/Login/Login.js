@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import styles from './Login.css';
+import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
 
 import * as AWSUserManagement from '../../util/AWSUserManagement';
 import * as util from '../../util/Util';
 import ErrorDisplay from './ErrorDisplay/ErrorDisplay';
+import * as actionTypes from '../../store/actionTypes';
+
+import * as AWSServicesManagement from '../../util/AWSServicesManagement';
 
 class Login extends Component {
 
@@ -58,7 +62,9 @@ class Login extends Component {
         }
         else {
             AWSUserManagement.authenticateUser(this.email, this.password)
-                .then((result) => {
+                .then((jWTToken) => {
+                    this.props.storeUserJWTTokenInStore(jWTToken);
+                    AWSServicesManagement.storeImageInS3(jWTToken);
                     this.navigateToCategorySelectPage();
                     console.log("Success Auth", result);
                 })
@@ -134,4 +140,15 @@ class Login extends Component {
 
 };
 
-export default withRouter(Login);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeUserJWTTokenInStore: (token) => {
+            dispatch({
+                type: actionTypes.STORE_USER_JWT_TOKEN,
+                payload: { userJWTToken: token }
+            })
+        }
+    };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(Login));

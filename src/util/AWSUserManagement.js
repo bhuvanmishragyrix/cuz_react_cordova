@@ -20,10 +20,21 @@ export function authenticateUser(username, password) {
         };
         var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
         cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: function (result) {
+            onSuccess: function (res) {
 
-                console.log("Authentication Success", result);
-                resolve(result);
+                var cognitoUser = userPool.getCurrentUser();
+
+                if (cognitoUser != null) {
+                    cognitoUser.getSession(function (err, result) {
+                        if (result) {
+                            resolve(result.getIdToken().getJwtToken());
+                        }
+                        else if (err) {
+                            reject(err);
+                        }
+                    })
+                }
+
             },
 
             onFailure: function (err) {

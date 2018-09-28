@@ -6,7 +6,6 @@ import Item from './Item/Item';
 import BottomControls from './BottomControls/BottomControls';
 
 import * as appConstants from '../../constants/AppConstants';
-import * as AWSServicesManagement from '../../util/AWSServicesManagement';
 
 const payments = (props) => {
 

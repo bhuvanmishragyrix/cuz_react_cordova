@@ -5,7 +5,7 @@ import Payments from '../components/Payments/Payments';
 const paymentsPage = () => {
     return (
         <div>
-            <ThreeElementTabBar hideShareIcon={true} />
+            <ThreeElementTabBar hideShareIcon={true} hideMenuIcon={true}/>
             <div className={`mx-3`}>
                 <Payments />
             </div>

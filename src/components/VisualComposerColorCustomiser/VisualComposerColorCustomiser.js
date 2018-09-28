@@ -82,7 +82,7 @@ class VisualComposerColorCustomiser extends Component {
 
 
             if (!el.isBikeSVG) {
-                if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic && el.partname) {
+                if (el.category === this.props.selectedCategory && el.brand === this.props.selectedBrand && el.year === this.props.selectedYear && el.model === this.props.selectedModel && el.graphic === this.props.selectedGraphic && el.partname && !el.isPrintSVG) {
 
                     if (!this.partNamesArray.includes(el.partname)) {
                         this.partNamesArray.push(el.partname);

@@ -9,6 +9,8 @@ import * as appContants from '../../constants/AppConstants';
 import styles from './Preview.css';
 import RightLeftSelectCarousel from './RightLeftSelectCarousel/RightLeftSelectCarousel';
 
+import * as AWSServicesManagement from '../../util/AWSServicesManagement';
+
 class Preview extends Component {
 
     previewImageFileNames;
@@ -65,7 +67,7 @@ class Preview extends Component {
 
     createPromiseArrayOfImages = () => {
         this.sideFileNamesAndImagesArray.forEach((el) => {
-            let promiseOfImage = util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${el.filename}`);
+            let promiseOfImage = AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken, `${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${el.filename}`);
 
             this.arrayOfPromisesOfImagesToFetch.push(promiseOfImage);
 
@@ -196,14 +198,14 @@ class Preview extends Component {
 
                             let bytes;
 
-                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                            bytes = base64.decode(new Buffer(response[responseCounter], 'binary').toString('base64'));
                             el.leftSidePreviewImageAsString = utf8.decode(bytes);
                             responseCounter++;
                         }
                         else if (el.leftOrRight === "Right") {
                             let bytes;
 
-                            bytes = base64.decode(new Buffer(response[responseCounter].data, 'binary').toString('base64'));
+                            bytes = base64.decode(new Buffer(response[responseCounter], 'binary').toString('base64'));
                             el.rightSidePreviewImageAsString = utf8.decode(bytes);
                             responseCounter++;
                         }
@@ -342,7 +344,8 @@ const mapStateToProps = (state) => {
         selectedBrand: state.selectedBrand,
         selectedYear: state.selectedYear,
         selectedModel: state.selectedModel,
-        selectedGraphic: state.selectedGraphic
+        selectedGraphic: state.selectedGraphic,
+        userJWTToken: state.userJWTToken
     };
 };
 

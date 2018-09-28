@@ -16,7 +16,7 @@ const graphicStyleSelect = (props) => {
     let imageNameData;
 
     imageNameData = props.images.filter((el) => {
-        if (el.graphic && el.category === props.selectedCategory && el.brand === props.selectedBrand && el.year === props.selectedYear && el.model === props.selectedModel && !el.isBikeSVG && !el.partname) {
+        if (el.graphic && el.category === props.selectedCategory && el.brand === props.selectedBrand && el.year === props.selectedYear && el.model === props.selectedModel && !el.isBikeSVG && !el.partname && !el.isPrintSVG) {
             return el;
         }
     });

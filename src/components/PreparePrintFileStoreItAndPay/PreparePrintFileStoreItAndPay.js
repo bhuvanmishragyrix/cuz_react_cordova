@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as appConstants from '../../constants/AppConstants';
 import * as util from '../../util/Util';
+import styles from './PreparePrintFileStoreItAndPay.css';
 
 class PreparePrintFileStoreItAndPay extends Component {
 
@@ -14,7 +15,11 @@ class PreparePrintFileStoreItAndPay extends Component {
         super(props);
 
         this.state = {
-            content: util.circularProgress()
+            content: (
+                <div className={`d-flex justify-content-center ${styles.loaderParentDiv}`}>
+                    {util.circularProgress()}
+                </div>
+            )
         };
     }
 

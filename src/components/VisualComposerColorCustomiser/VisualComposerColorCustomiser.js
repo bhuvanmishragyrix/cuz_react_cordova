@@ -459,7 +459,7 @@ class VisualComposerColorCustomiser extends Component {
         this.props.history.push('/preview');
     };
 
-    storeCustomisedPartsImagesInStoreAndRedirectToPaymentsPage = () => {
+    storeCustomisedPartsImagesInStoreAndRedirectToCheckoutPage = () => {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
 
@@ -468,7 +468,7 @@ class VisualComposerColorCustomiser extends Component {
 
         document.removeEventListener("backbutton", this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener);
 
-        this.props.history.push('/payments');
+        this.props.history.push('/checkout');
     }
 
     render() {
@@ -498,7 +498,7 @@ class VisualComposerColorCustomiser extends Component {
 
                 {this.state.fetchAllImages ? (
                     <div className={``} style={this.state.controlsDivStyle}>
-                        <BottomControls nextClick={this.storeCustomisedPartsImagesInStoreAndRedirectToPaymentsPage} previewClick={this.storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage} resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
+                        <BottomControls nextClick={this.storeCustomisedPartsImagesInStoreAndRedirectToCheckoutPage} previewClick={this.storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage} resetClick={this.onResetClick} colorOfInput={this.state.colorOfInput} changeIsNextEnable={this.changeIsNextEnable} isNextEnable={this.state.isNextEnable} doneClick={this.onDoneClick} colorChanged={this.onColorChanged} controlDivStyle={this.state.controlsDivStyle} />
                     </div>
                 ) : ""}
             </div >

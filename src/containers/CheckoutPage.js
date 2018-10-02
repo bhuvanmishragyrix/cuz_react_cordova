@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import ThreeElementTabBar from '../components/ThreeElementTabBar/ThreeElementTabBar';
-import Payments from '../components/Payments/Payments';
+import Checkout from '../components/Checkout/Checkout';
 
-const paymentsPage = () => {
+const checkoutPage = () => {
     return (
         <div>
-            <ThreeElementTabBar hideShareIcon={true} hideMenuIcon={true}/>
+            <ThreeElementTabBar hideShareIcon={true} hideMenuIcon={true} />
             <div className={`mx-3`}>
-                <Payments />
+                <Checkout />
             </div>
         </div>
     );
 }
 
-export default paymentsPage;
+export default checkoutPage;

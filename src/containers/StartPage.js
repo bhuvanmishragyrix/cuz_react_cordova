@@ -7,9 +7,10 @@ import LandingPage from './LandingPage';
 import ParentForThreeElementTabBarScreens from './ParentForThreeElementTabBarScreens';
 import VisualComposerColorCustomiserPage from './VisualComposerColorCustomiserPage';
 import PreviewPage from './PreviewPage';
-import PaymentsPage from './PaymentsPage';
+import CheckoutPage from './CheckoutPage';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
+import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPage';
 
 class StartPage extends Component {
 
@@ -26,7 +27,8 @@ class StartPage extends Component {
                     <Route path="/parentForThreeElementTabBarScreens" component={ParentForThreeElementTabBarScreens} />
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage} />
                     <Route path="/preview" component={PreviewPage} />
-                    <Route path="/payments" component={PaymentsPage} />
+                    <Route path="/checkout" component={CheckoutPage} />
+                    <Route path="PreparePrintFileStoreItAndPay" component={PreparePrintFileStoreItAndPayPage}/>
                     <Route render={LandingPage} />
                 </Switch>
             </div>

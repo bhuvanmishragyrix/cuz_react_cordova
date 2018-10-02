@@ -32,7 +32,7 @@ class BottomControls extends Component {
         };
     }
 
-    redirectToPaymentsPage = () => {
+    redirectToCheckoutPage = () => {
         this.props.changeIsNextEnable();
         this.props.nextClick()
     }
@@ -88,7 +88,7 @@ class BottomControls extends Component {
                         color: "black",
 
                     },
-                    nextClick: this.redirectToPaymentsPage,
+                    nextClick: this.redirectToCheckoutPage,
                     doneControlElementStyle: {
                         ...this.controlElementStyle,
                         color: "gray",

@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import styles from './Payments.css';
+import styles from './Checkout.css';
 import Item from './Item/Item';
 import BottomControls from './BottomControls/BottomControls';
 
 import * as appConstants from '../../constants/AppConstants';
 
-const payments = (props) => {
+const checkout = (props) => {
 
-    const topMarginPaymentsPage = {
+    const topMargin = {
         marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
     }
 
+    const redirectToPreparePrintFileAndPayPage =() => {
+        
+    }
+
     return (
-        <div style={topMarginPaymentsPage}>
+        <div style={topMargin}>
             <div className={`text-center`}>
                 <p className={`${styles.text}`}>YOUR SHOPPING</p>
             </div>
@@ -36,4 +40,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(payments);
+export default connect(mapStateToProps)(checkout);

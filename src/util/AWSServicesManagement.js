@@ -17,11 +17,31 @@ const setAWSCredentials = (jWTToken) => {
     });
 };
 
-export function storeImageInS3(jWTToken) {
+export function storeImageInS3(jWTToken, body, filename) {
 
     const promiseForImageStore = new Promise((resolve, reject) => {
 
         setAWSCredentials(jWTToken);
+
+        var s3 = new AWS.S3();
+
+        var params = {
+            Body: body,
+            Bucket: appConstants.BUCKET_NAME,
+            Key: filename,
+            ContentType: 'image/svg+xml'
+        };
+        s3.putObject(params, function (err, data) {
+            if (err) {
+                console.log("Upload Image Error", err, err.stack); // an error occurred
+                reject(err);
+            }
+            else {
+                console.log(data);           // successful response
+                resolve(data);
+            }
+
+        });
 
     });
 

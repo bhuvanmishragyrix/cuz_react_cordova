@@ -68,6 +68,7 @@ class Login extends Component {
             AWSUserManagement.authenticateUser(this.email, this.password)
                 .then((jWTToken) => {
                     this.props.storeUserJWTTokenInStore(jWTToken);
+                    this.props.storeUserEmailIdInStore(this.email);
                     AWSServicesManagement.getJSONFromS3(this.props.userJWTToken, AppConstants.FILE_NAME_OF_APP_JSON_FILE)
                         .then((data) => {
                             let bytes;
@@ -175,6 +176,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         storeProductsAndImagesJSONData: (data) => {
             dispatch({ type: actionTypes.STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA, payload: data })
+        },
+        storeUserEmailIdInStore: (email) => {
+            dispatch({
+                type: actionTypes.STORE_USER_EMAIL_ID_IN_STORE, payload: {
+                    userEmailId: email
+                }
+            });
         }
     };
 };

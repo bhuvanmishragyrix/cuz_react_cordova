@@ -81,7 +81,15 @@ class PreparePrintFileStoreItAndPay extends Component {
 
                 this.customisePrintFileForUpload();
 
-                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${new Date().valueOf()}.svg`);
+                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${appConstants.LINK_TO_ROOT_PATH_OF_PRINT_IMAGES}${this.props.userEmailId}/${new Date().valueOf()}.svg`)
+                    .then(() => {
+                        this.setState({
+                            content: ""
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             });
     }
 
@@ -103,7 +111,8 @@ const mapStateToProps = (state) => {
         selectedYear: state.selectedYear,
         selectedModel: state.selectedModel,
         selectedGraphic: state.selectedGraphic,
-        customisedPartsImages: state.customisedPartsImages
+        customisedPartsImages: state.customisedPartsImages,
+        userEmailId: state.userEmailId
     };
 };
 

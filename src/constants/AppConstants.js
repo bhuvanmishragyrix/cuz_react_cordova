@@ -7,6 +7,7 @@ export const FILE_NAME_OF_APP_JSON_FILE = "CuzProductsAndImagesData.json";
 export const LINK_TO_ROOT_PATH_OF_DISPLAY_ONLY_IMAGES = "https://s3.eu-west-2.amazonaws.com/cuz-cordova/NonEditableAppDisplayOnlyImages/";
 
 export const LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES = "customizableImages/";
+export const LINK_TO_ROOT_PATH_OF_PRINT_IMAGES = 'printImages/';
 
 export const USER_POOL_ID = 'eu-west-2_j76zp7Qp5';
 export const APP_CLIENT_ID = '2bnk6t71916t1jn93umtbg9344';

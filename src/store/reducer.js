@@ -13,7 +13,8 @@ const initialState = {
     selectedGraphicDescription: null,
     visualComposerPartNamesArray: null,
     visualComposerLeftRightCarouselData: null,
-    userJWTToken: null
+    userJWTToken: null,
+    userEmailId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -89,6 +90,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userJWTToken: action.payload.userJWTToken
             };
+
+        case actionTypes.STORE_USER_EMAIL_ID_IN_STORE:
+
+            return {
+                ...state,
+                userEmailId: action.payload.userEmailId
+            }
     }
     return state;
 };

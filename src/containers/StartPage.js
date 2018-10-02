@@ -28,7 +28,7 @@ class StartPage extends Component {
                     <Route path="/visualComposerColorCustomiser" component={VisualComposerColorCustomiserPage} />
                     <Route path="/preview" component={PreviewPage} />
                     <Route path="/checkout" component={CheckoutPage} />
-                    <Route path="PreparePrintFileStoreItAndPay" component={PreparePrintFileStoreItAndPayPage}/>
+                    <Route path="/preparePrintFileStoreItAndPay" component={PreparePrintFileStoreItAndPayPage}/>
                     <Route render={LandingPage} />
                 </Switch>
             </div>

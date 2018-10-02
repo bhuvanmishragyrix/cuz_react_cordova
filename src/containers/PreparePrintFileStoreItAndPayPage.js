@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PreparePrintFileStoreItAndPay from '../components/PreparePrintFileStoreItAndPay/PreparePrintFileStoreItAndPay';
+import ThreeElementTabBar from '../components/ThreeElementTabBar/ThreeElementTabBar';
 
 const preparePrintFileStoreItAndPayPage = () => {
 

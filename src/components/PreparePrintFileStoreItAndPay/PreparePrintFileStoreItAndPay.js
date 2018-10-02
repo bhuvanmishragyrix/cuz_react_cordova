@@ -81,7 +81,7 @@ class PreparePrintFileStoreItAndPay extends Component {
 
                 this.customisePrintFileForUpload();
 
-                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, 'HelloWorld.svg');
+                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${new Date().valueOf()}.svg`);
             });
     }
 

@@ -112,17 +112,17 @@ export const executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB = (jWTToken,
         var lambda = new AWS.Lambda();
 
         var params = {
-            FunctionName: appConstants.LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO, /* required */
+            FunctionName: appConstants.LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO,
             InvocationType: 'RequestResponse',
-            Payload: payload, /* new Buffer('...') || 'STRING_VALUE'  Strings will be Base-64 encoded on your behalf */
+            Payload: payload,
         };
         lambda.invoke(params, function (err, data) {
             if (err) {
                 reject(err);
-            } // an error occurred
+            }
             else {
                 resolve(data);
-            };           // successful response
+            };
         });
     });
 

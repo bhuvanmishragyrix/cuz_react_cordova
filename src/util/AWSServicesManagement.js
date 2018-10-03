@@ -105,3 +105,26 @@ export function getJSONFromS3(jWTToken, fileName) {
     return promiseForJSONGet;
 
 }
+
+export const executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB = (jWTToken, payload) => {
+    const promiseForLambda = new Promise((resolve, reject) => {
+        setAWSCredentials(jWTToken);
+        var lambda = new AWS.Lambda();
+
+        var params = {
+            FunctionName: appConstants.LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO, /* required */
+            InvocationType: 'RequestResponse',
+            Payload: payload, /* new Buffer('...') || 'STRING_VALUE'  Strings will be Base-64 encoded on your behalf */
+        };
+        lambda.invoke(params, function (err, data) {
+            if (err) {
+                reject(err);
+            } // an error occurred
+            else {
+                resolve(data);
+            };           // successful response
+        });
+    });
+
+    return promiseForLambda;
+};

@@ -14,3 +14,5 @@ export const APP_CLIENT_ID = '2bnk6t71916t1jn93umtbg9344';
 export const IDENTITY_POOL_ID = 'eu-west-2:4736e324-0213-4f61-b247-3c197f4e1be9';
 export const REGION = 'eu-west-2';
 export const BUCKET_NAME = 'cuz-cordova';
+
+export const LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO = 'makePaymentAndStoreOrderDetailsInDynamoDB';

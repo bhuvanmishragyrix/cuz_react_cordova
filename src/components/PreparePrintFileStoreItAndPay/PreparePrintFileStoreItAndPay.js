@@ -86,6 +86,13 @@ class PreparePrintFileStoreItAndPay extends Component {
                         this.setState({
                             content: ""
                         });
+                        AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, `{"test": "Hi Lambda! From Bhuvan!"}`)
+                            .then((response) => {
+                                console.log(response);
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            });
                     })
                     .catch((err) => {
                         console.log(err);

@@ -88,7 +88,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                         });
                         AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, `{"test": "Hi Lambda! From Bhuvan!"}`)
                             .then((response) => {
-
+                                console.log("Reached Here.", response);
                                 let payload = JSON.parse(response.Payload);
 
                                 if (payload.hasOwnProperty('errorMessage')) {

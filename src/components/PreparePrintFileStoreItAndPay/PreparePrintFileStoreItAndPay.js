@@ -7,6 +7,8 @@ import * as appConstants from '../../constants/AppConstants';
 import * as util from '../../util/Util';
 import styles from './PreparePrintFileStoreItAndPay.css';
 import * as AWSServicesManagement from '../../util/AWSServicesManagement';
+import { Elements, StripeProvider } from 'react-stripe-elements';
+import PaymentDetailsFormReactStripe from './PaymentDetailsFormReactStripe/PaymentDetailsFormReactStripe';
 
 class PreparePrintFileStoreItAndPay extends Component {
 
@@ -97,6 +99,19 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 else {
                                     console.log("Promise resolved with no error.", payload);
                                 }
+
+                                this.setState({
+                                    content: (
+                                        <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                                            <div className="example">
+                                                <h1>React Stripe Elements Example</h1>
+                                                <Elements>
+                                                    <PaymentDetailsFormReactStripe />
+                                                </Elements>
+                                            </div>
+                                        </StripeProvider>
+                                    )
+                                });
                             })
                             .catch((err) => {
                                 console.log("Error Lambda", err);

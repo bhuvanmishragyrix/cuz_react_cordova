@@ -74,10 +74,10 @@ class PreparePrintFileStoreItAndPay extends Component {
                 let payload = JSON.parse(response.Payload);
 
                 if (payload.hasOwnProperty('errorMessage')) {
-                    console.log("Promise resolved but recieved error.", payload.errorMessage);
+                    console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
                 }
                 else {
-                    console.log("Promise resolved with no error.", payload);
+                    console.log("Promise resolved with no error.", JSON.parse(payload));
                 }
 
 

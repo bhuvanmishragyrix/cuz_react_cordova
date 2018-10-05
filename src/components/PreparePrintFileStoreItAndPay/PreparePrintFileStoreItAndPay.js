@@ -68,6 +68,10 @@ class PreparePrintFileStoreItAndPay extends Component {
     }
 
     sendTokenToServerAndCompletePayment = (tokenData) => {
+        this.setState({
+            content: util.circularProgress()
+        });
+        console.log(tokenData);
         AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
             .then((response) => {
                 console.log("Reached Here.", response);
@@ -75,9 +79,15 @@ class PreparePrintFileStoreItAndPay extends Component {
 
                 if (payload.hasOwnProperty('errorMessage')) {
                     console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
+                    this.setState({
+                        content: <p className="text-danger">Payment Error</p>
+                    });
                 }
                 else {
                     console.log("Promise resolved with no error.", JSON.parse(payload));
+                    this.setState({
+                        content: <p className="text-success">Payment Success</p>
+                    });
                 }
 
 
@@ -109,9 +119,8 @@ class PreparePrintFileStoreItAndPay extends Component {
                             content: (
                                 <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
                                     <div className="example">
-                                        <h1>React Stripe Elements Example</h1>
                                         <Elements>
-                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} />
+                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice}/>
                                         </Elements>
                                     </div>
                                 </StripeProvider>
@@ -144,7 +153,8 @@ const mapStateToProps = (state) => {
         selectedModel: state.selectedModel,
         selectedGraphic: state.selectedGraphic,
         customisedPartsImages: state.customisedPartsImages,
-        userEmailId: state.userEmailId
+        userEmailId: state.userEmailId,
+        selectedGraphicPrice: state.selectedGraphicPrice
     };
 };
 

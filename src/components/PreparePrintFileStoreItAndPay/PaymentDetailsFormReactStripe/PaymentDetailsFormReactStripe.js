@@ -3,12 +3,14 @@ import { CardElement, injectStripe } from 'react-stripe-elements';
 
 import './PaymentDetailsFormReactStripe.css?raw';
 
+import styles from './PaymentDetailsFormReactStripe.css'
+
 class CheckoutForm extends Component {
     constructor(props) {
         super(props);
     }
 
-    submit(ev) {
+    submit = () => {
         this.props.stripe.createToken({ name: "Name" })
             .then((data) => {
                 console.log(data);
@@ -22,9 +24,23 @@ class CheckoutForm extends Component {
     render() {
         return (
             <div className="checkout">
-                <p>Would you like to complete the purchase?</p>
+                <p className={`${styles.headerText}`}>Please enter Payment Details.</p>
                 <CardElement />
-                <button onClick={(ev) => { this.submit(ev) }}>Send</button>
+                <label className={`${styles.labelText} mt-2`}>Amount</label>
+                <input disabled value={`${this.props.price} USD`} className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Email</label>
+                <input disabled value={this.props.email} className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Name</label>
+                <input className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>City</label>
+                <input className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Country</label>
+                <input className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Phone</label>
+                <input type={`number`} className={`form-control`} />
+                <div className={`text-center my-2`}>
+                    <button className={'btn btn-primary'} onClick={this.submit}>Pay</button>
+                </div>
             </div>
         );
     }

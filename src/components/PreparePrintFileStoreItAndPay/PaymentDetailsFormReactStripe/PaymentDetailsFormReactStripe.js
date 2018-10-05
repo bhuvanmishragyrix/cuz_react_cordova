@@ -10,6 +10,7 @@ class CheckoutForm extends Component {
         this.props.stripe.createToken({ name: "Name" })
             .then((data) => {
                 console.log(data);
+                this.props.sendTokenToServerAndCompletePayment(data);
             })
             .catch((err) => {
                 console.log(err);

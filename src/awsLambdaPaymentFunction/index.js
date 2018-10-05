@@ -56,27 +56,30 @@
 
 //     try {
 
-//         var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+//         var stripe = require("stripe")("sk_test_gM4OB2qD2i9uW4ez3nCKc4kx");
 
 //         // Token is created using Checkout or Elements!
 //         // Get the payment token ID submitted by the form:
-//         const token = 'abcd';
+//         console.log(event);
+//         const token = event.token.id;
 
 //         try {
 //             const charge = await new Promise((resolve, reject) => {
 //                 stripe.charges.create({
-//                     amount: 999,
+//                     amount: 100,
 //                     currency: 'usd',
 //                     description: 'Example charge',
 //                     source: token,
 //                 }, function (err, charge) {
 //                     if (err) {
-//                         reject({ type: "error", payload: err })
+//                         console.log("Error",err);
+//                         reject(err);
 //                     }
 //                     else {
-//                         resolve({ type: "success", payload: charge });
+//                         console.log("Success", charge);
+//                         resolve(charge);
 //                     }
-//                 })
+//                 });
 //             });
 //             callback(null, JSON.stringify(charge));
 //         }
@@ -87,49 +90,50 @@
 //     }
 
 //     catch (err) {
+//         console.log("Got Here!", err)
 //         callback(JSON.stringify(err)); // TypeError: failed to fetch
 //     }
+// };
+
+
+// exports.handler = async function (event, context, callback) {
+
+// const promiseForDynamoDB = new Promise((resolve, reject) => {
+
+//      var AWS = require("aws-sdk");
+// var dynamodb = new AWS.DynamoDB();
+//     var params = {
+//   Item: {
+//   "CustomerEmail": {
+//       S: "test@test.com"
+//   }, 
+//   "Filename-TimeStampOfSave": {
+//       S: "test.svg"
+//   }, 
+//   "Status": {
+//       S: "Payment Complete"
+//   }
+//   }, 
+//   TableName: "CUZ-OrderDetails"
+//  };
+//  dynamodb.putItem(params, function(err, data) {
+//   if (err) {
+//       reject(err);
+//   } // an error occurred
+//   else {
+//       resolve(data)
+//   }       // successful response
+//  });
+    
+// });
+
+// try{
+//     const result = await promiseForDynamoDB;
+//     callback(null, JSON.stringify(result));
+// }
+// catch(err) {
+//     callback(JSON.stringify(err));
 // }
 
 
-exports.handler = async function (event, context, callback) {
-
-    const promiseForDynamoDB = new Promise((resolve, reject) => {
-
-        var AWS = require("aws-sdk");
-        var dynamodb = new AWS.DynamoDB();
-        var params = {
-            Item: {
-                "CustomerEmail": {
-                    S: "test@test.com"
-                },
-                "Filename-TimeStampOfSave": {
-                    S: "test.svg"
-                },
-                "Status": {
-                    S: "Payment Complete"
-                }
-            },
-            TableName: "CUZ-OrderDetails"
-        };
-        dynamodb.putItem(params, function (err, data) {
-            if (err) {
-                reject(err);
-            } // an error occurred
-            else {
-                resolve(data)
-            }       // successful response
-        });
-
-    });
-
-    try {
-        const result = await promiseForDynamoDB;
-        callback(null, JSON.stringify(result));
-    }
-    catch (err) {
-        callback(JSON.stringify(err));
-    }
-
-
-}
+// }

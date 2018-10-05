@@ -67,6 +67,26 @@ class PreparePrintFileStoreItAndPay extends Component {
         });
     }
 
+    sendTokenToServerAndCompletePayment = (tokenData) => {
+        AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
+            .then((response) => {
+                console.log("Reached Here.", response);
+                let payload = JSON.parse(response.Payload);
+
+                if (payload.hasOwnProperty('errorMessage')) {
+                    console.log("Promise resolved but recieved error.", payload.errorMessage);
+                }
+                else {
+                    console.log("Promise resolved with no error.", payload);
+                }
+
+
+            })
+            .catch((err) => {
+                console.log("Error Lambda", err);
+            });
+    }
+
     componentDidMount() {
 
         this.props.images.forEach((el) => {
@@ -86,36 +106,18 @@ class PreparePrintFileStoreItAndPay extends Component {
                 AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${appConstants.LINK_TO_ROOT_PATH_OF_PRINT_IMAGES}${this.props.userEmailId}/${new Date().valueOf()}.svg`)
                     .then(() => {
                         this.setState({
-                            content: ""
+                            content: (
+                                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                                    <div className="example">
+                                        <h1>React Stripe Elements Example</h1>
+                                        <Elements>
+                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} />
+                                        </Elements>
+                                    </div>
+                                </StripeProvider>
+                            )
                         });
-                        AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, `{"test": "Hi Lambda! From Bhuvan!"}`)
-                            .then((response) => {
-                                console.log("Reached Here.", response);
-                                let payload = JSON.parse(response.Payload);
 
-                                if (payload.hasOwnProperty('errorMessage')) {
-                                    console.log("Promise resolved but recieved error.", payload.errorMessage);
-                                }
-                                else {
-                                    console.log("Promise resolved with no error.", payload);
-                                }
-
-                                this.setState({
-                                    content: (
-                                        <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
-                                            <div className="example">
-                                                <h1>React Stripe Elements Example</h1>
-                                                <Elements>
-                                                    <PaymentDetailsFormReactStripe />
-                                                </Elements>
-                                            </div>
-                                        </StripeProvider>
-                                    )
-                                });
-                            })
-                            .catch((err) => {
-                                console.log("Error Lambda", err);
-                            });
                     })
                     .catch((err) => {
                         console.log(err);

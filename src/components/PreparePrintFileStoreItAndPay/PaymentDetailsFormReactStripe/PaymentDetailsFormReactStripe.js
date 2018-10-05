@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
+import './PaymentDetailsFormReactStripe.css?raw';
+
 class CheckoutForm extends Component {
     constructor(props) {
         super(props);

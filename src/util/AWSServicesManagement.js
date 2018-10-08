@@ -114,9 +114,11 @@ export const executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB = (jWTToken,
         var params = {
             FunctionName: appConstants.LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO,
             InvocationType: 'RequestResponse',
-            Payload: payload,
-            Timeout: 60
+            Payload: payload
         };
+
+        console.log("params", params);
+
         lambda.invoke(params, function (err, data) {
             if (err) {
                 reject(err);

@@ -71,6 +71,48 @@ class PreparePrintFileStoreItAndPay extends Component {
         });
     }
 
+    onNameChange = (evt) => {
+        this.setState({
+            paymentName: evt.target.value
+        });
+    }
+    onCityChange = (evt) => {
+        this.setState({
+            paymentCity: evt.target.value
+        });
+    }
+    onCountryChange = (evt) => {
+        this.setState({
+            paymentCountry: evt.target.value
+        });
+    }
+    onPhoneChange = (evt) => {
+        this.setState({
+            paymentPhone: evt.target.value
+        });
+    }
+
+    onRetryClick = () => {
+        this.setState({
+            content: (
+                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                    <div className="example">
+                        <Elements>
+                            <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
+                        </Elements>
+                    </div>
+                </StripeProvider>
+            )
+        });
+    }
+
+    retryErrorText = (
+        <div onClick={this.onRetryClick} className={`text-center`}>
+            <p className={`text-center p-0 m-0 ${styles.errorText}`}>Retry</p>
+            <i className="fa fa-refresh p-0 m-0" aria-hidden="true"></i>
+        </div>
+    );
+
     sendTokenToServerAndCompletePayment = (tokenData) => {
 
         if (tokenData.token) {
@@ -82,11 +124,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                 this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
                 this.state.paymentPhone && this.state.paymentPhone.length > 0) {
 
-                this.setState({
-                    content: (
-                        <div className={`text-center`}>{util.circularProgress()}</div>
-                    )
-                });
                 console.log(tokenData);
                 AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
                     .then((response) => {
@@ -149,48 +186,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                 )
             });
         }
-    }
-
-    onRetryClick = () => {
-        this.setState({
-            content: (
-                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
-                    <div className="example">
-                        <Elements>
-                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
-                        </Elements>
-                    </div>
-                </StripeProvider>
-            )
-        });
-    }
-
-    retryErrorText = (
-        <div onClick={this.onRetryClick} className={`text-center`}>
-            <p className={`text-center p-0 m-0 ${styles.errorText}`}>Retry</p>
-            <i className="fa fa-refresh p-0 m-0" aria-hidden="true"></i>
-        </div>
-    );
-
-    onNameChange = (evt) => {
-        this.setState({
-            paymentName: evt.target.value
-        });
-    }
-    onCityChange = (evt) => {
-        this.setState({
-            paymentCity: evt.target.value
-        });
-    }
-    onCountryChange = (evt) => {
-        this.setState({
-            paymentCountry: evt.target.value
-        });
-    }
-    onPhoneChange = (evt) => {
-        this.setState({
-            paymentPhone: evt.target.value
-        });
     }
 
     componentDidMount() {

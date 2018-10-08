@@ -156,9 +156,19 @@ class PreparePrintFileStoreItAndPay extends Component {
                             });
                         }
                         else {
-                            console.log("Promise resolved with no error.", JSON.parse(payload));
+                            console.log("Promise resolved with no error.", payload);
+                            let payloadData = JSON.parse(payload);
+
                             this.setState({
-                                content: <p className="text-success">Payment Success</p>
+                                content: (
+                                    <div>
+                                        <p className={`text-success ${styles.errorText} text-center`}>Payment Success</p>
+                                        <p className={`${styles.errorText} text-center`}>
+                                        Your Order Reference : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br/> <br/>
+                                        Amount Paid: {`${payloadData.amount /100} Euros`}
+                                        </p>
+                                    </div>
+                                )
                             });
                         }
 

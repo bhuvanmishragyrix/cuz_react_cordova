@@ -1,3 +1,8 @@
 .loaderParentDiv{
     margin-top: 100px;
 }
+
+.errorText {
+    font-family: 'Anton';
+    font-size: 4vw;
+}

@@ -27,7 +27,7 @@ class CheckoutForm extends Component {
                 <p className={`${styles.headerText}`}>Please enter Payment Details.</p>
                 <CardElement />
                 <label className={`${styles.labelText} mt-2`}>Amount</label>
-                <input disabled value={`${this.props.price} USD`} className={`form-control`} />
+                <input disabled value={`${this.props.price} EURO`} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Email</label>
                 <input disabled value={this.props.email} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Name</label>

@@ -68,33 +68,66 @@ class PreparePrintFileStoreItAndPay extends Component {
     }
 
     sendTokenToServerAndCompletePayment = (tokenData) => {
-        this.setState({
-            content: util.circularProgress()
-        });
-        console.log(tokenData);
-        AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
-            .then((response) => {
-                console.log("Reached Here.", response);
-                let payload = JSON.parse(response.Payload);
 
-                if (payload.hasOwnProperty('errorMessage')) {
-                    console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
-                    this.setState({
-                        content: <p className="text-danger">Payment Error</p>
-                    });
-                }
-                else {
-                    console.log("Promise resolved with no error.", JSON.parse(payload));
-                    this.setState({
-                        content: <p className="text-success">Payment Success</p>
-                    });
-                }
+        if (tokenData.token) {
 
 
-            })
-            .catch((err) => {
-                console.log("Error Lambda", err);
+            this.setState({
+                content: util.circularProgress()
             });
+            console.log(tokenData);
+            AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
+                .then((response) => {
+                    console.log("Reached Here.", response);
+                    let payload = JSON.parse(response.Payload);
+
+                    if (payload.hasOwnProperty('errorMessage')) {
+                        console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
+                        this.setState({
+                            content: <p className="text-danger">Payment Error</p>
+                        });
+                    }
+                    else {
+                        console.log("Promise resolved with no error.", JSON.parse(payload));
+                        this.setState({
+                            content: <p className="text-success">Payment Success</p>
+                        });
+                    }
+
+
+                })
+                .catch((err) => {
+                    console.log("Error Lambda", err);
+                });
+
+        }
+        else if (tokenData.error) {
+            this.setState({
+                content: (
+                    <div className={`text-center`}>
+                        <p className={`text-center text-danger ${styles.errorText}`}>{tokenData.error.message}</p>
+                        <div onClick={this.onRetryClick} className={`text-center`}>
+                            <p className={`text-center p-0 m-0 ${styles.errorText}`}>Retry</p>
+                            <i className="fa fa-refresh p-0 m-0" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                )
+            });
+        }
+    }
+
+    onRetryClick = () => {
+        this.setState({
+            content: (
+                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                    <div className="example">
+                        <Elements>
+                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
+                        </Elements>
+                    </div>
+                </StripeProvider>
+            )
+        });
     }
 
     componentDidMount() {
@@ -120,7 +153,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
                                     <div className="example">
                                         <Elements>
-                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice}/>
+                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
                                         </Elements>
                                     </div>
                                 </StripeProvider>

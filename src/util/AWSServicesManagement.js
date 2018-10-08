@@ -109,7 +109,7 @@ export function getJSONFromS3(jWTToken, fileName) {
 export const executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB = (jWTToken, payload) => {
     const promiseForLambda = new Promise((resolve, reject) => {
         setAWSCredentials(jWTToken);
-        var lambda = new AWS.Lambda();
+        var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
 
         var params = {
             FunctionName: appConstants.LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO,

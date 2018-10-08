@@ -19,6 +19,7 @@ class PreparePrintFileStoreItAndPay extends Component {
     printSVGFileName = null;
     printImageAsString;
     printImageObject;
+    filenameOfUploadedImage;
 
     constructor(props) {
 
@@ -124,8 +125,19 @@ class PreparePrintFileStoreItAndPay extends Component {
                 this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
                 this.state.paymentPhone && this.state.paymentPhone.length > 0) {
 
-                console.log(tokenData);
-                AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
+                console.log("Token Data",tokenData);
+                let tokenAndDataToSendToServer = {
+                    ...tokenData,
+                    name: this.state.paymentName,
+                    city: this.state.paymentCity,
+                    country: this.state.paymentCountry,
+                    phone: this.state.paymentPhone,
+                    email: this.props.userEmailId,
+                    printFilename: `${this.filenameOfUploadedImage}.svg`,
+                    productDelivered: "No", 
+                    priceToChargeInEuroCents: this.props.selectedGraphicPrice
+                };
+                AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenAndDataToSendToServer))
                     .then((response) => {
                         console.log("Reached Here.", response);
                         let payload = JSON.parse(response.Payload);
@@ -204,7 +216,9 @@ class PreparePrintFileStoreItAndPay extends Component {
 
                 this.customisePrintFileForUpload();
 
-                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${appConstants.LINK_TO_ROOT_PATH_OF_PRINT_IMAGES}${this.props.userEmailId}/${new Date().valueOf()}.svg`)
+                this.filenameOfUploadedImage = new Date().valueOf();
+
+                AWSServicesManagement.storeImageInS3(this.props.userJWTToken, this.printImageObject.outerHTML, `${appConstants.LINK_TO_ROOT_PATH_OF_PRINT_IMAGES}${this.props.userEmailId}/${this.filenameOfUploadedImage}.svg`)
                     .then(() => {
                         this.setState({
                             content: (

@@ -125,7 +125,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                 this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
                 this.state.paymentPhone && this.state.paymentPhone.length > 0) {
 
-                console.log("Token Data",tokenData);
+                console.log("Token Data", tokenData);
                 let tokenAndDataToSendToServer = {
                     ...tokenData,
                     name: this.state.paymentName,
@@ -134,18 +134,25 @@ class PreparePrintFileStoreItAndPay extends Component {
                     phone: this.state.paymentPhone,
                     email: this.props.userEmailId,
                     printFilename: `${this.filenameOfUploadedImage}.svg`,
-                    productDelivered: "No", 
+                    productDelivered: "No",
                     priceToChargeInEuroCents: this.props.selectedGraphicPrice
                 };
                 AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenAndDataToSendToServer))
                     .then((response) => {
                         console.log("Reached Here.", response);
+                        let error = "Payment Error";
                         let payload = JSON.parse(response.Payload);
 
                         if (payload.hasOwnProperty('errorMessage')) {
                             console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
+
+                            if (payload.errorMessage.type === "api_connection_error" || payload.errorMessage.type === "authentication_error" ||
+                                payload.errorMessage.type === "card_error" || payload.errorMessage.type === "validation_error") {
+                                error = payload.errorMessage.message;
+                            }
+
                             this.setState({
-                                content: <p className="text-danger">Payment Error</p>
+                                content: <p className={`text-center ${styles.errorText} text-danger`}>{error}</p>
                             });
                         }
                         else {

@@ -42,7 +42,7 @@ class Item extends Component {
                             <div className={`col-6`}>
                                 <div style={this.state.rightColumn}>
                                     <i className={`fa fa-eur ${styles.euroIcon} d-inline-block p-0 ml-0 my-0 mr-1`} aria-hidden="true"></i>
-                                    <p className={`${styles.priceText} d-inline-block p-0 my-0 mx-1`}>{this.props.price}</p>
+                                    <p className={`${styles.priceText} d-inline-block p-0 my-0 mx-1`}>{this.props.price /100}</p>
                                 </div>
                             </div>
                         </div>

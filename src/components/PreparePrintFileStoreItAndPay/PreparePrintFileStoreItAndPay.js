@@ -95,7 +95,7 @@ class PreparePrintFileStoreItAndPay extends Component {
     onRetryClick = () => {
         this.setState({
             content: (
-                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                <StripeProvider apiKey={appConstants.STRIPE_PUBLISHABLE_KEY}>
                     <div className="example">
                         <Elements>
                             <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
@@ -208,7 +208,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                     .then(() => {
                         this.setState({
                             content: (
-                                <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
+                                <StripeProvider apiKey={appConstants.STRIPE_PUBLISHABLE_KEY}>
                                     <div className="example">
                                         <Elements>
                                             <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />

@@ -16,3 +16,5 @@ export const REGION = 'eu-west-2';
 export const BUCKET_NAME = 'cuz-cordova';
 
 export const LAMBDA_FUNCTION_NAME_TO_MAKE_PAYMENT_AND_STORE_ORDER_DETAILS_IN_DYNAMO = 'makePaymentAndStoreOrderDetailsInDynamoDB';
+
+export const STRIPE_PUBLISHABLE_KEY = "pk_test_J5yleHQPLNqdSIf8zNaYIvOR";

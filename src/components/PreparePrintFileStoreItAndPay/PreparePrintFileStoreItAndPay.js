@@ -29,7 +29,11 @@ class PreparePrintFileStoreItAndPay extends Component {
                 <div className={`d-flex justify-content-center ${styles.loaderParentDiv}`}>
                     {util.circularProgress()}
                 </div>
-            )
+            ),
+            paymentName: null,
+            paymentCity: null,
+            paymentCountry: null,
+            paymentPhone: null
         };
     }
 
@@ -71,34 +75,68 @@ class PreparePrintFileStoreItAndPay extends Component {
 
         if (tokenData.token) {
 
+            console.log(this.state.paymentName, this.state.paymentCity, this.state.paymentCountry, this.state.paymentPhone);
 
-            this.setState({
-                content: util.circularProgress()
-            });
-            console.log(tokenData);
-            AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
-                .then((response) => {
-                    console.log("Reached Here.", response);
-                    let payload = JSON.parse(response.Payload);
+            if (this.state.paymentName && this.state.paymentName.length > 0 &&
+                this.state.paymentCity && this.state.paymentCity.length > 0 &&
+                this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
+                this.state.paymentPhone && this.state.paymentPhone.length > 0) {
 
-                    if (payload.hasOwnProperty('errorMessage')) {
-                        console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
-                        this.setState({
-                            content: <p className="text-danger">Payment Error</p>
-                        });
-                    }
-                    else {
-                        console.log("Promise resolved with no error.", JSON.parse(payload));
-                        this.setState({
-                            content: <p className="text-success">Payment Success</p>
-                        });
-                    }
-
-
-                })
-                .catch((err) => {
-                    console.log("Error Lambda", err);
+                this.setState({
+                    content: (
+                        <div className={`text-center`}>{util.circularProgress()}</div>
+                    )
                 });
+                console.log(tokenData);
+                AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenData))
+                    .then((response) => {
+                        console.log("Reached Here.", response);
+                        let payload = JSON.parse(response.Payload);
+
+                        if (payload.hasOwnProperty('errorMessage')) {
+                            console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
+                            this.setState({
+                                content: <p className="text-danger">Payment Error</p>
+                            });
+                        }
+                        else {
+                            console.log("Promise resolved with no error.", JSON.parse(payload));
+                            this.setState({
+                                content: <p className="text-success">Payment Success</p>
+                            });
+                        }
+
+
+                    })
+                    .catch((err) => {
+                        console.log("Error Lambda", err);
+                    });
+
+            }
+            else {
+                let nameError = (<p className={`text-center ${styles.errorText} text-danger`}>Name field cannot be empty</p>);
+                let cityError = (<p className={`text-center ${styles.errorText} text-danger`}>City field cannot be empty</p>);
+                let countryError = (<p className={`text-center ${styles.errorText} text-danger`}>Country field cannot be empty</p>);
+                let phoneError = (<p className={`text-center ${styles.errorText} text-danger`}>Phone field cannot be empty</p>);
+                let errorMessage = [];
+
+                if (!(this.state.paymentName && this.state.paymentName.length > 0)) {
+                    errorMessage.push(nameError);
+                }
+                if (!(this.state.paymentCity && this.state.paymentCity.length > 0)) {
+                    errorMessage.push(cityError);
+                }
+                if (!(this.state.paymentCountry && this.state.paymentCountry.length > 0)) {
+                    errorMessage.push(countryError);
+                }
+                if (!(this.state.paymentPhone && this.state.paymentPhone.length > 0)) {
+                    errorMessage.push(phoneError);
+                }
+                errorMessage.push(this.retryErrorText);
+                this.setState({
+                    content: errorMessage
+                });
+            }
 
         }
         else if (tokenData.error) {
@@ -106,10 +144,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                 content: (
                     <div className={`text-center`}>
                         <p className={`text-center text-danger ${styles.errorText}`}>{tokenData.error.message}</p>
-                        <div onClick={this.onRetryClick} className={`text-center`}>
-                            <p className={`text-center p-0 m-0 ${styles.errorText}`}>Retry</p>
-                            <i className="fa fa-refresh p-0 m-0" aria-hidden="true"></i>
-                        </div>
+                        {this.retryErrorText}
                     </div>
                 )
             });
@@ -127,6 +162,34 @@ class PreparePrintFileStoreItAndPay extends Component {
                     </div>
                 </StripeProvider>
             )
+        });
+    }
+
+    retryErrorText = (
+        <div onClick={this.onRetryClick} className={`text-center`}>
+            <p className={`text-center p-0 m-0 ${styles.errorText}`}>Retry</p>
+            <i className="fa fa-refresh p-0 m-0" aria-hidden="true"></i>
+        </div>
+    );
+
+    onNameChange = (evt) => {
+        this.setState({
+            paymentName: evt.target.value
+        });
+    }
+    onCityChange = (evt) => {
+        this.setState({
+            paymentCity: evt.target.value
+        });
+    }
+    onCountryChange = (evt) => {
+        this.setState({
+            paymentCountry: evt.target.value
+        });
+    }
+    onPhoneChange = (evt) => {
+        this.setState({
+            paymentPhone: evt.target.value
         });
     }
 
@@ -153,7 +216,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 <StripeProvider apiKey="pk_test_J5yleHQPLNqdSIf8zNaYIvOR">
                                     <div className="example">
                                         <Elements>
-                                            <PaymentDetailsFormReactStripe sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
+                                            <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
                                         </Elements>
                                     </div>
                                 </StripeProvider>

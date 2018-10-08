@@ -27,7 +27,7 @@ const graphicStyleSelect = (props) => {
     }
 
     const onGraphicSelect = (index) => {
-        props.storeSelectedGraphicAndPriceInStore(imageNameData[index].graphic, imageNameData[index].price);
+        props.storeSelectedGraphicAndPriceInStore(imageNameData[index].graphic, imageNameData[index].priceInEuroCents);
         props.storeGraphicDescriptionInStore(imageNameData[index].graphicDescription);
         props.history.push('/visualComposerColorCustomiser');
     };

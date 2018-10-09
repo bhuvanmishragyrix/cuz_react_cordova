@@ -95,6 +95,9 @@ class Login extends Component {
                     else if (err.message === "User does not exist.") {
                         errorText = "Incorrect username or password.";
                     }
+                    else if (err.message === "User is not confirmed.") {
+                        errorText = "Please verify email."
+                    }
                     this.setState({
                         content: (
                             <div>

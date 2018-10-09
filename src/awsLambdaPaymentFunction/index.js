@@ -164,9 +164,8 @@ exports.handler = async function (event, context, callback) {
                 stripe.charges.create({
                     amount: priceToChargeInEuroCents,
                     currency: 'EUR',
-                    description: 'Example charge',
+                    description: 'CUZ Graphic Purchase',
                     source: token,
-                    receipt_email: email,
                     metadata: {
                             name: name,
                             city: city,

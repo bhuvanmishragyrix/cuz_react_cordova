@@ -137,3 +137,59 @@
 
 
 // }
+
+
+exports.handler = async function (event, context, callback) {
+    
+    let secretAPIKey = "sk_test_gM4OB2qD2i9uW4ez3nCKc4kx";
+
+        var stripe = require("stripe")(secretAPIKey);
+
+        // Token is created using Checkout or Elements!
+        // Get the payment token ID submitted by the form:
+        console.log(event);
+        
+    let token = event.token.id;
+        let name = event.name;
+        let city = event.city;
+        let country = event.country;
+        let phone = event.phone;
+        let email = event.email;
+        let filename = event.printFilename;
+        let productDelivered = event.productDelivered;
+        let priceToChargeInEuroCents = event.priceToChargeInEuroCents;
+
+        try {
+            const charge = await new Promise((resolve, reject) => {
+                stripe.charges.create({
+                    amount: priceToChargeInEuroCents,
+                    currency: 'EUR',
+                    description: 'Example charge',
+                    source: token,
+                    receipt_email: email,
+                    metadata: {
+                            name: name,
+                            city: city,
+                            country:country,
+                            phone: phone,
+                            email: email,
+                            filename: filename,
+                            productDelivered: productDelivered
+                        }
+                }, function (err, charge) {
+                    if (err) {
+                        console.log("Error",err);
+                        reject(err);
+                    }
+                    else {
+                        console.log("Success", charge);
+                        resolve(charge);
+                    }
+                });
+            });
+            callback(null, JSON.stringify(charge));
+        }
+        catch (err) {
+            callback(JSON.stringify(err));
+        }
+};

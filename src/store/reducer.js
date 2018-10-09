@@ -97,6 +97,23 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userEmailId: action.payload.userEmailId
             }
+
+        case actionTypes.RESET_SELECTION_DATA_AFTER_SUCCESSFUL_PAYMENT:
+
+            return {
+                ...state,
+                selectedCategory: null,
+                selectedBrand: null,
+                selectedYear: null,
+                selectedModel: null,
+                selectedCategoryImageFileName: null,
+                selectedGraphic: null,
+                selectedGraphicPrice: null,
+                customisedPartsImages: null,
+                selectedGraphicDescription: null,
+                visualComposerPartNamesArray: null,
+                visualComposerLeftRightCarouselData: null
+            }
     }
     return state;
 };

@@ -10,6 +10,7 @@ import styles from './PreparePrintFileStoreItAndPay.css';
 import * as AWSServicesManagement from '../../util/AWSServicesManagement';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import PaymentDetailsFormReactStripe from './PaymentDetailsFormReactStripe/PaymentDetailsFormReactStripe';
+import * as actionTypes from '../../store/actionTypes';
 
 class PreparePrintFileStoreItAndPay extends Component {
 
@@ -116,6 +117,7 @@ class PreparePrintFileStoreItAndPay extends Component {
     );
 
     redirectToHomePage = () => {
+        this.props.resetSelectionDataInStore();
         this.props.history.go(-5);
     }
 
@@ -302,4 +304,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default withRouter(connect(mapStateToProps)(PreparePrintFileStoreItAndPay));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        resetSelectionDataInStore: () => {
+            dispatch({type: actionTypes.RESET_SELECTION_DATA_AFTER_SUCCESSFUL_PAYMENT});            
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PreparePrintFileStoreItAndPay));

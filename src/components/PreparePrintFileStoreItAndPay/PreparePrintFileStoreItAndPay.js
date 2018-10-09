@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import base64 from 'base-64';
 import utf8 from 'utf8';
+import { withRouter } from 'react-router-dom';
 
 import * as appConstants from '../../constants/AppConstants';
 import * as util from '../../util/Util';
@@ -114,6 +115,10 @@ class PreparePrintFileStoreItAndPay extends Component {
         </div>
     );
 
+    redirectToHomePage = () => {
+        this.props.history.go(-5);
+    }
+
     sendTokenToServerAndCompletePayment = (tokenData) => {
 
         if (tokenData.token) {
@@ -178,6 +183,8 @@ class PreparePrintFileStoreItAndPay extends Component {
                                             Amount Paid: {`${payloadData.amount / 100} Euros`}<br /><br />
                                             A receipt of the order has been sent to :{`${payloadData.receipt_email}`}
                                         </p>
+                                        <br />
+                                        <p onClick={this.redirectToHomePage} className={`text-center`}><u className={`${styles.errorText} text-primary text-center`}>Go to HomePage</u></p>
                                     </div>
                                 )
                             });
@@ -295,4 +302,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PreparePrintFileStoreItAndPay);
+export default withRouter(connect(mapStateToProps)(PreparePrintFileStoreItAndPay));

@@ -147,15 +147,17 @@ class PreparePrintFileStoreItAndPay extends Component {
                 AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenAndDataToSendToServer))
                     .then((response) => {
                         console.log("Reached Here.", response);
-                        let error = "Payment Error";
+                        let error = "";
                         let payload = JSON.parse(response.Payload);
 
                         if (payload.hasOwnProperty('errorMessage')) {
                             console.log("Promise resolved but recieved error.", JSON.parse(payload.errorMessage));
 
-                            if (payload.errorMessage.type === "api_connection_error" || payload.errorMessage.type === "authentication_error" ||
-                                payload.errorMessage.type === "card_error" || payload.errorMessage.type === "validation_error") {
-                                error = payload.errorMessage.message;
+                            let errorMessage = JSON.parse(payload.errorMessage);
+
+                            if (errorMessage.type === "api_connection_error" || errorMessage.type === "authentication_error" ||
+                                errorMessage.type === "StripeCardError" || errorMessage.type === "validation_error") {
+                                error = errorMessage.message;
                             }
 
                             this.setState({
@@ -165,7 +167,8 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 paymentPhone: null,
                                 content: (
                                     <div className={`text-center`}>
-                                        <p className={`text-center text-danger ${styles.errorText}`}>{error}</p>
+                                        <p className={`text-center text-danger ${styles.errorText}`}>Payment Error <br/><br/>
+                                        {error}</p>
                                         {this.retryErrorText}
                                     </div>
                                 )
@@ -307,7 +310,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         resetSelectionDataInStore: () => {
-            dispatch({type: actionTypes.RESET_SELECTION_DATA_AFTER_SUCCESSFUL_PAYMENT});            
+            dispatch({ type: actionTypes.RESET_SELECTION_DATA_AFTER_SUCCESSFUL_PAYMENT });
         }
     }
 }

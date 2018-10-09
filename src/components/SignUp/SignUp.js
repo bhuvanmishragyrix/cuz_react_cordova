@@ -143,7 +143,7 @@ class SignUp extends Component {
     signUpButtonAndAlreadyAMemberText = (
         <div>
             <div className={`text-center mt-4`}>
-                <button className={`btn btn-primary form-control`} onClick={this.signUp}>SignUp</button>
+                <button className={`btn btn-primary form-control`} onClick={this.signUp}>Sign Up</button>
             </div>
             <div className={`d-flex justify-content-between align-items-center mt-4`}>
                 <div className={`d-inline ${styles.lineDiv}`}></div>

@@ -164,10 +164,10 @@ class PreparePrintFileStoreItAndPay extends Component {
                                     <div>
                                         <p className={`text-success ${styles.errorText} text-center`}>Payment Success</p>
                                         <p className={`${styles.errorText} text-center`}>
-                                        Your Order Id : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br/> <br/>
+                                        Your order reference Id : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br/> <br/>
                                         Transaction Id : {`${payloadData.balance_transaction}`} <br/><br/>
-                                        Amount Paid: {`${payloadData.amount /100} Euros`}<br/>
-                                        A receipt of the order has been sent to {`${payloadData.receipt_email}`}
+                                        Amount Paid: {`${payloadData.amount /100} Euros`}<br/><br/>
+                                        A receipt of the order has been sent to :{`${payloadData.receipt_email}`}
                                         </p>
                                     </div>
                                 )

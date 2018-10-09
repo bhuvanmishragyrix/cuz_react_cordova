@@ -152,7 +152,16 @@ class PreparePrintFileStoreItAndPay extends Component {
                             }
 
                             this.setState({
-                                content: <p className={`text-center ${styles.errorText} text-danger`}>{error}</p>
+                                paymentName: null,
+                                paymentCity: null,
+                                paymentCountry: null,
+                                paymentPhone: null,
+                                content: (
+                                    <div className={`text-center`}>
+                                        <p className={`text-center text-danger ${styles.errorText}`}>{error}</p>
+                                        {this.retryErrorText}
+                                    </div>
+                                )
                             });
                         }
                         else {
@@ -164,10 +173,10 @@ class PreparePrintFileStoreItAndPay extends Component {
                                     <div>
                                         <p className={`text-success ${styles.errorText} text-center`}>Payment Success</p>
                                         <p className={`${styles.errorText} text-center`}>
-                                        Your order reference Id : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br/> <br/>
-                                        Transaction Id : {`${payloadData.balance_transaction}`} <br/><br/>
-                                        Amount Paid: {`${payloadData.amount /100} Euros`}<br/><br/>
-                                        A receipt of the order has been sent to :{`${payloadData.receipt_email}`}
+                                            Your order reference Id : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br /> <br />
+                                            Transaction Id : {`${payloadData.balance_transaction}`} <br /><br />
+                                            Amount Paid: {`${payloadData.amount / 100} Euros`}<br /><br />
+                                            A receipt of the order has been sent to :{`${payloadData.receipt_email}`}
                                         </p>
                                     </div>
                                 )
@@ -209,6 +218,10 @@ class PreparePrintFileStoreItAndPay extends Component {
         }
         else if (tokenData.error) {
             this.setState({
+                paymentName: null,
+                paymentCity: null,
+                paymentCountry: null,
+                paymentPhone: null,
                 content: (
                     <div className={`text-center`}>
                         <p className={`text-center text-danger ${styles.errorText}`}>{tokenData.error.message}</p>

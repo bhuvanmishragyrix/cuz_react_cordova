@@ -141,7 +141,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                     phone: this.state.paymentPhone,
                     email: this.props.userEmailId,
                     printFilename: `${this.filenameOfUploadedImage}.svg`,
-                    productDelivered: "No",
+                    orderStatus: "Order Placed",
                     priceToChargeInEuroCents: this.props.selectedGraphicPrice
                 };
                 AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenAndDataToSendToServer))

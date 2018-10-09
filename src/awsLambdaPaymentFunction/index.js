@@ -156,7 +156,7 @@ exports.handler = async function (event, context, callback) {
         let phone = event.phone;
         let email = event.email;
         let filename = event.printFilename;
-        let productDelivered = event.productDelivered;
+        let orderStatus = event.orderStatus;
         let priceToChargeInEuroCents = event.priceToChargeInEuroCents;
 
         try {
@@ -173,7 +173,7 @@ exports.handler = async function (event, context, callback) {
                             phone: phone,
                             email: email,
                             filename: filename,
-                            productDelivered: productDelivered
+                            status: orderStatus
                         }
                 }, function (err, charge) {
                     if (err) {

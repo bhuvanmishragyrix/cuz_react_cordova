@@ -12,7 +12,7 @@ class SignUp extends Component {
     email;
     password;
     successText = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
-    signUpHeader = (<p className={`${styles.signUpHeader} text-center`}>SignUp</p>);
+    signUpHeader = (<p className={`${styles.signUpHeader} text-center`}>Sign Up</p>);
 
     onEmailChange = (evt) => {
         this.email = evt.target.value;

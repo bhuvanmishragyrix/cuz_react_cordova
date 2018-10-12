@@ -7,19 +7,19 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-screen-orientation": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
     "cordova-plugin-cache-clear": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-fullscreen": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
     "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },

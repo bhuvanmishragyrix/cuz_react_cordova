@@ -189,7 +189,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                                             A receipt of the order has been sent to : {`${payloadData.receipt_email}`}
                                         </p>
                                         <br />
-                                        <p onClick={this.redirectToHomePage} className={`text-center`}><u className={`${styles.errorText} text-primary text-center`}>Go to HomePage</u></p>
+                                        <p onClick={this.redirectToHomePage} className={`text-center`}><u className={`${styles.errorText} text-primary text-center`}>Go to Home Page</u></p>
                                     </div>
                                 )
                             });

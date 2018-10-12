@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import styles from './Item.css';
 import * as appConstants from '../../../constants/AppConstants';
@@ -18,7 +19,8 @@ class Item extends Component {
 
     imageLoaded = () => {
 
-        let heightOfImage = document.getElementById(styles.forGettingHeightOfImage).height;
+        let heightOfImage = $(`#${styles.forGettingHeightOfImage}`).height();
+        // document.getElementById(styles.forGettingHeightOfImage).height;
 
         this.setState({
             rightColumn: {

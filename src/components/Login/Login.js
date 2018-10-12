@@ -89,11 +89,11 @@ class Login extends Component {
                         .catch((err) => { console.log("Error", err) });
                 })
                 .catch((err) => {
-                    if (err.message === "Incorrect username or password.") {
+                    if (err.message === "Incorrect Email or password.") {
                         errorText = err.message;
                     }
                     else if (err.message === "User does not exist.") {
-                        errorText = "Incorrect username or password.";
+                        errorText = "Incorrect Email or password.";
                     }
                     else if (err.message === "User is not confirmed.") {
                         errorText = "Please verify email."
@@ -133,7 +133,7 @@ class Login extends Component {
                 <p className={`d-inline ${styles.newToCuzText} m-0 p-0`}>New to CUZ?</p>
                 <div className={`d-inline ${styles.lineDiv}`}></div>
             </div>
-            <button onClick={this.navigateToSignUpPage} className={`btn btn-light form-control mt-4 ${styles.signUp}`}>Sign up</button>
+            <button onClick={this.navigateToSignUpPage} className={`btn btn-light form-control mt-4 ${styles.signUp}`}>Sign Up</button>
         </div>
     );
 

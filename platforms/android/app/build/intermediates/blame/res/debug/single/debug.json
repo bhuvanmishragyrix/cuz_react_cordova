@@ -8,20 +8,8 @@
         "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/drawable-land-mdpi/screen.png"
     },
     {
-        "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_icon.png.flat",
-        "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/mipmap-xxhdpi/icon.png"
-    },
-    {
         "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/xml_config.xml.flat",
         "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/xml/config.xml"
-    },
-    {
-        "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_icon.png.flat",
-        "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/mipmap-hdpi/icon.png"
-    },
-    {
-        "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_icon.png.flat",
-        "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/mipmap-xhdpi/icon.png"
     },
     {
         "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xxxhdpi_screen.png.flat",
@@ -54,14 +42,6 @@
     {
         "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-mdpi_screen.png.flat",
         "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/drawable-port-mdpi/screen.png"
-    },
-    {
-        "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_icon.png.flat",
-        "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/mipmap-xxxhdpi/icon.png"
-    },
-    {
-        "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/mipmap-ldpi_icon.png.flat",
-        "source": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/src/main/res/mipmap-ldpi/icon.png"
     },
     {
         "merged": "/home/bhuvan/Cordova/cuz_react_cordova/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xhdpi_screen.png.flat",

@@ -177,13 +177,15 @@ class PreparePrintFileStoreItAndPay extends Component {
                         else {
                             let payloadData = JSON.parse(payload);
                             console.log("Promise resolved with no error.", payloadData);
+                            let filenameWithoutExtension = payloadData.metadata.filename.split('.')[0];
+                            console.log("File Name without Extension", filenameWithoutExtension);
 
                             this.setState({
                                 content: (
                                     <div>
                                         <p className={`text-success ${styles.errorText} text-center`}>Payment Success</p>
                                         <p className={`${styles.errorText} text-center`}>
-                                            Your order reference Id : {`${payloadData.metadata.email}/${payloadData.metadata.filename}`} <br /> <br />
+                                            Your order reference Id : {`${payloadData.metadata.email}/${filenameWithoutExtension}`} <br /> <br />
                                             Transaction Id : {`${payloadData.balance_transaction}`} <br /><br />
                                             Amount Paid: {`${payloadData.amount / 100} Euros`}<br /><br />
                                             A receipt of the order has been sent to : {`${payloadData.receipt_email}`}

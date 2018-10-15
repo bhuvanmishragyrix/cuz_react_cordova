@@ -376,7 +376,9 @@ class VisualComposerColorCustomiser extends Component {
     }
 
     onColorChanged = (event) => {
-        this.selectedElement.style.fill = event.color;
+        if (this.selectedElement) {
+            this.selectedElement.style.fill = event.color;
+        }
     };
 
     onDoneClick = () => {

@@ -1,7 +1,7 @@
 {
-  "name": "react-complete-guide",
+  "name": "CUZ",
   "version": "1.0.0",
-  "description": "",
+  "description": "An Android and iOS mobile application which allows users to register their email, verify it, login. Then select a product category (e.g. Dirtbike), select a brand, a year and a model. Choose a customisable graphic (a set of stickers for different parts of the product) from the available list of graphics. Customise the colors of the selected graphic (customise colors of different stickers of different parts of the product), preview the changes as they would appear on the right side of the product (e.g. on the right side of Dirtbike), reset the colors of graphics (reset colors of different stickers of different parts of products) to defaults. Once completed you can view a summary of the graphic you are about to purchase, along with the price. Enter your personal details (Name, City, Country, Phone) and finally make a payment by using a credit or debit card. Your printable customized graphic will be sent to the admin and you will be returned with a reference number, and a receipt of the payment will be sent to your registered email. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

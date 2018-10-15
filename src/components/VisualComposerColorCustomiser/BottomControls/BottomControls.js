@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import styles from './BottomControls.css';
+import 'rc-color-picker/assets/index.css?raw';
+
+import ColorPicker from 'rc-color-picker';
+
 
 class BottomControls extends Component {
 
@@ -28,7 +32,8 @@ class BottomControls extends Component {
             doneControlElementStyle: {
                 ...this.controlElementStyle,
                 color: "black"
-            }
+            },
+            colorOfInput: "#000000"
         };
     }
 
@@ -46,7 +51,9 @@ class BottomControls extends Component {
         if (newProps.colorOfInput) {
             let selectedElementColorArray = this.convertRGBColorToHex(newProps.colorOfInput.toString().split("(")[1].split(")")[0].split(","))
             selectedElementColorArray = "#" + selectedElementColorArray.join("");
-            $(`#${styles.colorInput}`)[0].value = selectedElementColorArray;
+            this.setState({
+                colorOfInput: selectedElementColorArray
+            });
         }
     }
 
@@ -108,7 +115,13 @@ class BottomControls extends Component {
         return (
             <div style={this.state.controlDivStyle} className={`${styles.rootElement}`}>
                 <div style={this.controlElementStyle} className={`d-inline-flex justify-content-center align-items-center ${styles.individualControlElementsStyle}`}>
-                    <input id={styles.colorInput} onChange={this.props.colorChanged} type="color" className={`p-0 m-0`} />
+                    <ColorPicker
+                        color={this.state.colorOfInput}
+                        enableAlpha={false}
+                        onChange={this.props.colorChanged}
+                        className="p-0 m-0"
+                    >
+                    </ColorPicker>
                 </div>
                 <div style={this.controlElementStyle} onClick={this.props.resetClick} className={`d-inline-flex justify-content-center align-items-center flex-column ${styles.individualControlElementsStyle}`}>
                     <i className={`fa fa-undo ${styles.iconFontSize}`} aria-hidden="true"></i>

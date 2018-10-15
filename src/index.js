@@ -10,6 +10,13 @@ import reducer from './store/reducer';
 
 const store = createStore(reducer);
 
+/**
+ * This (src/index.js) is the entry point of the application.
+ * Here we first lock the orientation of the device to portrait. 
+ * Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).
+ * Then we render the application (App.js) at the div with id "root" (present inside index.html).
+ */
+
 var app = {
     // Application Constructor
     initialize: function () {

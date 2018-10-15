@@ -10,7 +10,11 @@ import 'bootstrap';
 import StartPage from './containers/StartPage';
 
 
-
+/**
+ * <ul style="list-style: none;">
+ * <li>This is the root component of our application. We start the application by rendering the StartPage on this page which is imported from src/containers/StartPage</li>
+ * </ul>
+ */
 class App extends Component {
     render() {
         return (

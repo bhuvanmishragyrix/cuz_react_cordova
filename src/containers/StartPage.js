@@ -12,6 +12,9 @@ import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPage';
 
+/**
+ * We place all the top most level routes inside a "Switch" on this page.
+ */
 class StartPage extends Component {
 
     constructor(props) {

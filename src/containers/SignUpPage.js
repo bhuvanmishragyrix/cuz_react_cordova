@@ -11,12 +11,12 @@ import SignUp from '../components/SignUp/SignUp';
  *      <li> This is the Sign Up Page. </li>
  *      <li> Functional Description:</li>
  *      <ul>
- *          <li> The user can enter an email Id and password to register it with the application, or  </li>
+ *          <li> This page is a container for ThreeElementTabBar and our Sign Up component, which resides in src/components/SignUp/SignUp.js </li>
+ *          <li> Overall in Sign Up page the user can enter an email Id and password to register it with the application, or  </li>
  *          <li> The user can either press the Login button present on this page to Login. </li>
  *      </ul>
  *      <li> Code Description: </li>
  *      <ul>
- *          <li> This page is a container for our Sign Up component, which resides in src/components/SignUp/SignUp.js </li>
  *          <li> In this page we render the ThreeElementTabBar, from (from src/components/ThreeElementTabBar/ThreeElementTabBar.js)</li>
  *          <li> We hide the Menu Icon and the Share Icon in the ThreeElementTabBar using "hideMenuIcon" and "hideShareIcon" props.</li>
  *          <li> Then we render the Login component from src/containers/Login/Login.js.</li>

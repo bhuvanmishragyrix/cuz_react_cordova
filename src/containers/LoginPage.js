@@ -9,12 +9,12 @@ import * as appConstants from '../constants/AppConstants';
  *      <li> This is the Login Page. </li>
  *      <li> Functional Description:</li>
  *      <ul>
- *          <li> The user can either press the Sign Up button present on this page to Sign Up, or </li>
+ *          <li> This page is a container for ThreeElementTabBar and our Login component, which resides in src/components/Login/Login.js </li>
+ *          <li> Overall in the Login Page, the user can either press the Sign Up button present to Sign Up, or </li>
  *          <li> The user can enter his registered email Id and password to login into the application.  </li>
  *      </ul>
  *      <li> Code Description: </li>
  *      <ul>
- *          <li> This page is a container for our Login component, which resides in src/components/Login/Login.js </li>
  *          <li> In this page we render the ThreeElementTabBar, from (from src/components/ThreeElementTabBar/ThreeElementTabBar)</li>
  *          <li> We hide the Menu Icon and the Share Icon in the ThreeElementTabBar using "hideMenuIcon" and "hideShareIcon" props.</li>
  *          <li> Then we render the Login component from src/containers/Login/Login.js.</li>

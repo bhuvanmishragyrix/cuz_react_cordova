@@ -17,7 +17,8 @@ import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPa
  *      <li> This is the Start Page. </li>
  *      <li> Functional Description: </li>
  *      <ul>
- *          <li> This page is just a container. It renders the appropriate route. Also if we do not direct to any route, LandingPage is rendered, which is the first page to be rendered when the app starts. </li>
+ *          <li> This page is just a container. It renders the appropriate route. </li>
+ *          <li> Also if we do not direct to any route, LandingPage is rendered, which is the first page to be rendered when the app starts. </li>
  *      </ul>
  *      <li> Code Description: </li>
  *      <ul>

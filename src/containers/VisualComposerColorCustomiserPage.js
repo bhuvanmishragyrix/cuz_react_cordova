@@ -20,6 +20,11 @@ import VisualComposerColorCustomiser from '../components/VisualComposerColorCust
  *      <ul> 
  *          <li> The VisualComposerColorCustomiser (from src/components/VisualComposerColorCustomiser/VisualComposerColorCustomiser.js) is rendered on this page.</li>
  *      </ul>
+ *      <li> Navigation Description: </li>
+ *      <ul>
+ *          <li> Pressing the "Preview" button navigates to PreviewPage (from src/containers/PreviewPage.js)</li>
+ *          <li> Pressing the "Next" button navigates to CheckoutPage (from src/containers/CheckoutPage.js)</li>
+ *      </ul>
  * </ul>
  */
 const visualComposerColorCustomiserPage = () => {

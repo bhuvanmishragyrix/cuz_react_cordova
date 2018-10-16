@@ -22,6 +22,10 @@ import SignUp from '../components/SignUp/SignUp';
  *          <li> Then we render the Login component from src/containers/Login/Login.js.</li>
  *          <li> We also place a top margin for the Login component so that is shows below the ThreeElementTabBar. </li>
  *      </ul>
+ *      <li> Navigation Description: </li>
+ *      <ul>
+ *          <li> Upon performing a succesful sign up we are presented with a "Login" button, which when tapped redirects to LoginPage (from src/containers/LoginPage.js).</li>
+ *      </ul>
  * </ul>
  */
 const signUpPage = () => {

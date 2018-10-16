@@ -20,6 +20,10 @@ import * as appConstants from '../constants/AppConstants';
  *          <li> Then we render the Login component from src/containers/Login/Login.js.</li>
  *          <li> We also place a top margin for the Login component so that is shows below the ThreeElementTabBar. </li>
  *      </ul>
+ *      <li> Navigation Description: </li>
+ *      <ul>
+ *          <li> With correct credentials if we click on "Login" button, we are redirected to route '/parentForThreeElementTabBarScreens/categorySelectPage'.</li>
+ *      </ul>
  * </ul>
  */
 const loginPage = () => {

@@ -16,6 +16,10 @@ import VisualComposerColorCustomiser from '../components/VisualComposerColorCust
  *          <li> Once completed doing customisations, the user can press the "Done" button, which enables the "Next" button. The "Next" button is disabled initially.</li>
  *          <li> The user can then press the "Next" button to be redirected to the Checkout Page.</li>
  *      </ul>
+ *      <li> Code Description: </li>
+ *      <ul> 
+ *          <li> The VisualComposerColorCustomiser (from src/components/VisualComposerColorCustomiser/VisualComposerColorCustomiser.js) is rendered on this page.</li>
+ *      </ul>
  * </ul>
  */
 const visualComposerColorCustomiserPage = () => {

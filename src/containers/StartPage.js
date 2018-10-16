@@ -24,6 +24,10 @@ import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPa
  *      <ul>
  *          <li> We place all the top most level routes inside a "Switch" on this page. </li>
  *      </ul>
+ *      <li> Navigation Description: </li>
+ *      <ul>
+ *          <li> If we do not direct to any route, we are navigated to LandingPage (from src/containers/LandingPage)</li>
+ *      </ul>
  * </ul>
  */
 class StartPage extends Component {

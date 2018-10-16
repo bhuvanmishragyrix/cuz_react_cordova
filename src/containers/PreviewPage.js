@@ -2,8 +2,8 @@ import React from 'react';
 import Preview from '../components/Preview/Preview';
 
 /**
- * This the preview page.
  *      <ul style="list-style:none;">
+ *      <li> This the preview page. </li>
  *      <li> Functional Description: </li>
  *      <ul>
  *          <li> This is the just a container for the Preview component (from src/components/Preview/Preview.js) </li>

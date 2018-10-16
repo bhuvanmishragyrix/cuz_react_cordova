@@ -13,7 +13,16 @@ import SignUpPage from './SignUpPage';
 import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPage';
 
 /**
- * We place all the top most level routes inside a "Switch" on this page. Also if we do not direct to any route, LandingPage is rendered.
+ * <ul> 
+ *      <li> Functional Description: </li>
+ *      <ul>
+ *          <li> This page renders the appropriate route. Also if we do not direct to any route, LandingPage is rendered, which is the first page to be rendered when the app starts. </li>
+ *      </ul>
+ *      <li> Code Description: </li>
+ *      <ul>
+ *          <li> We place all the top most level routes inside a "Switch" on this page. </li>
+ *      </ul>
+ * </ul>
  */
 class StartPage extends Component {
 

@@ -5,6 +5,15 @@ import ThreeElementTabBar from '../components/ThreeElementTabBar/ThreeElementTab
 import * as appConstants from '../constants/AppConstants';
 import SignUp from '../components/SignUp/SignUp';
 
+
+/**
+ * <ul style="list-style:none;">
+ * <li>In this page we first render ThreeElementTabBar component from src/components/ThreeElementTabBar/ThreeElementTabBar.js </li>
+ * <li> We hide the Menu Icon and Share Icon using props. </li>
+ * <li> We then render the SignUp component from src/components/SignUp/SignUp.js. </li>
+ * <li> We also place a top margin for the SignUp component so that is shows below the ThreeElementTabBar. </li>
+ * </ul>
+ */
 const signUpPage = () => {
 
     let topMargin = {

@@ -22,7 +22,8 @@ import * as appConstants from '../constants/AppConstants';
  *      </ul>
  *      <li> Navigation Description: </li>
  *      <ul>
- *          <li> With correct credentials if we click on "Login" button, we are redirected to route '/parentForThreeElementTabBarScreens/categorySelectPage'.</li>
+ *          <li> With correct credentials if we tap on "Login" button, we are redirected to route '/parentForThreeElementTabBarScreens/categorySelectPage'.</li>
+ *          <li> If we tap on Sign Up, we are redirected to SignUpPage (from src/containers/SignUpPage.js)</li>
  *      </ul>
  * </ul>
  */

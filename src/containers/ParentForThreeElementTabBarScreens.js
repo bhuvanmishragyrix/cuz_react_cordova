@@ -16,9 +16,9 @@ import graphicStyleSelectPage from  './GraphicStyleSelectionPage';
  *      </ul>
  *      <li> Code Description: </li>
  *      <ul>
- *          <li> It contains ThreeElementTabBar component (from /src/components/ThreeElementTabBar/ThreeElementTabBar). </li>
- *          <li> </li>
- *          <li> routes for CategorySelectPage (from src/containers/CategorySelectPage), BrandYearModelSelectionPage (from src/containers/BrandYearModelSelectionPage), graphicStyleSelectPage (from src/containers/graphicStyleSelectPage). </li>
+ *          <li> We render ThreeElementTabBar component (from /src/components/ThreeElementTabBar/ThreeElementTabBar). </li>
+ *          <li> We hide the Menu Icon and the Share Icon using props.</li>
+ *          <li> Then we have routes for CategorySelectPage (from src/containers/CategorySelectPage), BrandYearModelSelectionPage (from src/containers/BrandYearModelSelectionPage), graphicStyleSelectPage (from src/containers/graphicStyleSelectPage). </li>
  *      </ul>
  * </ul>
  */

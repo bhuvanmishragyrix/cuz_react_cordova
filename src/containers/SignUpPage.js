@@ -19,7 +19,7 @@ import SignUp from '../components/SignUp/SignUp';
  *      <ul>
  *          <li> In this page we render the ThreeElementTabBar, from (from src/components/ThreeElementTabBar/ThreeElementTabBar.js)</li>
  *          <li> We hide the Menu Icon and the Share Icon in the ThreeElementTabBar using "hideMenuIcon" and "hideShareIcon" props.</li>
- *          <li> Then we render the Login component from src/containers/Login/Login.js.</li>
+ *          <li> Then we render the Login component from src/components/Login/Login.js.</li>
  *          <li> We also place a top margin for the Login component so that is shows below the ThreeElementTabBar. </li>
  *      </ul>
  *      <li> Navigation Description: </li>

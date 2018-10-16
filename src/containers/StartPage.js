@@ -13,7 +13,7 @@ import SignUpPage from './SignUpPage';
 import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPage';
 
 /**
- * We place all the top most level routes inside a "Switch" on this page.
+ * We place all the top most level routes inside a "Switch" on this page. Also if we do not direct to any route, LandingPage is rendered.
  */
 class StartPage extends Component {
 

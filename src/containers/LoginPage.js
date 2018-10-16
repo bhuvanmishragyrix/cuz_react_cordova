@@ -6,6 +6,8 @@ import * as appConstants from '../constants/AppConstants';
 
 /**
  * <ul style="list-style: none;">
+ * <li> This is the Login Page. </li>
+ * <li> This page is a container for our Login component, which resides in src/components/Login/Login.js </li>
  * <li> In this file (function) we render the ThreeElementTabBar from src/components/ThreeElementTabBar/ThreeElementTabBar.js. </li>
  * <li> We hide the Menu Icon and the Share Icon in this component using "hideMenuIcon" and "hideShareIcon" props.</li>
  * <li> Then we render the Login component from src/containers/Login/Login.js.</li>

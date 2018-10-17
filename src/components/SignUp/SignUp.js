@@ -14,14 +14,31 @@ class SignUp extends Component {
     successText = (<div className={`${styles.signUpSuccessText} text-success`}>SignUp Successful. Please verify email to be able to login.</div>);
     signUpHeader = (<p className={`${styles.signUpHeader} text-center`}>Sign Up</p>);
 
+    /**
+    * On change of the email input field, this function sets the class variable 'this.email' to the current value in the email input field.
+    * @param {Object} evt The event object that the input field gives us, on change on the input field value
+    */
     onEmailChange = (evt) => {
         this.email = evt.target.value;
     };
 
+    /**
+    * On change of the password input field, this function sets the class variable 'this.password' to the current value in the password input field.
+    * @param {Object} evt The event object that the input field gives us, on change on the input field value
+    */
     onPasswordChange = (evt) => {
         this.password = evt.target.value;
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function first of all replaces the Sign Up button on the Sign Up screen by a circular loader. </li>
+    * <li> Then checks if the email or password fields are empty, or if the length of the password is less than 6 characters. If any of this is true, it shows an error on the page. </li>
+    * <li> Else we try to signUp the user using 'signUp' function (from 'src/util/AWSUserManagement.js') </li>
+    * <li> On successful signUp, we display a success message, and present the user with a "Login" button to redirect him to LoginPage (from 'src/containers/LoginPage.js')</li> 
+    * <li> If the signUp fails, we display an appropriate error message on the screen.
+    * </ul>
+    */
     signUp = () => {
 
         let errorText = "An error has occured. Please try again.";
@@ -100,33 +117,11 @@ class SignUp extends Component {
                 });
         }
 
-
-        // AWS.config.region = 'us-east-2';
-
-        // Configure the credentials provider to use your identity pool
-        // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        //     IdentityPoolId: 'us-east-2:d77b718b-4c74-4938-a7ad-8c91d0dbcb41',
-        // });
-
-        // // Make the call to obtain credentials
-        // AWS.config.credentials.get(function (err) {
-
-        //     // Credentials will be available when this function is called.
-        //     var accessKeyId = AWS.config.credentials.accessKeyId;
-        //     var secretAccessKey = AWS.config.credentials.secretAccessKey;
-        //     var sessionToken = AWS.config.credentials.sessionToken;
-
-        //     console.log(err, accessKeyId, secretAccessKey, sessionToken);
-
-        // });
-
-
-      
-
-
-
     }
 
+    /**
+     * This function navigates to '/login' route, i.e. LoginPage (from src/containers/LoginPage.js).
+    */
     navigateToLogin = () => {
         this.props.history.replace('/login');
     };
@@ -155,6 +150,10 @@ class SignUp extends Component {
 
     loginButton = (<button onClick={this.navigateToLogin} className={`btn btn-light form-control mt-4 ${styles.login}`}>Login</button>);
 
+    /**
+    * This is the constructor for this class, we set the content that we'll see on the screen, here in 'state'.
+    * @param {Object} props These are the props the constructor receives
+    */
     constructor(props) {
         super(props);
 
@@ -170,6 +169,9 @@ class SignUp extends Component {
         };
     }
 
+    /**
+    * This is the render function of this class.
+    */
     render() {
         return (
             <div className={`mx-3 mb-2`} >

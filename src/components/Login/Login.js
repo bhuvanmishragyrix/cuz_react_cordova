@@ -21,7 +21,7 @@ class Login extends Component {
     password;
 
     /**
-     * This function navigates to '/signUp' route.
+     * This function navigates to '/signUp' route, i.e. SignUpPage (from 'src/containers/SignUpPage.js').
     */
     navigateToSignUpPage = () => {
         this.props.history.replace('/signUp');

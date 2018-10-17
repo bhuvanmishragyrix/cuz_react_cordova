@@ -13,22 +13,34 @@ const store = createStore(reducer);
 /**
  * <ul style="list-style: none;">
  * <li>This (src/index.js) is the entry point of the application.</li>
- * <li>Here we first lock the orientation of the device to portrait. </li>
- * <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
- * <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
- * <li>We write code inside "src/". After we have completed we run "npm run build", our build workflow (webpack) then bundles all the files inside "www" folder. The folder structure of src is as follows: </li>
- * </ul>
- * <ul>
- * <li> "assets" - Contains assets such as font files and the logo. </li>
- * <li> "awsLambdaPaymentFunction" - Contents of the folder are to be zipped and uploaded on AWS Lambda (lambdaFunc.zip is the zipped file that was uploaded). </li>
- * <li> "containers" - Contains the components which are acting as just containers. They just contain other components. </li>
- * <li> "components" - This is the folder which contains the different react component which are used in the application. </li>
- * <li> "constants" - Contains a file AppConstants.js, where all the constants used in the application are defined. </li>
- * <li> "store" - Contains all the files related to the store (redux), including reducer.js and actionTypes.js. </li>
- * <li> "util" - Contains the AWS code that manages users (AWSUserManagement.js), the AWS code that manages other AWS services. Contains the JSON file (CUZProductsAndImagesData.json) which contains the data (inside "images" attribute) of each image which is present inside the application. For each image used inside the application there should be an entry in the "images" attribute of this file. Also it contains the price of respective graphics. The file is to be uploaded on S3. The "namesForReference" attribute is just for reference and contains the attributes that must be in each object of the images array. The "Util.js" file contains utility functions that are used application wide.</li>
- * <li> "index.css" - Contains the css code that is globally to be used in the application.</li>
- * <li> "App.js" - This is the root component of our application.</li>
- * <li> "index.html" - This is the file where our bundled code (from webpack is finally attached.). The stripe script has to be hosted here. This script should always be loaded directly from https://js.stripe.com:  </li>
+ * <li> Build Workflow: </li>
+ *      <ul>
+ *          <li> We write code inside "src/" folder. </li>
+ *          <li> We write our code in React and our build workflow (webpack) converts and bundles it.  </li>
+ *          <li> After writing our code we run "npm run build", doing so our build workflow (webpack) bundles all the files to "www" folder. </li>
+ *          <li> Once "npm run build" is successful, on android we run "cordova run android" to run the application on a connected device or emulator. </li>
+ *          <li> In case there is an issue, try opening the platforms/android folder in android studio and running it from there.</li>
+ *          <li> In case of ios, try opening the .xcodeproj file (present in platforms/ios/) in xcode and running it from there.</li>
+ *      </ul>
+ * <li> Code Description: </li>
+ *      <ul>
+ *          <li>Here we first lock the orientation of the device to portrait. </li>
+ *          <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
+ *          <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
+ *      <ul>
+ * <li> Folder Structure (of src/) </li>
+ *      <ul>
+ *          <li> "assets" - Contains assets such as font files and the logo. </li>
+ *          <li> "awsLambdaPaymentFunction" - Contents of the folder are to be zipped and uploaded on AWS Lambda (lambdaFunc.zip is the zipped file that was uploaded). </li>
+ *          <li> "containers" - Contains the components which are acting as just containers. They just contain other components. </li>
+ *          <li> "components" - This is the folder which contains the different react component which are used in the application. </li>
+ *          <li> "constants" - Contains a file AppConstants.js, where all the constants used in the application are defined. </li>
+ *          <li> "store" - Contains all the files related to the store (redux), including reducer.js and actionTypes.js. </li>
+ *          <li> "util" - Contains the AWS code that manages users (AWSUserManagement.js), the AWS code that manages other AWS services. Contains the JSON file (CUZProductsAndImagesData.json) which contains the data (inside "images" attribute) of each image which is present inside the application. For each image used inside the application there should be an entry in the "images" attribute of this file. Also it contains the price of respective graphics. The file is to be uploaded on S3. The "namesForReference" attribute is just for reference and contains the attributes that must be in each object of the images array. The "Util.js" file contains utility functions that are used application wide.</li>
+ *          <li> "index.css" - Contains the css code that is globally to be used in the application.</li>
+ *          <li> "App.js" - This is the root component of our application.</li>
+ *          <li> "index.html" - This is the file where our bundled code (from webpack is finally attached.). The stripe script has to be hosted here. This script should always be loaded directly from https://js.stripe.com:  </li>
+ *      </ul>
  * </ul>
  */
 

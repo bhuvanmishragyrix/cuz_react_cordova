@@ -195,7 +195,7 @@ class Login extends Component {
 };
 
 /**
- * In this function we map attributes that we have in store to props in the class.
+ * Here we map attributes that we have in store to props in the class.
  */
 const mapstateToProps = (state) => {
     return {

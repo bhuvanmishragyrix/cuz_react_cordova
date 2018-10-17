@@ -22,6 +22,10 @@ import CategorySelect from '../components/CategorySelect/CategorySelect';
  */
 class CategorySelectPage extends Component {
 
+    /**
+    * This is the constructor of this class. Here we set the state attribute 'productsAndImagesData' to 'images' attribute set in the store.
+    * @param {Object} props The props that this component receives.
+    */
     constructor(props) {
         super(props);
 
@@ -30,6 +34,16 @@ class CategorySelectPage extends Component {
         };
     }
 
+    /**
+    * <ul>
+    * <li> This function is trigerred when the props to this component are updated. </li>
+    * <li> We should receive new props when the images JSON data is updated in the store. </li>
+    * <li> We set this function so that in case intially JSON data was not fetched when this component's constructor ran, they would be received later. </li>
+    * <li> Upon receiving the JSON data, we set this data in our state variable 'productsAndImagesData'.  </li>
+    * <li> This data is in turn passed to CategorySelect component from 'src/component/CategorySelect/CategorySelect.js' through props. </li>
+    * </ul>
+    * @param {Object} newProps The new set of props received.
+    */
     componentWillReceiveProps(newProps) {
 
         this.setState({
@@ -37,6 +51,9 @@ class CategorySelectPage extends Component {
         });
     }
 
+    /**
+    * This is the render function of our class
+    */
     render() {
 
         return (
@@ -47,6 +64,9 @@ class CategorySelectPage extends Component {
     }
 };
 
+/**
+ * Here we map attributes that we have in store to props in the class.
+ */
 const mapStateToProps = (state) => {
     return {
         productsAndImagesData: state.images

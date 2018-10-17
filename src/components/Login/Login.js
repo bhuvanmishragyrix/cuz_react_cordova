@@ -50,6 +50,16 @@ class Login extends Component {
         this.password = evt.target.value;
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function first of all replaces the login button on the login screen by a circular loader. </li>
+    * <li> Then checks if the email or password fields are empty. If they are empty, it shows an error on the page. </li>
+    * <li> If they are not empty, we try to authenticate the user using 'authenticateUser' function (from 'src/util/AWSUserManagement.js') </li>
+    * <li> On successful authentication, we fetch the JSON file we have stored on AWS S3 that contains an entry for each image that is used in the application.</li> 
+    * <li> We then save this JSON data to store, and then navigate to '/parentForThreeElementTabBarScreens/categorySelectPage' route with the help of a function.
+    * <li> If the authentication fails, we display an appropriate error message on the screen.
+    * </ul>
+    */
     login = () => {
 
         let errorText = "An error occured. Please try again.";
@@ -96,9 +106,9 @@ class Login extends Component {
                                 console.log("Error parsing the JSON Data returned from server.", err);
                             }
 
-                            this.navigateToCategorySelectPage();
-
                             this.props.storeProductsAndImagesJSONData(JSON.parse(jsonData));
+
+                            this.navigateToCategorySelectPage();
                         })
                         .catch((err) => { console.log("Error", err) });
                 })

@@ -12,7 +12,7 @@ import CategorySelect from '../components/CategorySelect/CategorySelect';
  *          <li> Overall in the Category Select Page, the user can view all the available categories, and </li>
  *          <li> View all the New Products, and  </li>
  *          <li> Change the selected category from the category slider, and </li>
- *          <li> Navigate forward by pressing the "Continue" button. </li>
+ *          <li> Navigate forward with the current selection by pressing the "Continue" button. </li>
  *          <li> Only once data is received from AWS S3, the continue button is enabled. Before that it is disabled. </li>
  *      </ul>
  *      <li> Navigation Description: </li>

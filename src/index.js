@@ -13,6 +13,7 @@ const store = createStore(reducer);
 /**
  * <ul style="list-style: none;">
  * <li>This (src/index.js) is the entry point of the application.</li>
+ * <br/>
  * <li> Build Workflow: </li>
  *      <ul>
  *          <li> We write code inside "src/" folder. </li>
@@ -22,6 +23,7 @@ const store = createStore(reducer);
  *          <li> In case there is an issue, try opening the platforms/android folder in android studio and running it from there.</li>
  *          <li> In case of ios, try opening the .xcodeproj file (present in platforms/ios/) in xcode and running it from there.</li>
  *      </ul>
+ * <br/>
  * <li> Folder Structure (of src/) : </li>
  *      <ul>
  *          <li> "assets" - Contains assets such as font files and the logo. </li>
@@ -35,6 +37,7 @@ const store = createStore(reducer);
  *          <li> "App.js" - This is the root component of our application.</li>
  *          <li> "index.html" - This is the file where our bundled code (from webpack is finally attached.). The stripe script has to be hosted here. This script should always be loaded directly from https://js.stripe.com:  </li>
  *      </ul>
+ * <br/>
  * <li> Code Description: </li>
  *      <ul>
  *          <li>Here we first lock the orientation of the device to portrait. </li>

@@ -12,7 +12,12 @@ import StartPage from './containers/StartPage';
 
 /**
  * <ul style="list-style: none;">
- * <li>This is the root component of our application. We start the application by rendering the StartPage on this page which is imported from src/containers/StartPage</li>
+ * <li> This (src/App.js) is the root component of our application. </li>
+ * <li> It is the parent most component, the root of the application component tree.</li>
+ * <li> Code Description: </li>
+ *      <ul>
+ *          <li> We render the StartPage on this page which is imported from src/containers/StartPage.js</li>
+ *      </ul>
  * </ul>
  */
 class App extends Component {

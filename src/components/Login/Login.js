@@ -20,18 +20,32 @@ class Login extends Component {
     email;
     password;
 
+    /**
+     * This function navigates to '/signUp' route.
+    */
     navigateToSignUpPage = () => {
         this.props.history.replace('/signUp');
     };
 
+    /**
+     * This function navigates to '/parentForThreeElementTabBarScreens/categorySelectPage' route, i.e. the CategorySelectPage.
+    */
     navigateToCategorySelectPage = () => {
         this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
     };
 
+    /**
+    * On change of the email input field, this function sets the class variable 'this.email' to the current value in the email input field.
+    * @param {Object} evt The event object that the input field gives us, on change on the input field value
+    */
     onEmailChange = (evt) => {
         this.email = evt.target.value;
     }
 
+    /**
+    * On change of the password input field, this function sets the class variable 'this.password' to the current value in the password input field.
+    * @param {Object} evt The event object that the input field gives us, on change on the input field value
+    */
     onPasswordChange = (evt) => {
         this.password = evt.target.value;
     }

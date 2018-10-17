@@ -161,6 +161,10 @@ class Login extends Component {
         </div>
     );
 
+    /**
+    * This is the constructor for this class, we set the content that we'll see on the screen, here in 'state'.
+    * @param {Object} props These are the props the constructor receives
+    */
     constructor(props) {
         super(props);
 
@@ -175,6 +179,9 @@ class Login extends Component {
         };
     }
 
+    /**
+    * This is the render function of this class.
+    */
     render() {
         return (
             <div className={`mx-3 mb-2`}>
@@ -187,6 +194,9 @@ class Login extends Component {
 
 };
 
+/**
+ * In this function we map attributes that we have in store to props in the class.
+ */
 const mapstateToProps = (state) => {
     return {
         userJWTToken: state.userJWTToken
@@ -195,15 +205,27 @@ const mapstateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /**
+        * This function stores the userJWTToken obtained on login to store.
+        * @param {string} token The JWT token obtained on user login
+        */
         storeUserJWTTokenInStore: (token) => {
             dispatch({
                 type: actionTypes.STORE_USER_JWT_TOKEN,
                 payload: { userJWTToken: token }
             })
         },
+        /**
+        * This function stores the images and products JSON data we have fetched from AWS S3 to the store.
+        * @param {Object} data The Images and Products JSON data we have fetched from AWS S3
+        */
         storeProductsAndImagesJSONData: (data) => {
             dispatch({ type: actionTypes.STORE_FETCHED_PRODUCTS_AND_IMAGES_JSON_DATA, payload: data })
         },
+        /**
+        * This function stores the email Id of the logged in user to the store.
+        * @param {string} email The email Id of the logged in user
+        */
         storeUserEmailIdInStore: (email) => {
             dispatch({
                 type: actionTypes.STORE_USER_EMAIL_ID_IN_STORE, payload: {

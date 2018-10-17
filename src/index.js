@@ -22,12 +22,12 @@ const store = createStore(reducer);
  *          <li> In case there is an issue, try opening the platforms/android folder in android studio and running it from there.</li>
  *          <li> In case of ios, try opening the .xcodeproj file (present in platforms/ios/) in xcode and running it from there.</li>
  *      </ul>
- * <li> Folder Structure (of src/) </li>
+ * <li> Folder Structure (of src/) : </li>
  *      <ul>
  *          <li> "assets" - Contains assets such as font files and the logo. </li>
  *          <li> "awsLambdaPaymentFunction" - Contents of the folder are to be zipped and uploaded on AWS Lambda (lambdaFunc.zip is the zipped file that was uploaded). </li>
  *          <li> "containers" - Contains the components which are acting as just containers. They just contain other components. </li>
- *          <li> "components" - This is the folder which contains the different react component which are used in the application. </li>
+ *          <li> "components" - This is the folder which contains the different react components which are used in the application. </li>
  *          <li> "constants" - Contains a file AppConstants.js, where all the constants used in the application are defined. </li>
  *          <li> "store" - Contains all the files related to the store (redux), including reducer.js and actionTypes.js. </li>
  *          <li> "util" - Contains the AWS code that manages users (AWSUserManagement.js), the AWS code that manages other AWS services. Contains the JSON file (CUZProductsAndImagesData.json) which contains the data (inside "images" attribute) of each image which is present inside the application. For each image used inside the application there should be an entry in the "images" attribute of this file. Also it contains the price of respective graphics. The file is to be uploaded on S3. The "namesForReference" attribute is just for reference and contains the attributes that must be in each object of the images array. The "Util.js" file contains utility functions that are used application wide.</li>

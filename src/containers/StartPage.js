@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
+import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 import ParentForThreeElementTabBarScreens from './ParentForThreeElementTabBarScreens';
 import VisualComposerColorCustomiserPage from './VisualComposerColorCustomiserPage';
 import PreviewPage from './PreviewPage';
 import CheckoutPage from './CheckoutPage';
-import LoginPage from './LoginPage';
-import SignUpPage from './SignUpPage';
 import PreparePrintFileStoreItAndPayPage from './PreparePrintFileStoreItAndPayPage';
 
 /**

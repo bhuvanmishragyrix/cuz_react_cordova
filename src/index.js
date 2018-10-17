@@ -22,12 +22,6 @@ const store = createStore(reducer);
  *          <li> In case there is an issue, try opening the platforms/android folder in android studio and running it from there.</li>
  *          <li> In case of ios, try opening the .xcodeproj file (present in platforms/ios/) in xcode and running it from there.</li>
  *      </ul>
- * <li> Code Description: </li>
- *      <ul>
- *          <li>Here we first lock the orientation of the device to portrait. </li>
- *          <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
- *          <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
- *      <ul>
  * <li> Folder Structure (of src/) </li>
  *      <ul>
  *          <li> "assets" - Contains assets such as font files and the logo. </li>
@@ -41,6 +35,12 @@ const store = createStore(reducer);
  *          <li> "App.js" - This is the root component of our application.</li>
  *          <li> "index.html" - This is the file where our bundled code (from webpack is finally attached.). The stripe script has to be hosted here. This script should always be loaded directly from https://js.stripe.com:  </li>
  *      </ul>
+ * <li> Code Description: </li>
+ *      <ul>
+ *          <li>Here we first lock the orientation of the device to portrait. </li>
+ *          <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
+ *          <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
+ *      <ul>
  * </ul>
  */
 

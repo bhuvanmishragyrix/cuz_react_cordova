@@ -223,7 +223,7 @@ class VisualComposerColorCustomiser extends Component {
 
     /**
     * <ul style="list-style:none;">
-    * <li> In this function we remove the border around the currently selected element, if there is such an element</li>
+    * <li> In this function we remove the border around the current element set to 'selectedElement' class variable, if 'selectedElement' is not null</li>
     * </ul>
     */
     removeBorderAroundCurrentlySelectedElement = () => {
@@ -233,6 +233,11 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we set the border around the element set to 'selectedElement' class variable, if 'selectedElement' is not null</li>
+    * </ul>
+    */
     setBorderAroundCurrentlySelectedElement = () => {
         this.selectedElement.setAttribute("stroke", "black");
         this.selectedElement.setAttribute("stroke-width", "50");
@@ -320,6 +325,13 @@ class VisualComposerColorCustomiser extends Component {
             })
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we populate the state variables 'partNameCarouselData' and 'leftRightCarouselData' with appropriate data. </li>
+    * <li> This in turn populates both the part name and left-right carousel </li>
+    * <li> We then call the 'renderFirstImageFound' function. </li>
+    * </ul>
+    */
     populatePartNameAndLeftRightCarouselData = () => {
         this.setState({
             partNameCarouselData: this.partNamesArray,
@@ -402,12 +414,25 @@ class VisualComposerColorCustomiser extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we check if the text, "The selected side of the image is not available", is present on the screen. </li>
+    * </li> If it is we remove it. </li>
+    * </ul>
+    */
     checkAndIfNeededRemoveImageNotPresentDivFromScreen = () => {
         if ($(`#${styles.imageNotPresentDiv}`).length != 0) {
             $(`#${styles.imageNotPresentDiv}`)[0].remove();
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we set the variable 'leftRightCarouselCurrentSelectedIndex' to left image of first part of 'partNamesArray', if the left image exists, or </li>
+    * <li> We set the variable 'leftRightCarouselCurrentSelectedIndex' to right image of of first part of 'partNamesArray' </li>
+    * <li> Then we call the 'renderImageAccordingToPartNameIndexAndLeftRightIndex' function.</li>
+    * </ul>
+    */
     renderFirstImageFound = () => {
         this.partFilenamesAndImagesArray.forEach((el) => {
             if (el.partname === this.partNamesArray[this.partNameCarouselCurrentSelectedIndex]) {
@@ -423,6 +448,15 @@ class VisualComposerColorCustomiser extends Component {
         this.renderImageAccordingToPartNameIndexAndLeftRightIndex();
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first check if 'fetchAllImages' state variable is set, </li>
+    * <li> We do this check to ensure that the circular loader is not removed by this code, as that too is an SVG </li>
+    * <li> If that variable is set, and there is an SVG on the page, we remove it </li>
+    * <li> Then we call 'checkAndIfNeededRemoveImageNotPresentDivFromScreen' function. </li>
+    * <li> Then we place the appropriate SVG on the screen based on the current value of part name carousel, and left-right carousel </li>
+    * </ul>
+    */
     renderImageAccordingToPartNameIndexAndLeftRightIndex = () => {
 
         if (this.state.fetchAllImages) {
@@ -459,6 +493,12 @@ class VisualComposerColorCustomiser extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we set the state variable 'colorOfInput' to the color of the currently selected element, provided that the currently selected element has a color.</li>
+    * <li> If the currently selected element doesn't have a color, we set the state variable 'colorOfInput' to black color. </li>
+    * </ul>
+    */
     changeColorOfColorPicker = () => {
 
         if (this.selectedElement.style.fill) {

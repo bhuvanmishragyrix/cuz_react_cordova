@@ -152,12 +152,14 @@ exports.handler = async function (event, context, callback) {
     let token = event.token.id;
         let name = event.name;
         let city = event.city;
-        let country = event.country;
         let phone = event.phone;
         let email = event.email;
         let filename = event.printFilename;
         let orderStatus = event.orderStatus;
         let priceToChargeInEuroCents = event.priceToChargeInEuroCents;
+        let address = event.address;
+        let state = event.state;
+        let postalCode = event.postalCode;
 
         try {
             const charge = await new Promise((resolve, reject) => {
@@ -168,12 +170,15 @@ exports.handler = async function (event, context, callback) {
                     source: token,
                     metadata: {
                             name: name,
+                            address: address,
                             city: city,
-                            country:country,
+                            state: state,
+                            postalCode: postalCode,
+                            country:'Italy',
                             phone: phone,
                             email: email,
                             filename: filename,
-                            status: orderStatus
+                            status: orderStatus,
                         }
                 }, function (err, charge) {
                     if (err) {

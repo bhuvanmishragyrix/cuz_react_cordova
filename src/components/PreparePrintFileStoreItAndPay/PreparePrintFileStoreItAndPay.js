@@ -35,7 +35,6 @@ class PreparePrintFileStoreItAndPay extends Component {
             ),
             paymentName: null,
             paymentCity: null,
-            paymentCountry: null,
             paymentPhone: null,
             paymentAddress: null,
             paymentState: null,
@@ -125,7 +124,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                             <PaymentDetailsFormReactStripe
                                 onNameChange={this.onNameChange}
                                 onCityChange={this.onCityChange}
-                                onCountryChange={this.onCountryChange}
                                 onPhoneChange={this.onPhoneChange}
                                 sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment}
                                 email={this.props.userEmailId}
@@ -161,7 +159,6 @@ class PreparePrintFileStoreItAndPay extends Component {
 
             if (this.state.paymentName && this.state.paymentName.length > 0 &&
                 this.state.paymentCity && this.state.paymentCity.length > 0 &&
-                this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
                 this.state.paymentPhone && this.state.paymentPhone.length > 0 &&
                 this.state.paymentAddress && this.state.paymentAddress.length > 0 &&
                 this.state.paymentState && this.state.paymentState.length > 0 &&
@@ -172,7 +169,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                     ...tokenData,
                     name: this.state.paymentName,
                     city: this.state.paymentCity,
-                    country: this.state.paymentCountry,
                     phone: this.state.paymentPhone,
                     email: this.props.userEmailId,
                     printFilename: `${this.filenameOfUploadedImage}.svg`,
@@ -201,7 +197,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                             this.setState({
                                 paymentName: null,
                                 paymentCity: null,
-                                paymentCountry: null,
                                 paymentPhone: null,
                                 address: null,
                                 state: null,
@@ -248,7 +243,6 @@ class PreparePrintFileStoreItAndPay extends Component {
             else {
                 let nameError = (<p className={`text-center ${styles.errorText} text-danger`}>Name field cannot be empty</p>);
                 let cityError = (<p className={`text-center ${styles.errorText} text-danger`}>City field cannot be empty</p>);
-                let countryError = (<p className={`text-center ${styles.errorText} text-danger`}>Country field cannot be empty</p>);
                 let phoneError = (<p className={`text-center ${styles.errorText} text-danger`}>Phone field cannot be empty</p>);
                 let addressError = (<p className={`text-center ${styles.errorText} text-danger`}>Address field cannot be empty</p>);
                 let stateError = (<p className={`text-center ${styles.errorText} text-danger`}>State field cannot be empty</p>);
@@ -270,9 +264,6 @@ class PreparePrintFileStoreItAndPay extends Component {
                 if (!(this.state.paymentPostalCode && this.state.paymentPostalCode.length > 0)) {
                     errorMessage.push(postalCodeError);
                 }
-                if (!(this.state.paymentCountry && this.state.paymentCountry.length > 0)) {
-                    errorMessage.push(countryError);
-                }
                 if (!(this.state.paymentPhone && this.state.paymentPhone.length > 0)) {
                     errorMessage.push(phoneError);
                 }
@@ -288,7 +279,6 @@ class PreparePrintFileStoreItAndPay extends Component {
             this.setState({
                 paymentName: null,
                 paymentCity: null,
-                paymentCountry: null,
                 paymentPhone: null,
                 address: null,
                 state: null,
@@ -328,7 +318,16 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 <StripeProvider apiKey={appConstants.STRIPE_PUBLISHABLE_KEY}>
                                     <div className="example">
                                         <Elements>
-                                            <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
+                                            <PaymentDetailsFormReactStripe
+                                                onNameChange={this.onNameChange}
+                                                onCityChange={this.onCityChange}
+                                                onPhoneChange={this.onPhoneChange}
+                                                sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment}
+                                                email={this.props.userEmailId}
+                                                price={this.props.selectedGraphicPrice}
+                                                onAddressChange={this.onAddressChange}
+                                                onStateChange={this.onStateChange}
+                                                onPostalCodeChange={this.onPostalCodeChange} />
                                         </Elements>
                                     </div>
                                 </StripeProvider>

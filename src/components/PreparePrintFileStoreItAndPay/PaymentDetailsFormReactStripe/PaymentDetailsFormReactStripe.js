@@ -49,7 +49,7 @@ class CheckoutForm extends Component {
                 <label className={`${styles.labelText} mt-2`}>Postal Code</label>
                 <input onChange={this.props.onPostalCodeChange} type={`number`} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Country</label>
-                <input onChange={this.props.onCountryChange} className={`form-control`} />
+                <input disabled value={`Italy`} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Phone</label>
                 <input onChange={this.props.onPhoneChange} type={`number`} className={`form-control`} />
                 <div className={`text-center my-2`}>

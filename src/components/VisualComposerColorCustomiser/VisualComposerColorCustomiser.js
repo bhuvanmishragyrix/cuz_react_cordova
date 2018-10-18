@@ -121,7 +121,7 @@ class VisualComposerColorCustomiser extends Component {
 
     };
 
-        /**
+    /**
     * <ul style="list-style:none;">
     * <li> In this function we parse each image (which is present in string format) present in 'partFilenamesAndImagesArray' class variable, and</li>
     * <li> Create a parsable object of it (this is done using DOMParser), and </li>
@@ -209,6 +209,14 @@ class VisualComposerColorCustomiser extends Component {
         this.selectedElement.setAttribute("stroke-width", "50");
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> For each image present in 'partFilenamesAndImagesArray', we find all elements that have an Id. </li>
+    * <li> Each element within each part's image must have an id for our algorithm to work. </li>
+    * <li> When we save the images using Inkscape in Ubuntu, an id is automatically assigned to all elements. </li>
+    * <li> On each of these elements we then call addClickEventListenerOnLeftElements function. </li>
+    * </ul>
+    */
     addCustomisationLogicToAllImages = () => {
         let i;
 

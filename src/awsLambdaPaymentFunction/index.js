@@ -168,6 +168,7 @@ exports.handler = async function (event, context, callback) {
                     currency: 'EUR',
                     description: 'CUZ Graphic Purchase',
                     source: token,
+                    receipt_email: email,
                     metadata: {
                             name: name,
                             address: address,
@@ -178,7 +179,7 @@ exports.handler = async function (event, context, callback) {
                             phone: phone,
                             email: email,
                             filename: filename,
-                            status: orderStatus,
+                            status: orderStatus
                         }
                 }, function (err, charge) {
                     if (err) {

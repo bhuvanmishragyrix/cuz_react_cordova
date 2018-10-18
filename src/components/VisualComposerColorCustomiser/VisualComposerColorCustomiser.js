@@ -32,6 +32,21 @@ class VisualComposerColorCustomiser extends Component {
 
     selectedElement;
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In constructor we first find the height of the screen, subtracting the height that would approximately be taken by the top region on phone (e.g. where the battery indicator, signal strength shows up etc)</li>
+    * <li> We then take 90% of that height and store it in the class variable 'remainingHeight'. </li> 
+    * <li> We have wrapper our entire screen in a div named 'wrapperDivStyle'. So we set its height equal to 'remainingHeight' class variable. </li>
+    * <li> We set 8% of 'remainingHeight' as the height of the bottom controls on the screen. </li>
+    * <li> We set 90% of 'remainingHeight' as the height of the section where the image and the two carousels show up. </li>
+    * <li> We set the part name carousel data to null in state. </li>
+    * <li> We set the left-right carousel data to null in state. </li>
+    * <li> We set 'isNextEnable' to false intially so that the next button on the bottom controls is disabled by default. </li>
+    * <li> We set 'fetchAllImages' variable to false initially, to show a loader until data is not fetched from the back end. </li>
+    * <li> We then prepare the div which is shown in case a certain image is not present. We store it in 'imageNotPresentDiv' class variable. </li>
+    * <li> We then set the back button press event listener to override the default behavior, and execute the function 'clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener' on press of back button. </li>
+    * </ul>
+    */
     constructor(props) {
         super(props);
 
@@ -61,6 +76,13 @@ class VisualComposerColorCustomiser extends Component {
         document.addEventListener('backbutton', this.clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener, false);
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first execute the 'clearCustomisedImagesPartsArrayCarouselDataAndPriceFromStore' function defined in mapDispatchToProps. </li>
+    * <li> Then we navigate back. </li>
+    * <li> We then remove our custom event listener that we set (for the event of of on back button press) in the constructor. </li>
+    * </ul>
+    */
     clearCustomisedImagesPartsArrayCarouselDataAndRemoveBackButtonEventListener = () => {
 
         this.props.clearCustomisedImagesPartsArrayCarouselDataAndPriceFromStore();
@@ -643,6 +665,11 @@ class VisualComposerColorCustomiser extends Component {
         this.props.history.push('/checkout');
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class. </li>
+    * </ul>
+    */
     render() {
 
         return (
@@ -678,6 +705,11 @@ class VisualComposerColorCustomiser extends Component {
     }
 };
 
+/**
+* <ul style="list-style:none;">
+* <li> Here we map the properties we have in store to props of this class.</li>
+* </ul>
+*/
 const mapStateToProps = (state) => {
     return {
         images: state.images,
@@ -724,6 +756,11 @@ const mapDispatchToProps = (dispatch) => {
                 }
             })
         },
+        /**
+        * <ul style="list-style:none;">
+        * <li> In this function we clear the customised images, part names images, left-right carousel data, and the selected graphic price from store.</li>
+        * </ul>
+        */
         clearCustomisedImagesPartsArrayCarouselDataAndPriceFromStore: () => {
             dispatch({
                 type: actionTypes.CLEAR_CUSTOMISED_IMAGES_AND_PARTS_ARRAY_AND_CAROUSEL_DATA_AND_PRICE

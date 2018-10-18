@@ -225,6 +225,17 @@ class VisualComposerColorCustomiser extends Component {
 
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first create an array of promises, so that we can do something once all of them resolve.</li>
+    * <li> Each promise is corresponding to each image fetch operation that we do here, from AWS S3. We fetch all the images that are stored in 'partFilenamesAndImagesArray' class variable.</li>
+    * <li> Once all promises are resolved, we check if the length of the response is greater than 0. i.e. means we did receive any image response.</li>
+    * <li> If this is the case we set the 'fetchAllImages' state variable to true. We do this to hide the circular loader which is showing on the screen.</li>
+    * <li> The images that we get are not in the form of string, so we use the base64 and utf8 libraries to do so. </li>
+    * <li> Depending on whether the image is a left or right image, we create a property 'leftImageAsString' or 'rightImageAsString' respectively in the corresponding object of that image in 'partFilenamesAndImagesArray'.</li>
+    * <li> We then call the functions convertAllPartsImagesToParsableObjectsAndStore and populatePartNameAndLeftRightCarouselData in sequence. </li>
+    * </ul>
+    */
     fetchAllPartSVGImages = () => {
         let arrayOfPartImagePromises = [], responseCounter = 0;
         this.partFilenamesAndImagesArray.forEach((el) => {
@@ -260,10 +271,6 @@ class VisualComposerColorCustomiser extends Component {
 
                 this.convertAllPartsImagesToParsableObjectsAndStore();
                 this.populatePartNameAndLeftRightCarouselData();
-
-                // document.getElementsByClassName(styles.heightOfImageParentDiv)[0].appendChild(this.partFilenamesAndImagesArray[1].rightImageObject)
-                // document.getElementsByTagName("svg")[0].style.transform = "rotate(90deg)";
-                // document.getElementsByTagName("svg")[0].style.height = `${$(`.${styles.heightOfImageParentDiv}`).width()}px`;
 
             })
     };

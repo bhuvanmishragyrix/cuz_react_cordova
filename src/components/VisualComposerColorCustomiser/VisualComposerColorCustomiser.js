@@ -173,6 +173,7 @@ class VisualComposerColorCustomiser extends Component {
     * <li> Then we call 'changeColorOfColorPicker' function. </li>
     * <li> Then we disable the next button if it is enabled. </li>
     * </ul>
+    * * @param {Object} element The element on upon which the click event listener has to be attached
     */
     addClickEventListenerOnLeftElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
@@ -201,6 +202,7 @@ class VisualComposerColorCustomiser extends Component {
     * <li> Then we call 'changeColorOfColorPicker' function. </li>
     * <li> Then we disable the next button if it is enabled. </li>
     * </ul>
+    * @param {Object} element The element on upon which the click event listener has to be attached
     */
     addClickEventListenerOnRightElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
@@ -219,6 +221,11 @@ class VisualComposerColorCustomiser extends Component {
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we remove the border around the currently selected element, if there is such an element</li>
+    * </ul>
+    */
     removeBorderAroundCurrentlySelectedElement = () => {
         if (this.selectedElement) {
             this.selectedElement.removeAttribute('stroke');

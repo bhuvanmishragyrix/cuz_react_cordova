@@ -476,6 +476,12 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we set the color of the currently selected element to the color selected in the color picker. </li>
+    * </ul>
+    * @param {Object} event The event object returned by the color picker.
+    */
     onColorChanged = (event) => {
         if (this.selectedElement) {
             this.selectedElement.style.fill = event.color;
@@ -493,6 +499,11 @@ class VisualComposerColorCustomiser extends Component {
         this.selectedElement = null;
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we invert the value of isNextEnable </li>
+    * </ul>
+    */
     changeIsNextEnable = () => {
         this.setState({
             isNextEnable: !this.state.isNextEnable

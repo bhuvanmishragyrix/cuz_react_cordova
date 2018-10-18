@@ -482,6 +482,12 @@ class VisualComposerColorCustomiser extends Component {
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first call the 'removeBorderAroundCurrentlySelectedElement' function, and </li>
+    * <li> Then we set the 'selectedElement' class variable  to null. </li>
+    * </ul>
+    */
     onDoneClick = () => {
         this.removeBorderAroundCurrentlySelectedElement();
         this.selectedElement = null;
@@ -513,6 +519,11 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li>In this function we set the current image on the page to its default version, removing all customisations applied.</li>
+    * </ul>
+    */
     onResetClick = () => {
 
         let parser = new DOMParser();
@@ -549,6 +560,11 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we call 'storePartNameArrayAndLeftRightCarouselData' function.</li>
+    * </ul>
+    */
     storePartNameArrayAndLeftRightCarouselDataInStore = () => {
         this.props.storePartNameArrayAndLeftRightCarouselData(this.partNamesArray
             , this.leftRightCarouselData);
@@ -556,6 +572,15 @@ class VisualComposerColorCustomiser extends Component {
 
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first save the customised parts in store, with the help of the function 'storeCustomisedPartImagesInStore'. </li>
+    * <li>Then we call 'storePartNameArrayAndLeftRightCarouselDataInStore' function.</li>
+    * <li>Then we call 'onDoneClick' function.</li>
+    * <li>Then we remove the backbutton event listener that we set in the constructor.</li>
+    * <li>Then we navigate to PreviewPage (from src/containers/PreviewPage.js).</li>
+    * </ul>
+    */
     storeCustomisedPartsImagesInStoreAndRedirectToPreviewPage = () => {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
@@ -568,6 +593,15 @@ class VisualComposerColorCustomiser extends Component {
         this.props.history.push('/preview');
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first save the customised parts in store, with the help of the function 'storeCustomisedPartImagesInStore'. </li>
+    * <li>Then we call 'storePartNameArrayAndLeftRightCarouselDataInStore' function.</li>
+    * <li>Then we call 'onDoneClick' function.</li>
+    * <li>Then we remove the backbutton event listener that we set in the constructor.</li>
+    * <li>Then we navigate to CheckoutPage (from src/containers/CheckoutPage.js).</li>
+    * </ul>
+    */
     storeCustomisedPartsImagesInStoreAndRedirectToCheckoutPage = () => {
         let partFilenamesAndImagesArray = this.partFilenamesAndImagesArray.slice();
         this.props.storeCustomisedPartImagesInStore(partFilenamesAndImagesArray);
@@ -633,6 +667,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+
+        /**
+        * <ul style="list-style:none;">
+        * <li> In this function we store the customised part's images to the store. </li>
+        * </ul>
+        */
         storeCustomisedPartImagesInStore: (payload) => {
             dispatch({
                 type: actionTypes.STORE_CUSTOMISED_PARTS_IMAGES,
@@ -641,6 +681,11 @@ const mapDispatchToProps = (dispatch) => {
                 }
             });
         },
+        /**
+        * <ul style="list-style:none;">
+        * <li> In this function we store the part names and left-right carousel data in store. </li>
+        * </ul>
+        */
         storePartNameArrayAndLeftRightCarouselData: (partNamesArray, carouselData) => {
             dispatch({
                 type: actionTypes.STORE_PART_NAME_ARRAY_AND_LEFT_RIGHT_CAROUSEL_DATA,

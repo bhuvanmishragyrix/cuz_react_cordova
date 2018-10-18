@@ -163,10 +163,21 @@ class VisualComposerColorCustomiser extends Component {
         this.addCustomisationLogicToAllImages();
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first check if the element passed is a 'path', or a 'rect', or a 'circle', or a 'ellipse', or a 'line', or a 'polygon' </li>
+    * <li> If it is we add a click event listener on that element. </li>
+    * <li> In that event listener, we first call 'removeBorderAroundCurrentlySelectedElement' function. </li>
+    * <li> Then we set the set the class variable 'selectedElement' to this element. </li>
+    * <li> Then we call 'setBorderAroundCurrentlySelectedElement' on this element. </li>
+    * <li> Then we call 'changeColorOfColorPicker' function. </li>
+    * <li> Then we disable the next button if it is enabled. </li>
+    * </ul>
+    */
     addClickEventListenerOnLeftElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
             element.addEventListener("click", () => {
-                this.removeBorderAroundCurrentlySelectedElement(element);
+                this.removeBorderAroundCurrentlySelectedElement();
                 this.selectedElement = element;
                 this.setBorderAroundCurrentlySelectedElement(element);
                 this.changeColorOfColorPicker();
@@ -180,6 +191,17 @@ class VisualComposerColorCustomiser extends Component {
 
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first check if the element passed is a 'path', or a 'rect', or a 'circle', or a 'ellipse', or a 'line', or a 'polygon' </li>
+    * <li> If it is we add a click event listener on that element. </li>
+    * <li> In that event listener, we first call 'removeBorderAroundCurrentlySelectedElement' function. </li>
+    * <li> Then we set the set the class variable 'selectedElement' to this element. </li>
+    * <li> Then we call 'setBorderAroundCurrentlySelectedElement' on this element. </li>
+    * <li> Then we call 'changeColorOfColorPicker' function. </li>
+    * <li> Then we disable the next button if it is enabled. </li>
+    * </ul>
+    */
     addClickEventListenerOnRightElements = (element) => {
         if (element.nodeName === "path" || element.nodeName === "rect" || element.nodeName === "circle" || element.nodeName === "ellipse" || element.nodeName === "line" || element.nodeName === "polygon") {
             element.addEventListener("click", () => {

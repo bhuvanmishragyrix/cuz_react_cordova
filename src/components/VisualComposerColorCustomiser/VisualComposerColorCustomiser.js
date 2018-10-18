@@ -23,7 +23,6 @@ class VisualComposerColorCustomiser extends Component {
 
     partFilenamesAndImagesArray = [];
     partNamesArray = [];
-    bikeSVGFilenamesAndImagesArray = [];
     remainingHeight;
 
     imageNotPresentDiv;
@@ -76,6 +75,17 @@ class VisualComposerColorCustomiser extends Component {
     }
 
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first parse the images array which is saved in store, it is the main JSON data we fetched from AWS S3 </li>
+    * <li> During this parsing we check each image in the data. </li>
+    * <li> We check if the image has the same category, brand, year, model, and graphic name as of the ones selected by user. And, </li>
+    * <li> The image is not a preview bike image, not a print image, and is a part image.</li>
+    * <li> If all these conditions are met we make an entry of the name of that part in 'partNamesArray' (if it already don't exist there), and  </li>
+    * <li> An object in 'partFilenamesAndImagesArray' class variables (if it already don't exist there).</li>
+    * <li> Also depending on whether it is a left or right side image we create a property leftImageName or rightImageName in that object and save the name of the file (not part name, but file name) there.</li>
+    * </ul>
+    */
     fetchAllPartAndWholeBikeSVGImageNames = () => {
 
         this.props.images.forEach((el) => {
@@ -105,9 +115,6 @@ class VisualComposerColorCustomiser extends Component {
                     }
 
                 }
-            }
-            else {
-                this.bikeSVGFilenamesAndImagesArray.push(el.filename);
             }
         }
         )
@@ -270,6 +277,14 @@ class VisualComposerColorCustomiser extends Component {
         this.renderFirstImageFound();
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> Here in componentDidMount we first check whether our customisedPartsImages are already stored in store. </li>
+    * <li> If it is present it means that we are returning from either the checkout screen or preview screen. </li>
+    * <li> Hence we should load the customised images rather than the default ones, and not do everything from scratch. </li>
+    * <li> If customisedPartsImages are not saved in store, we do everything from scratch.
+    * </ul>
+    */
     componentDidMount() {
 
         if (this.props.customisedPartsImages) {

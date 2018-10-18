@@ -380,16 +380,34 @@ class VisualComposerColorCustomiser extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function executes when the part name carousel is slid. </li>
+    * <li> Then we call the function 'checkIfSelectedImageIsPresentAndRender' </li>
+    * </ul>
+    */
     partNameCarouselSlid = (slidTo) => {
         this.partNameCarouselCurrentSelectedIndex = slidTo;
         this.checkIfSelectedImageIsPresentAndRender();
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function executes when the left-right carousel is slid. </li>
+    * <li> Then we call the function 'checkIfSelectedImageIsPresentAndRender' </li>
+    * </ul>
+    */
     leftRightCarouselSlid = (slidTo) => {
         this.leftRightCarouselCurrentSelectedIndex = slidTo;
         this.checkIfSelectedImageIsPresentAndRender();
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> On the slid of any carousel, in this function we check if the image selected exists. If it does, we render it. </li>
+    * <li> If it doesn't exist we remove the currently rendered image (SVG) from the screen and render the 'The selected side of the image is not available' text to the screen. </li>
+    * </ul>
+    */
     checkIfSelectedImageIsPresentAndRender = () => {
         let currentlySelectedPart = this.partNamesArray[this.partNameCarouselCurrentSelectedIndex];
 

@@ -36,7 +36,10 @@ class PreparePrintFileStoreItAndPay extends Component {
             paymentName: null,
             paymentCity: null,
             paymentCountry: null,
-            paymentPhone: null
+            paymentPhone: null,
+            paymentAddress: null,
+            paymentState: null,
+            paymentPostalCode: null
         };
     }
 
@@ -95,13 +98,42 @@ class PreparePrintFileStoreItAndPay extends Component {
         });
     }
 
+    onAddressChange = (evt) => {
+        this.setState({
+            paymentAddress: evt.target.value
+        });
+    };
+
+    onStateChange = (evt) => {
+        this.setState({
+            paymentState: evt.target.value
+        });
+    };
+
+    onPostalCodeChange = (evt) => {
+        this.setState({
+            paymentPostalCode: evt.target.value
+        });
+    };
+
     onRetryClick = () => {
         this.setState({
             content: (
                 <StripeProvider apiKey={appConstants.STRIPE_PUBLISHABLE_KEY}>
                     <div className="example">
                         <Elements>
-                            <PaymentDetailsFormReactStripe onNameChange={this.onNameChange} onCityChange={this.onCityChange} onCountryChange={this.onCountryChange} onPhoneChange={this.onPhoneChange} sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment} email={this.props.userEmailId} price={this.props.selectedGraphicPrice} />
+                            <PaymentDetailsFormReactStripe
+                                onNameChange={this.onNameChange}
+                                onCityChange={this.onCityChange}
+                                onCountryChange={this.onCountryChange}
+                                onPhoneChange={this.onPhoneChange}
+                                sendTokenToServerAndCompletePayment={this.sendTokenToServerAndCompletePayment}
+                                email={this.props.userEmailId}
+                                price={this.props.selectedGraphicPrice}
+                                onAddressChange={this.onAddressChange}
+                                onStateChange={this.onStateChange}
+                                onPostalCodeChange={this.onPostalCodeChange}
+                            />
                         </Elements>
                     </div>
                 </StripeProvider>
@@ -130,7 +162,10 @@ class PreparePrintFileStoreItAndPay extends Component {
             if (this.state.paymentName && this.state.paymentName.length > 0 &&
                 this.state.paymentCity && this.state.paymentCity.length > 0 &&
                 this.state.paymentCountry && this.state.paymentCountry.length > 0 &&
-                this.state.paymentPhone && this.state.paymentPhone.length > 0) {
+                this.state.paymentPhone && this.state.paymentPhone.length > 0 &&
+                this.state.paymentAddress && this.state.paymentAddress.length > 0 &&
+                this.state.paymentState && this.state.paymentState.length > 0 &&
+                this.state.paymentPostalCode && this.state.paymentPostalCode.length > 0) {
 
                 console.log("Token Data", tokenData);
                 let tokenAndDataToSendToServer = {
@@ -142,7 +177,10 @@ class PreparePrintFileStoreItAndPay extends Component {
                     email: this.props.userEmailId,
                     printFilename: `${this.filenameOfUploadedImage}.svg`,
                     orderStatus: "Order Placed",
-                    priceToChargeInEuroCents: this.props.selectedGraphicPrice
+                    priceToChargeInEuroCents: this.props.selectedGraphicPrice,
+                    address: this.state.paymentAddress,
+                    state: this.state.paymentState,
+                    postalCode: this.state.paymentPostalCode
                 };
                 AWSServicesManagement.executeLambdaMakePaymentAndStoreOrderDetailsInDynamoDB(this.props.userJWTToken, JSON.stringify(tokenAndDataToSendToServer))
                     .then((response) => {
@@ -165,10 +203,13 @@ class PreparePrintFileStoreItAndPay extends Component {
                                 paymentCity: null,
                                 paymentCountry: null,
                                 paymentPhone: null,
+                                address: null,
+                                state: null,
+                                postalCode: null,
                                 content: (
                                     <div className={`text-center`}>
-                                        <p className={`text-center text-danger ${styles.errorText}`}>Payment Error <br/><br/>
-                                        {error}</p>
+                                        <p className={`text-center text-danger ${styles.errorText}`}>Payment Error <br /><br />
+                                            {error}</p>
                                         {this.retryErrorText}
                                     </div>
                                 )
@@ -209,13 +250,25 @@ class PreparePrintFileStoreItAndPay extends Component {
                 let cityError = (<p className={`text-center ${styles.errorText} text-danger`}>City field cannot be empty</p>);
                 let countryError = (<p className={`text-center ${styles.errorText} text-danger`}>Country field cannot be empty</p>);
                 let phoneError = (<p className={`text-center ${styles.errorText} text-danger`}>Phone field cannot be empty</p>);
+                let addressError = (<p className={`text-center ${styles.errorText} text-danger`}>Address field cannot be empty</p>);
+                let stateError = (<p className={`text-center ${styles.errorText} text-danger`}>State field cannot be empty</p>);
+                let postalCodeError = (<p className={`text-center ${styles.errorText} text-danger`}>Postal Code field cannot be empty</p>);
                 let errorMessage = [];
 
                 if (!(this.state.paymentName && this.state.paymentName.length > 0)) {
                     errorMessage.push(nameError);
                 }
+                if (!(this.state.paymentAddress && this.state.paymentAddress.length > 0)) {
+                    errorMessage.push(addressError);
+                }
                 if (!(this.state.paymentCity && this.state.paymentCity.length > 0)) {
                     errorMessage.push(cityError);
+                }
+                if (!(this.state.paymentState && this.state.paymentState.length > 0)) {
+                    errorMessage.push(stateError);
+                }
+                if (!(this.state.paymentPostalCode && this.state.paymentPostalCode.length > 0)) {
+                    errorMessage.push(postalCodeError);
                 }
                 if (!(this.state.paymentCountry && this.state.paymentCountry.length > 0)) {
                     errorMessage.push(countryError);
@@ -223,6 +276,7 @@ class PreparePrintFileStoreItAndPay extends Component {
                 if (!(this.state.paymentPhone && this.state.paymentPhone.length > 0)) {
                     errorMessage.push(phoneError);
                 }
+
                 errorMessage.push(this.retryErrorText);
                 this.setState({
                     content: errorMessage
@@ -236,6 +290,9 @@ class PreparePrintFileStoreItAndPay extends Component {
                 paymentCity: null,
                 paymentCountry: null,
                 paymentPhone: null,
+                address: null,
+                state: null,
+                postalCode: null,
                 content: (
                     <div className={`text-center`}>
                         <p className={`text-center text-danger ${styles.errorText}`}>{tokenData.error.message}</p>

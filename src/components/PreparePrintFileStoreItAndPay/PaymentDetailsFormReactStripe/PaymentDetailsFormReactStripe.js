@@ -40,8 +40,14 @@ class CheckoutForm extends Component {
                 <input disabled value={this.props.email} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Name</label>
                 <input onChange={this.props.onNameChange} className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Address</label>
+                <input onChange={this.props.onAddressChange} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>City</label>
                 <input onChange={this.props.onCityChange} className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>State</label>
+                <input onChange={this.props.onStateChange} className={`form-control`} />
+                <label className={`${styles.labelText} mt-2`}>Postal Code</label>
+                <input onChange={this.props.onPostalCodeChange} type={`number`} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Country</label>
                 <input onChange={this.props.onCountryChange} className={`form-control`} />
                 <label className={`${styles.labelText} mt-2`}>Phone</label>

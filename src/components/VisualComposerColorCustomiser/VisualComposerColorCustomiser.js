@@ -121,6 +121,14 @@ class VisualComposerColorCustomiser extends Component {
 
     };
 
+        /**
+    * <ul style="list-style:none;">
+    * <li> In this function we parse each image (which is present in string format) present in 'partFilenamesAndImagesArray' class variable, and</li>
+    * <li> Create a parsable object of it (this is done using DOMParser), and </li>
+    * <li> Store it in a property in 'partFilenamesAndImagesArray' class variable. </li>
+    * <li> Then we call the function 'addCustomisationLogicToAllImages' </li>
+    * </ul>
+    */
     convertAllPartsImagesToParsableObjectsAndStore = () => {
 
         let parser = new DOMParser();

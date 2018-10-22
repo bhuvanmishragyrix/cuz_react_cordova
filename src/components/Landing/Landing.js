@@ -10,17 +10,33 @@ class Landing extends Component {
 
     heightOfDivToSet;
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we redirect to LoginPage (from src/containers/LoginPage.js) </li>
+    * </ul>
+    */
     constructor(props) {
         super(props);
 
         this.heightOfDivToSet = 0.9 * window.screen.height - AppConst.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT;
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we redirect to LoginPage (from src/containers/LoginPage.js)</li>
+    * <li> Here we do a replace instead of a push. </li>
+    * </ul>
+    */
     redirectToParentForThreeElementTabBarScreens = () => {
         // this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
         this.props.history.replace('/login');
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class. </li>
+    * </ul>
+    */
     render() {
         return (
             <div>

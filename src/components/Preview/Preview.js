@@ -204,11 +204,19 @@ class Preview extends Component {
                         }
                     });
 
+                    if (this.leftPreviewImageInArray.length > 0) {
+                        this.leftPreviewImageInArray = this.leftPreviewImageInArray[0].leftImageObject;
+                    }
+
                     this.rightPreviewImageInArray = this.sideFileNamesAndImagesArray.filter((el) => {
                         if (el.leftOrRight === "Right") {
                             return true;
                         }
                     });
+
+                    if (this.rightPreviewImageInArray.length > 0) {
+                        this.rightPreviewImageInArray = this.rightPreviewImageInArray[0].rightImageObject;
+                    }
 
 
                     this.props.customisedPartsImages.forEach((el) => {

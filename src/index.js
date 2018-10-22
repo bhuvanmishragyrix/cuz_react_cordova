@@ -58,7 +58,7 @@ const store = createStore(reducer);
  *          <li> This way the id for any element would be the same on the part image, the preview bike SVG image and the final print image. This condition is necessary for algorithms in this application to work. </li>
  *          <li> The color customising algorithms in this application should work then without any problem. </li>
             <li> HOWEVER IF THIS IS NOT THE CASE, THE COLOR CUSTOMISING ALGORITHMS IN THIS APPLICATION WOULD NOT WORK. </li>
- *      <ul>
+ *      </ul>
  * </ul>
  */
 

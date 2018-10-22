@@ -21,6 +21,13 @@ class BrandYearModelSelection extends Component {
     modelSelectedIndex = 0;
     heightOfCarousel;
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In the constructor we first try to populate the Brand, Year, and Model carousel data. </li>
+    * <li> Then we set the initial value of some state variables. </li>
+    * <li> We then set the height of the carousel in the class variable 'heightOfCarousel'. </li>
+    * </ul>
+    */
     constructor(props) {
         super(props);
 
@@ -40,6 +47,11 @@ class BrandYearModelSelection extends Component {
         this.heightOfCarousel = (window.screen.height - appConstants.HEIGHT_TO_SUBTRACT_FROM_WINDOW_SCREEN_HEIGHT - appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR) / 4.8;
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we check if to disable the continue button on screen</li>
+    * </ul>
+    */
     checkIfToDisableContinueButton = () => {
         if (this.modelCarouselData && this.modelCarouselData.hasOwnProperty(this.modelSelectedIndex) && this.modelCarouselData[this.modelSelectedIndex].hasOwnProperty(`model`) && this.modelCarouselData[this.modelSelectedIndex].model) {
             return false;
@@ -49,6 +61,12 @@ class BrandYearModelSelection extends Component {
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we save brand, year, and model value in store, and </li>
+    * <li> Navigate to GraphicStyleSelectionPage (from src/containers/BrandYearModelSelection.js) </li>
+    * </ul>
+    */
     storeBrandYearModelInStoreAndNavigateToGraphicStyleSelectionPage = () => {
         this.props.storeSelectedBrandYearModelInStore(this.brandCarouselData[this.brandSelectedIndex].brand,
             this.yearCarouselData[this.yearSelectedIndex].year,
@@ -56,6 +74,11 @@ class BrandYearModelSelection extends Component {
         this.props.history.push('/parentForThreeElementTabBarScreens/graphicStyleSelectPage');
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we populate the Brand, Year, and Model carousel Data considering the case that this data wasn't available in store when the constructor ran, and arrived later. </li>
+    * </ul>
+    */
     componentWillReceiveProps(newProps) {
         this.populatePropsForBrandYearModelCarousels(newProps);
 
@@ -66,6 +89,11 @@ class BrandYearModelSelection extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we set the values of Brand, Year, and Model carousel data in class variables. </li>
+    * </ul>
+    */
     populatePropsForBrandYearModelCarousels = (props) => {
         let brandSelected, yearSelected;
         if (props[`productsAndImagesData`]) {
@@ -93,6 +121,11 @@ class BrandYearModelSelection extends Component {
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is executed when a brand is selected (or changed) in Brand Carousel. </li>
+    * </ul>
+    */
     brandSelected = (brandIndex) => {
         this.brandSelectedIndex = brandIndex;
         this.populatePropsForBrandYearModelCarousels(this.props);
@@ -105,6 +138,11 @@ class BrandYearModelSelection extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is executed when a year is selected (or changed) in Year Carousel. </li>
+    * </ul>
+    */
     yearSelected = (yearIndex) => {
         this.yearSelectedIndex = yearIndex;
         this.populatePropsForBrandYearModelCarousels(this.props);
@@ -117,6 +155,11 @@ class BrandYearModelSelection extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is executed when a model is selected (or changed) in Model Carousel. </li>
+    * </ul>
+    */
     modelSelected = (modelIndex) => {
         this.modelSelectedIndex = modelIndex;
         this.populatePropsForBrandYearModelCarousels(this.props);
@@ -129,6 +172,11 @@ class BrandYearModelSelection extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class. </li>
+    * </ul>
+    */
     render() {
 
         return (
@@ -153,6 +201,11 @@ class BrandYearModelSelection extends Component {
     }
 }
 
+/**
+* <ul style="list-style:none;">
+* <li> Here we map the store attributes to props in our class. </li>
+* </ul>
+*/
 const mapStateToProps = (state) => {
     return {
         selectedCategory: state.selectedCategory
@@ -161,6 +214,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /**
+        * <ul style="list-style:none;">
+        * <li> With the help of this function we save the selected Brand, Year and Model in store. </li>
+        * </ul>
+        */
         storeSelectedBrandYearModelInStore: (brand, year, model) => {
             dispatch({
                 type: actionTypes.STORE_SELECTED_BRAND_YEAR_MODEL, payload: {

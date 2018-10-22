@@ -26,6 +26,11 @@ const graphicStyleSelect = (props) => {
         marginTop: `${appConstants.HEIGHT_OF_THREE_ELEMENT_TAB_BAR + appConstants.TOP_MARGIN_FOR_THREE_ELEMENT_TABBAR_PAGES}px`
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is executed when a Graphic is selected (tapped upon). </li>
+    * </ul>
+    */
     const onGraphicSelect = (index) => {
         props.storeSelectedGraphicAndPriceInStore(imageNameData[index].graphic, imageNameData[index].priceInEuroCents);
         props.storeGraphicDescriptionInStore(imageNameData[index].graphicDescription);
@@ -48,6 +53,11 @@ const graphicStyleSelect = (props) => {
     );
 };
 
+/**
+* <ul style="list-style:none;">
+* <li> Here we map the attributes in store to props in this class. </li>
+* </ul>
+*/
 const mapStateToProps = (state) => {
     return {
         images: state.images,
@@ -61,6 +71,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /**
+        * <ul style="list-style:none;">
+        * <li> With the help of this function we store the selected Graphic and Price in store. </li>
+        * </ul>
+        */
         storeSelectedGraphicAndPriceInStore: (graphic, graphicPrice) => {
             dispatch({
                 type: actionTypes.STORE_GRAPHIC_NAME_AND_PRICE, payload: {
@@ -69,6 +84,11 @@ const mapDispatchToProps = (dispatch) => {
                 }
             })
         },
+        /**
+        * <ul style="list-style:none;">
+        * <li> With the help of this function we store the selected graphic description in store. </li>
+        * </ul>
+        */
         storeGraphicDescriptionInStore: (description) => {
             dispatch({
                 type: actionTypes.STORE_GRAPHIC_DESCRIPTION, payload: {

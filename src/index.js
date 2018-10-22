@@ -49,7 +49,7 @@ const store = createStore(reducer);
  *      <ul>
  *          <li> For the color customising algorithms written in this application to work, all the elments (e.g. path, rect, circle etc) inside the SVG parts images, which are upload on AWS S3, each of those elements should have an id.   </li>
  *          <li> An id is automatically created on each element when we open the images in Inkscape on Ubuntu and save it again as 'Plain SVG' </li>
- *          <li> Also this should also be the case with the preview Bike SVG images, and the final print image sent to the admin <li>
+ *          <li> Also this should also be the case with the preview Bike SVG images, and the final print image sent to the admin </li>
  *          <li> Moreover the way these images were created for this application and probably the way they should be created is that, we first should have the print image with us. </li>
  *          <li> We then should open this image in Inkscape and save it again as 'Plain SVG'. </li>
  *          <li> Once this is done, we should open this new saved 'Plain SVG' image and cut parts from it. (Do not save this 'Plain SVG' after cutting the parts though) </li>

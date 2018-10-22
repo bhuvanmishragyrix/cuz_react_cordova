@@ -340,10 +340,10 @@ class Preview extends Component {
 }
 
 /**
-    * <ul style="list-style:none;">
-    * <li> Here we map the properties in the store to props in our class. </li>
-    * </ul>
-    */
+* <ul style="list-style:none;">
+* <li> Here we map the properties in the store to props in our class. </li>
+* </ul>
+*/
 const mapStateToProps = (state) => {
     return {
         images: state.images,

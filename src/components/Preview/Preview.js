@@ -153,7 +153,9 @@ class Preview extends Component {
     * <ul style="list-style:none;">
     * <li> In this function we first fetch the preview Images from AWS S3. </li>
     * <li> Then we create an attribute which stores the preview images downloaded from S3 as a string. </li>
-    * <li>  </li>
+    * <li> We then store the left preview image in leftPreviewImageInArray and right preview image in rightPreviewImageInArray. </li>
+    * <li> Then we call 'mapCustomisedImagesColorsToPreviewImage' on each element of the customised images, be it left or right side. </li>
+    * <li> Then finally we call 'renderFirstImage'. </li>
     * </ul>
     */
     populateImagesAsStringsInsideFileNamesAndImagesArray = () => {
@@ -249,6 +251,11 @@ class Preview extends Component {
             })
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we render the left preview image if it is available else we render 'preview image is not available' div. </li>
+    * </ul>
+    */
     renderFirstImage = () => {
 
         if (this.leftPreviewImageInArray.length > 0) {
@@ -267,6 +274,12 @@ class Preview extends Component {
 
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> When the carousel is slid this function is called. </li>
+    * <li> Here we render the appropriate image or 'preview image not available' div, if preview image is not available. </li>
+    * </ul>
+    */
     sideSelected = (index) => {
 
 
@@ -311,6 +324,11 @@ class Preview extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class </li>
+    * </ul>
+    */
     render() {
         return (
             <div style={this.state.wrapperDivStyle} id={styles.parentOfImage} className={`d-flex align-items-center pb-1`}>
@@ -321,6 +339,11 @@ class Preview extends Component {
     }
 }
 
+/**
+    * <ul style="list-style:none;">
+    * <li> Here we map the properties in the store to props in our class. </li>
+    * </ul>
+    */
 const mapStateToProps = (state) => {
     return {
         images: state.images,

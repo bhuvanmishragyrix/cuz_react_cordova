@@ -15,6 +15,11 @@ class CategorySelect extends Component {
     categoryCarouselData;
     newProductCarouselData;
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In the constructor we first call the function 'populatePropsForCategoryAndNewProductCarousel' and set the initial value of some state variables. </li>
+    * </ul>
+    */
     constructor(props) {
         super(props);
 
@@ -40,6 +45,11 @@ class CategorySelect extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we populate the class variables 'categoryCarouselData' and 'newProductCarouselData' from props, for setting data for category and new product carousels. </li>
+    * </ul>
+    */
     populatePropsForCategoryAndNewProductCarousel = (props) => {
 
         if (props[`productsAndImagesData`]) {
@@ -56,6 +66,11 @@ class CategorySelect extends Component {
         }
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> We set this function so that in case the carousel data wasn't available in the constructor, it is passed to the carousel when it has become available. </li>
+    * </ul>
+    */
     componentWillReceiveProps(newProps) {
         this.populatePropsForCategoryAndNewProductCarousel(newProps);
 
@@ -71,19 +86,22 @@ class CategorySelect extends Component {
         }
     }
 
-    setMarginOnNewProduct = (height) => {
-        this.setState({
-            setMarginBottom: {
-                marginBottom: height + 20
-            }
-        });
-    };
-
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we save the selected category and selected category image filename in store, and </li>
+    * <li> Then we redirect to BrandYearModelSelectionPage (from 'src/containers/BrandYearModelSelectionPage.js') </li>
+    * </ul>
+    */
     storeCategoryInStoreAndNavigateToBrandYearModelSelectionPage = () => {
         this.props.storeCategoryAndCategoryImageNameInStore(this.state.selectedCategory, this.state.selectedCategoryImageFileName);
         this.props.history.push('/parentForThreeElementTabBarScreens/brandYearModalSelectPage');
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> When a category is selected, this function is executed, and we set the state variables 'selectedCategory' and 'selectedCategoryImageFileName' to appropriate values.</li>
+    * </ul>
+    */
     categorySelected = (categoryIndex) => {
 
         this.setState({
@@ -92,6 +110,11 @@ class CategorySelect extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class.</li>
+    * </ul>
+    */
     render() {
         return (
             <div style={this.state.topMarginCategorySelect} className={`mb-2`}>
@@ -114,8 +137,12 @@ class CategorySelect extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /**
+        * <ul style="list-style:none;">
+        * <li> In this function we save the selected category and selected category filename in store.</li>
+        * </ul>
+        */
         storeCategoryAndCategoryImageNameInStore: (category, imageName) => {
-
             dispatch({
                 type: actionTypes.STORE_CATEGORY_AND_CATEGORY_IMAGE_NAME, payload: {
                     category: category,

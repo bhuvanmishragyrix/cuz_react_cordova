@@ -43,7 +43,8 @@ const store = createStore(reducer);
  *          <li>Here we first lock the orientation of the device to portrait. </li>
  *          <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
  *          <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
- *      <ul>
+ *      </ul>
+ * <br/>
  * <li> Special Note: </li>
  *      <ul>
  *          <li> For the color customising algorithms written in this application to work, all the elments (e.g. path, rect, circle etc) inside the SVG parts images, which are upload on AWS S3, each of those elements should have an id.   </li>

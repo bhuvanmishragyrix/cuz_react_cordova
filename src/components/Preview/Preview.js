@@ -29,6 +29,13 @@ class Preview extends Component {
     <p class="text-center">This side is not available for preview!</p>
     </div>`, "text/html").getElementsByTagName('div')[0];
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In the constructor we set the height of the wrapper div, so as to center the loader in the middle. </li>
+    * <li> We filter out the names of appropriate preview images and whether the image is left or right side image here in the constructor. </li>
+    * <li> We also set the back button press event listener, to execute the function 'changeOrientationAndNavigateBackAndRemoveBackButtonEventListener' on press of back button. </li>
+    * </ul>
+    */
     constructor(props) {
         super(props);
 
@@ -65,6 +72,13 @@ class Preview extends Component {
         document.addEventListener('backbutton', this.changeOrientationAndNavigateBackAndRemoveBackButtonEventListener, false);
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> We create an array of promises here. </li>
+    * <li> Each promise here is corresponding to a fetch operation of a preview image from AWS S3. </li>
+    * <li> We do this in order to be able to wait until all promises are resolved (all images fetched from S3), via Promise.all (done later). </li>
+    * </ul>
+    */
     createPromiseArrayOfImages = () => {
         this.sideFileNamesAndImagesArray.forEach((el) => {
             let promiseOfImage = AWSServicesManagement.getSVGImageFromS3(this.props.userJWTToken, `${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${el.filename}`);
@@ -74,6 +88,13 @@ class Preview extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we change the screen orientation back to 'portrait', and </li>
+    * <li> Then navigate back, and </li>
+    * <li> Remove our custom on back button press event listener. </li>
+    * </ul>
+    */
     changeOrientationAndNavigateBackAndRemoveBackButtonEventListener = () => {
 
         screen.orientation.lock('portrait').then(() => {
@@ -87,6 +108,11 @@ class Preview extends Component {
 
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we map all the color customisations we did on the VisualComposerColorCustomiser to the preview images. </li>
+    * </ul>
+    */
     mapCustomisedImagesColorsToPreviewImage = (element) => {
         if (element.style.fill) {
 
@@ -106,59 +132,11 @@ class Preview extends Component {
 
     }
 
-
-    // renderSVG = (filename) => {
-
-    //     util.getBase64OfImage(`${appContants.LINK_TO_ROOT_PATH_OF_CUSTOMIZABLE_IMAGES}${filename}`)
-    //         .then((response) => {
-    //             screen.orientation.lock('landscape').then(() => {
-
-    //                 this.setState({
-    //                     loaderContent: "",
-    //                     wrapperDivStyle: {
-    //                         height: `${this.remainingWidth}px`,
-    //                         flexDirection: "column",
-    //                         justifyContent: "space-between"
-    //                     },
-    //                     isCarouselDisplayed: true
-    //                 });
-
-    //                 let bytes = base64.decode(new Buffer(response.data, 'binary').toString('base64'));
-    //                 this.previewImageAsString = utf8.decode(bytes);
-
-    //                 let parser = new DOMParser();
-    //                 this.previewImageObject = parser.parseFromString(this.previewImageAsString, "image/svg+xml").getElementsByTagName("svg")[0];
-
-    //                 this.props.customisedPartsImages.forEach((el) => {
-
-    //                     if (el.leftImageName) {
-
-    //                         el.leftImageObject.querySelectorAll('[id]').forEach((el) => {
-    //                             this.mapCustomisedImagesColorsToPreviewImage(el);
-    //                         });
-
-    //                     }
-
-    //                     if (el.rightImageName) {
-
-    //                         el.rightImageObject.querySelectorAll('[id]').forEach((el) => {
-    //                             this.mapCustomisedImagesColorsToPreviewImage(el);
-    //                         });
-
-    //                     }
-    //                 });
-
-    //                 document.getElementById(styles.parentOfImage).appendChild(this.previewImageObject);
-    //                 $('svg')[0].setAttribute("height", this.svgHeight);
-
-    //             }, function error(errMsg) {
-    //                 console.log("Error locking the orientation :: " + errMsg);
-    //             });
-
-
-    //         });
-    // }
-
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we create an attribute which stores the preview images downloaded from S3 in parsable Object form. </li>
+    * </ul>
+    */
     populateImagesAsObjectsInsideFileNamesAndImagesArray = () => {
         let parser = new DOMParser();
         this.sideFileNamesAndImagesArray.forEach((el) => {
@@ -171,6 +149,13 @@ class Preview extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we first fetch the preview Images from AWS S3. </li>
+    * <li> Then we create an attribute which stores the preview images downloaded from S3 as a string. </li>
+    * <li>  </li>
+    * </ul>
+    */
     populateImagesAsStringsInsideFileNamesAndImagesArray = () => {
 
         let responseCounter = 0;
@@ -219,19 +204,11 @@ class Preview extends Component {
                         }
                     });
 
-                    if (this.leftPreviewImageInArray.length > 0) {
-                        this.leftPreviewImageInArray = this.leftPreviewImageInArray[0].leftImageObject;
-                    }
-
                     this.rightPreviewImageInArray = this.sideFileNamesAndImagesArray.filter((el) => {
                         if (el.leftOrRight === "Right") {
                             return true;
                         }
                     });
-
-                    if (this.rightPreviewImageInArray.length > 0) {
-                        this.rightPreviewImageInArray = this.rightPreviewImageInArray[0].rightImageObject;
-                    }
 
 
                     this.props.customisedPartsImages.forEach((el) => {

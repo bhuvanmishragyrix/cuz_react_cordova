@@ -23,6 +23,12 @@ class PreparePrintFileStoreItAndPay extends Component {
     printImageObject;
     filenameOfUploadedImage;
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In the constructor we set the circular Progress to show in the middle of our page. </li>
+    * <li> We then set the initial value (equal to null) of some state variables. </li>
+    * </ul>
+    */
     constructor(props) {
 
         super(props);
@@ -42,6 +48,11 @@ class PreparePrintFileStoreItAndPay extends Component {
         };
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> Here we map the color customisations done in VisualComposerColorCustomiser to print image for a particular element. </li>
+    * </ul>
+    */
     mapCustomisedImagesColorsToPreviewImage = (element) => {
         if (element.style.fill) {
             if (this.printImageObject.getElementById(element.id)) {
@@ -51,6 +62,11 @@ class PreparePrintFileStoreItAndPay extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> Here we call the function 'mapCustomisedImagesColorsToPreviewImage' for each element in customised parts images saved in store. </li>
+    * </ul>
+    */
     customisePrintFileForUpload = () => {
         let parser = new DOMParser();
 
@@ -76,45 +92,88 @@ class PreparePrintFileStoreItAndPay extends Component {
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the Name input field is triggered. We set the name input field's value to the state variable 'paymentName' here.</li>
+    * </ul>
+    */
     onNameChange = (evt) => {
         this.setState({
             paymentName: evt.target.value
         });
     }
+
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the City input field is triggered. We set the name input field's value to the state variable 'paymentCity' here.</li>
+    * </ul>
+    */
     onCityChange = (evt) => {
         this.setState({
             paymentCity: evt.target.value
         });
     }
+
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the Country input field is triggered. We set the name input field's value to the state variable 'paymentCountry' here.</li>
+    * </ul>
+    */
     onCountryChange = (evt) => {
         this.setState({
             paymentCountry: evt.target.value
         });
     }
+
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the Phone input field is triggered. We set the name input field's value to the state variable 'paymentPhone' here.</li>
+    * </ul>
+    */
     onPhoneChange = (evt) => {
         this.setState({
             paymentPhone: evt.target.value
         });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the Address input field is triggered. We set the name input field's value to the state variable 'paymentAddress' here.</li>
+    * </ul>
+    */
     onAddressChange = (evt) => {
         this.setState({
             paymentAddress: evt.target.value
         });
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the State input field is triggered. We set the name input field's value to the state variable 'paymentState' here.</li>
+    * </ul>
+    */
     onStateChange = (evt) => {
         this.setState({
             paymentState: evt.target.value
         });
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is called when onChange of the Postal Code input field is triggered. We set the name input field's value to the state variable 'paymentPostalCode' here.</li>
+    * </ul>
+    */
     onPostalCodeChange = (evt) => {
         this.setState({
             paymentPostalCode: evt.target.value
         });
     };
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function is triggered when the user clicks on Retry (after a failed payment attempt).</li>
+    * </ul>
+    */
     onRetryClick = () => {
         this.setState({
             content: (
@@ -146,11 +205,25 @@ class PreparePrintFileStoreItAndPay extends Component {
         </div>
     );
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This function resets the selection data saved in store, and </li>
+    * <li> Pops the history stack 5 times, hence redirect to the category select page (from src/containers/CategorySelectPage.js). </li>
+    * </ul>
+    */
     redirectToHomePage = () => {
         this.props.resetSelectionDataInStore();
         this.props.history.go(-5);
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> In this function we send the token data generated on client side to our server (stripe payment client side token). </li>
+    * <li> Here we also do validations on the input fields. </li>
+    * <li> We execute the lambda function present on AWS to complete payment, and </li>
+    * <li> Do the success and error handling both here. </li>
+    * </ul>
+    */
     sendTokenToServerAndCompletePayment = (tokenData) => {
 
         if (tokenData.token) {
@@ -293,6 +366,16 @@ class PreparePrintFileStoreItAndPay extends Component {
         }
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> Here we retreive the file name of the appropriate printSVG. </li>
+    * <li> Here we then fetch the print SVG from AWS S3, and convert it to string. </li>
+    * <li> We then call the function 'customisePrintFileForUpload'. </li>
+    * <li> We then store the customised image on AWS S3 under the folder having name of registered email address of user, and </li>
+    * <li> And having filename of the current timestamp. </li>
+    * <li> On successful storage of file on AWS S3, we present the user with the page where he can enter payment details and complete payment. </li>
+    * </ul>
+    */
     componentDidMount() {
 
         this.props.images.forEach((el) => {
@@ -341,6 +424,11 @@ class PreparePrintFileStoreItAndPay extends Component {
             });
     }
 
+    /**
+    * <ul style="list-style:none;">
+    * <li> This is the render function of our class </li>
+    * </ul>
+    */
     render() {
         return (
             <div style={this.topMargin}>
@@ -350,6 +438,11 @@ class PreparePrintFileStoreItAndPay extends Component {
     }
 }
 
+/**
+* <ul style="list-style:none;">
+* <li> Here we map the attributes in store to props in our class. </li>
+* </ul>
+*/
 const mapStateToProps = (state) => {
     return {
         userJWTToken: state.userJWTToken,
@@ -367,6 +460,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /**
+        * <ul style="list-style:none;">
+        * <li> With the help of this function we reset the selection data saved in store. </li>
+        * </ul>
+        */
         resetSelectionDataInStore: () => {
             dispatch({ type: actionTypes.RESET_SELECTION_DATA_AFTER_SUCCESSFUL_PAYMENT });
         }

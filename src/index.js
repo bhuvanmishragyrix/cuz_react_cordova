@@ -17,8 +17,8 @@ const store = createStore(reducer);
  * <li> Build Workflow: </li>
  *      <ul>
  *          <li> We write code inside "src/" folder. </li>
- *          <li> We write our code in React and our build workflow (webpack) converts and bundles it.  </li>
- *          <li> After writing our code we run "npm run build", doing so our build workflow (webpack) bundles all the files to "www" folder. </li>
+ *          <li> We write our code in React and our build workflow (webpack and babel) converts and bundles it.  </li>
+ *          <li> After writing our code we run "npm run build", doing so our build workflow (webpack and babel) converts and bundles all the files to "www" folder. </li>
  *          <li> Once "npm run build" is successful, on android we run "cordova run android" to run the application on a connected device or emulator. </li>
  *          <li> In case there is an issue, try opening the platforms/android folder in android studio and running it from there.</li>
  *          <li> In case of ios, try opening the .xcodeproj file (present in platforms/ios/) in xcode and running it from there.</li>

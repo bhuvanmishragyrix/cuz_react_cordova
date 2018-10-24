@@ -14,7 +14,7 @@ const store = createStore(reducer);
  * <ul style="list-style: none;">
  * <li>This (src/index.js) is the entry point of the application.</li>
  * <br/>
- * <li> Build Workflow: </li>
+ * <li> Build Workflow : </li>
  *      <ul>
  *          <li> We write code inside "src/" folder. </li>
  *          <li> We write our code in React and our build workflow (webpack and babel) converts and bundles it.  </li>
@@ -38,14 +38,14 @@ const store = createStore(reducer);
  *          <li> "index.html" - This is the file where our bundled code (from webpack is finally attached.). The stripe script has to be hosted here. This script should always be loaded directly from https://js.stripe.com:  </li>
  *      </ul>
  * <br/>
- * <li> Code Description: </li>
+ * <li> Code Description : </li>
  *      <ul>
  *          <li>Here we first lock the orientation of the device to portrait. </li>
  *          <li>Then wait for 100ms (had to do this else the orientation wasn't getting locked to portrait).</li>
  *          <li>Then we render the application (src/App.js) at the div with id "root" (which is present inside index.html).</li>
  *      </ul>
  * <br/>
- * <li> Special Note: </li>
+ * <li> Special Note : </li>
  *      <ul>
  *          <li> For the color customising algorithms written in this application to work, all the elments (e.g. path, rect, circle etc) inside the SVG parts images, which are upload on AWS S3, each of those elements should have an id.   </li>
  *          <li> An id is automatically created on each element when we open the images in Inkscape on Ubuntu and save it again as 'Plain SVG' </li>

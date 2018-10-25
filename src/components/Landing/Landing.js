@@ -27,7 +27,7 @@ class Landing extends Component {
     * <li> Here we do a replace instead of a push. </li>
     * </ul>
     */
-    redirectToParentForThreeElementTabBarScreens = () => {
+    redirectToLoginPage = () => {
         // this.props.history.replace('/parentForThreeElementTabBarScreens/categorySelectPage');
         this.props.history.replace('/login');
     };

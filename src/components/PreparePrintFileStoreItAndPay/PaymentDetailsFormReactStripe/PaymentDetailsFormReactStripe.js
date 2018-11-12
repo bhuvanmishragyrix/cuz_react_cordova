@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
-import './PaymentDetailsFormReactStripe.css?raw';
+// import './PaymentDetailsFormReactStripe.css?raw';
 
 import styles from './PaymentDetailsFormReactStripe.css'
 import * as util from '../../../util/Util';

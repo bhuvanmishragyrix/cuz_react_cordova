@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 
 // Imports for bootstrap
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css?raw'
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css?raw'
 import 'jquery';
 import 'popper.js';
 import 'bootstrap';

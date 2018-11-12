@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import LandingCss from './Landing.css';
 import * as AppConst from '../../constants/AppConstants';
-import '../../../node_modules/font-awesome/css/font-awesome.min.css?raw';
+// import '../../../node_modules/font-awesome/css/font-awesome.min.css?raw';
 
 class Landing extends Component {
 
@@ -45,7 +45,7 @@ class Landing extends Component {
                         <img className={LandingCss.imageSize} src={logo} />
                     </div>
                 </div>
-                <div onClick={this.redirectToParentForThreeElementTabBarScreens} className={`${LandingCss.startIconAndText} text-center`}>
+                <div onClick={this.redirectToLoginPage} className={`${LandingCss.startIconAndText} text-center`}>
                     <i className={`${LandingCss.iconSizeAndColor} fa fa-play-circle`} aria-hidden="true"></i>
                     <p className={LandingCss.startTextAndColor}>START</p>
                 </div>
